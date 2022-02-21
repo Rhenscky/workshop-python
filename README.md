@@ -1,2 +1,0 @@
-Python adalah bahasa pemrograman yang mudah dipelajari dan kuat. Ini memiliki struktur data tingkat tinggi yang efisien dan pendekatan yang sederhana namun efektif untuk pemrograman berorientasi objek. Sintaks Python yang elegan dan pengetikan dinamis, bersama dengan sifatnya yang ditafsirkan, menjadikannya bahasa yang ideal untuk pembuatan skrip dan pengembangan aplikasi yang cepat di banyak area di sebagian besar platform.
-
