@@ -1,8 +1,8 @@
-# Workshop Python
-##NAMA : Rhenscky Cokrowarno Yamwav
+## Workshop Python
+ NAMA           : Rhenscky Cokrowarno Yamwav
 
-##NIM : 195410003
+ NIM            : 195410003
 
-##PROGRAM  STUDI :  Informatika
+ PROGRAM  STUDI :  Informatika
 
-'''Genap 2021-2022'''
+``` Tahun Ajaran 2021/2022 ```
