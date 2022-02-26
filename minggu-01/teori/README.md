@@ -1,6 +1,6 @@
 
-### 1. Penggunaan Python Sebagai Kalkulator
-#### 1.1 Angka
+### Penggunaan Python Sebagai Kalkulator
+#### Angka
 
 Penerjemah (Interpreter) bertindak sebagai kalkulator sederhana dengan menjalankan ekspresi padanya. Berikut ini sintaks ekpresi mudah : operator +, - , * dan / bekerja seperti pada bahasa pemrograman lainnya.
 
@@ -60,7 +60,7 @@ NameError: name 'n' is not defined
 ```
 
 
-#### 1.2 String
+#### String
 
 Selain angka, python juga dapat memanipulasi nilai string yang dapat diekspresikan dalam beberapa cara. Nilai string biasanya akan ditandai dengan kutip tunggal (‘...’) atau kutip ganda (“...”) dan akan menghasilkan output yang sama.
 
@@ -201,7 +201,7 @@ TypeError: 'str' object does not support item assigment
 ```
 
 
-#### 1.3 Daftar
+#### Daftar
 
 Python mengenal sejumlah jenis tipe data gabungan yang digunakan untuk mengelompokkan nilai-nilai lain dan diantaranya adalah daftar/list, yang dapat ditulis sebagai daftar nilai (item) yang dipisahkan koma di antara tanda kurung siku. Daftar mungkin berisi item dari jenis yang berbeda, tetapi biasanya semua item memiliki jenis tipe data yang sama. Seperti string dan semua jenis urutan bawaan lainnya. Semua operasi irisan mengembalikan daftar baru yang berisi elemen yang diminta. 
 
@@ -271,7 +271,7 @@ Penetapan irisan juga dimungkinkan dan ini bahkan dapat mengubah ukuran daftar a
 'b'
 >>>
 ```
-### 2. Langkah - langkah programming
+### Langkah - langkah programming
 
 Dengan Python, penyelesaian masalah yang rumit dapat terselesaikan. Sebagai contoh, menulis sub-urutan awal dari deret Fibbonaci. 
 
