@@ -1,5 +1,5 @@
 # PENGENDALI ALIRAN PROGRAM 
-## 4. FLOW TOOLS
+## 4. TOOLS dan ALIRAN
 ### 4.1 IF Statements
 
 Dalam bahasa pemrograman seringkali ditemukan pernyataan untuk menyelesaikan suatu permasalahan, pernyataan tersebut terkadang memberi ruang untuk seorang pengembang dalam menentukan nilai seharusnya. Salah satu pernyataan yang banyak digunakan adalah IF, pernyataan atau statemen ini akan menghasilkan dua kemungkinan, yakni benar atau salah, True or False, 0 atau 1, ya atau tidak dsb. 
@@ -19,12 +19,9 @@ elif x == 1:
     print('satu')
 else:
     print('lebih')
-
 ```
 
-
-### 4.2 FOR Statements
-
+### 4.2 For Statements
 Walaupun pada bahasa pemrograman Python ini terdapat FOR *statement*/pernyataan FOR seperti pada bahasa pemrograman lainnya, penggunaannya dalam bahasa ini mempunyai penerapan yang berbeda. Jika pada bahasa lainnya memerlukan pengulangan operasi aritmatika terlebih pada sebuah angka atau menentukan langkah berdasarkan iterasi dan kondisi penghentian, maka pada Python pengulangan hanya akan terjadi pada item dan akan tersusun membentuk sebuah daftar (susunan data dalam urutan) dengan tipe data string. 
 
 Berikut ini merupakan contoh penggunaan FOR :
@@ -547,3 +544,5 @@ f('spam')
 Sekarang Anda akan menulis bagian Python yang lebih panjang dan lebih kompleks, ini saat yang tepat untuk berbicara tentang gaya pengkodean . Sebagian besar bahasa dapat ditulis (atau lebih ringkas, diformat ) dalam gaya yang berbeda; beberapa lebih mudah dibaca daripada yang lain. Mempermudah orang lain untuk membaca kode Anda selalu merupakan ide yang bagus, dan mengadopsi gaya pengkodean yang bagus sangat membantu untuk itu.
 
 Untuk Python,PEP 8 telah muncul sebagai panduan gaya yang dipatuhi sebagian besar proyek; itu mempromosikan gaya pengkodean yang sangat mudah dibaca dan menyenangkan mata.
+
+### KESIMPULAN
