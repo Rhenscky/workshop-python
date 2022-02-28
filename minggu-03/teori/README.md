@@ -3,78 +3,70 @@ Struktur Data adalah struktur yang dapat menyimpan dan mengorganisasikan kumpula
 
 Struktur data berbicara mengenai suatu cara untuk menyimpan, menyusun, mengelompokkan dan merepresentasikan suatu data. Struktur data merupakan hal yang sangat penting dan wajib dikuasai oleh seorang programmer. Di forum-forum pemrograman, saya sering menjumpai pertanyaan-pertanyaan yang menurut saya bisa diselesaikan jika orang tersebut paham mengenai konsep struktur data. Dalam Python terdapat empat struktur data built-in yaitu List, Tuple, Dictionary, dan Set. Sebenarnya masih ada lagi, tapi menurut saya 4 struktur data tersebut yang paling penting dan sering digunakan.
 
-### 1. List
+#### 1. List
 List merupakan struktur data terurut (sequence). Setiap item dalam List memiliki sebuah index yang dimulai dari 0. List direpresentasikan dengan karakter square brackets []. Mungkin terlihat mirip dengan Array pada bahasa pemrograman lain seperti Java, tapi List dalam Python bisa menampung berbagai tipe data.
 
-### 2. Tuple
+#### 2. Tuple
 Tuple sebenarnya sama dengan List, perbedaannya adalah Tuple memiliki sifat immutable yang artinya tidak bisa dirubah bahkan dihapus. Sebuah Tuple direpresentasikan dengan karakter parentheses ().
 
-### 3. Dictionary
+#### 3. Dictionary
 Dictionary merupakan struktur data yang berupa pasangan key-value. Setiap informasi yang disimpan pada Dictionary di petakan dengan satu key untuk mengakses informasi tersebut. Bahkan sebuah Dictionary bisa berisi Dictionary lain.
 
-### 4. Set
+#### 4. Set
 Set merupakan struktur data yang memiliki kelebihan yaitu bersifat unique, jadi ketika kita memasukkan data yang sama pada Set, maka salah satu data itu akan di replace. Namun yang perlu diperhatikan bahwa struktur data Set juga bersifat unordered atau tidak berurut. Selain itu Set juga bersifat unindexed atau tidak memiliki index, sehingga kita tidak bisa mengakses salah satu data dari Set berdasarkan index tertentu.
 
 ## Daftar Structur Data pada Python
 
 Berikut adalah semua metode objek yang digunakan pada daftar Python :
-```
-list.append( x )
-Tambahkan item ke akhir daftar. Setara dengan .a[len(a):] = [x]
-```
 
-```
-list.extend( dapat diubah )
-Perluas daftar dengan menambahkan semua item dari iterable. Setara dengan .a[len(a):] = iterable
-```
+1. List.append( x )
 
-```
-list.insert( saya , x )
-Masukkan item pada posisi tertentu. Argumen pertama adalah indeks elemen yang akan disisipkan sebelumnya, jadi disisipkan di bagian depan daftar, dan sama dengan .a.insert(0, x)a.insert(len(a), x)a.append(x)
-```
+   Tambahkan item ke akhir daftar. Setara dengan .a[len(a):] = [x]
+   
+2. List.extend( dapat diubah )
+   
+   Perluas daftar dengan menambahkan semua item dari iterable. Setara dengan .a[len(a):] = iterable
 
-```
-list.remove( x )
-Hapus item pertama dari daftar yang nilainya sama dengan x . Ini menimbulkan ValueErrorjika tidak ada item seperti itu.
-```
+3. List.insert( saya , x )
+   
+   Masukkan item pada posisi tertentu. Argumen pertama adalah indeks elemen yang akan disisipkan        sebelumnya, jadi disisipkan di bagian depan daftar, dan sama dengan .a.insert(0, x)a.insert
+   (len(a), x)a.append(x)
 
-```
-list.pop( [ saya ] )
-Hapus item pada posisi yang diberikan dalam daftar, dan kembalikan. Jika tidak ada indeks yang ditentukan, a.pop()hapus dan kembalikan item terakhir dalam daftar. 
-(Kurung siku di sekitar i dalam tanda tangan metode menunjukkan bahwa parameternya opsional, bukan berarti Anda harus mengetikkan tanda kurung siku pada posisi itu. Anda akan sering melihat notasi ini di Referensi Pustaka Python.)
-```
+4. List.remove( x )
+   
+   Hapus item pertama dari daftar yang nilainya sama dengan x . Ini menimbulkan ValueErrorjika tidak    ada item seperti itu.
 
-```
-list.clear( )
-Hapus semua item dari daftar. Setara dengan .del a[:]
-```
+5. List.pop( [ saya ] )
+   
+   Hapus item pada posisi yang diberikan dalam daftar, dan kembalikan. Jika tidak ada indeks yang        ditentukan, a.pop()hapus dan kembalikan item terakhir dalam daftar. 
+   (Kurung siku di sekitar i dalam tanda tangan metode menunjukkan bahwa parameternya opsional, bukan    berarti Anda harus mengetikkan tanda kurung siku pada posisi itu. Anda akan sering melihat notasi    ini di Referensi Pustaka Python.)
 
-```
-list.index( x [ , mulai [ , akhir ] ] )
-Kembalikan indeks berbasis nol dalam daftar item pertama yang nilainya sama dengan x . Menaikkan a ValueErrorjika tidak ada item seperti itu.
-Argumen opsional mulai dan akhir ditafsirkan seperti dalam notasi irisan dan digunakan untuk membatasi pencarian ke urutan daftar tertentu. Indeks yang dikembalikan dihitung relatif terhadap awal urutan penuh daripada argumen awal.
-```
-```
-list.count( x )
-Kembalikan berapa kali x muncul dalam daftar.
-```
+6. List.clear( )
+   
+   Hapus semua item dari daftar. Setara dengan .del a[:]
 
-```
-list.sort( * , kunci = Tidak ada , terbalik = Salah )
-Urutkan item dari daftar di tempat (argumen dapat digunakan untuk penyesuaian pengurutan, lihat sorted()penjelasannya).
-```
+7. List.index( x [ , mulai [ , akhir ] ] )
 
-```
-list.reverse( )
-Balikkan elemen daftar di tempatnya.
-```
+   Kembalikan indeks berbasis nol dalam daftar item pertama yang nilainya sama dengan x . Menaikkan a    ValueErrorjika tidak ada item seperti itu. Argumen opsional mulai dan akhir ditafsirkan seperti      dalam notasi irisan dan digunakan untuk membatasi pencarian ke urutan daftar tertentu. Indeks yang    dikembalikan dihitung relatif terhadap awal urutan penuh daripada argumen awal.
 
-```
-list.copy( )
-Kembalikan salinan daftar yang dangkal. Setara dengan a[:].
-```
+8. List.count( x )
 
-## Contoh yang menggunakan sebagian besar metode daftar :
+   Kembalikan berapa kali x muncul dalam daftar.
+
+9. List.sort( * , kunci = Tidak ada , terbalik = Salah )
+
+   Urutkan item dari daftar di tempat (argumen dapat digunakan untuk penyesuaian pengurutan, lihat      sorted()penjelasannya).
+
+10.List.reverse( )
+
+   Balikkan elemen daftar di tempatnya.
+
+11.List.copy( )
+   
+   Kembalikan salinan daftar yang dangkal. Setara dengan a[:].
+
+
+#### Contoh yang menggunakan sebagian besar metode daftar :
 
 ```
 >>> fruits = ['orange', 'apple', 'pear', 'banana', 'kiwi', 'apple', 'banana']
@@ -100,7 +92,7 @@ Kembalikan salinan daftar yang dangkal. Setara dengan a[:].
 ```
 Anda mungkin telah memperhatikan bahwa metode seperti insert, removeatau sortyang hanya mengubah daftar tidak memiliki nilai kembalian yang dicetak – metode tersebut mengembalikan default None. 1 Ini adalah prinsip desain untuk semua struktur data yang dapat diubah dengan Python.
 
-### Menggunakan Daftar sebagai 
+### 1.1 Menggunakan Daftar sebagai 
 Metode daftar membuatnya sangat mudah untuk menggunakan daftar sebagai tumpukan, di mana elemen terakhir yang ditambahkan adalah elemen pertama yang diambil ("masuk terakhir, keluar pertama"). Untuk menambahkan item ke bagian atas tumpukan, gunakan append(). Untuk mengambil item dari atas tumpukan, gunakan pop()tanpa indeks eksplisit. Sebagai contoh:
 
 ```
@@ -121,7 +113,7 @@ Metode daftar membuatnya sangat mudah untuk menggunakan daftar sebagai tumpukan,
 [3, 4]
 ```
 
-### Menggunakan Daftar sebagai 
+### 1.2 Menggunakan Daftar sebagai 
 Dimungkinkan juga untuk menggunakan daftar sebagai antrian, di mana elemen pertama yang ditambahkan adalah elemen pertama yang diambil ("masuk pertama, keluar pertama"); namun, daftar tidak efisien untuk tujuan ini. Sementara menambahkan dan muncul dari akhir daftar cepat, melakukan penyisipan atau muncul dari awal daftar lambat (karena semua elemen lain harus digeser satu).
 
 Untuk mengimplementasikan antrian, gunakan collections.dequeyang dirancang untuk menambahkan dan muncul dengan cepat dari kedua ujungnya. Sebagai contoh:
@@ -139,7 +131,7 @@ Untuk mengimplementasikan antrian, gunakan collections.dequeyang dirancang untuk
 deque(['Michael', 'Terry', 'Graham'])
 ```
 
-### Pemahaman
+### 1.3 Pemahaman
 Pemahaman daftar menyediakan cara ringkas untuk membuat daftar. Aplikasi umum adalah untuk membuat daftar baru di mana setiap elemen adalah hasil dari beberapa operasi yang diterapkan ke setiap anggota dari urutan lain atau iterable, atau untuk membuat suburutan dari elemen-elemen yang memenuhi kondisi tertentu.
 
 Misalnya, anggap kita ingin membuat daftar kotak, seperti:
@@ -218,7 +210,7 @@ Pemahaman daftar dapat berisi ekspresi kompleks dan fungsi bersarang:
 >>> [str(round(pi, i)) for i in range(1, 6)]
 ['3.1', '3.14', '3.142', '3.1416', '3.14159']
 ```
-### Pemahaman Daftar 
+### 1.4 Pemahaman Daftar 
 Ekspresi awal dalam pemahaman daftar dapat berupa ekspresi arbitrer, termasuk pemahaman daftar lainnya.
 Perhatikan contoh berikut dari matriks 3x4 yang diimplementasikan sebagai daftar 3 daftar panjang 4:
 ```
@@ -262,7 +254,7 @@ Di dunia nyata, Anda harus lebih memilih fungsi bawaan daripada pernyataan alira
 ```
 Lihat Membongkar Daftar Argumen untuk detail tentang tanda bintang di baris ini.
 
-### Pernyataan del_ 
+### 2. Pernyataan del_ 
 Ada cara untuk menghapus item dari daftar yang diberikan indeksnya alih-alih nilainya: delpernyataan. Ini berbeda dari pop()metode yang mengembalikan nilai. Pernyataan deljuga dapat digunakan untuk menghapus irisan dari daftar atau menghapus seluruh daftar (yang kita lakukan sebelumnya dengan menetapkan daftar kosong ke irisan). Sebagai contoh:
 ```
 >>> a = [-1, 1, 66.25, 333, 333, 1234.5]
@@ -282,7 +274,7 @@ deljuga dapat digunakan untuk menghapus seluruh variabel:
 ```
 Merujuk nama aselanjutnya adalah kesalahan (setidaknya sampai nilai lain diberikan padanya). Kami akan menemukan kegunaan lain untuk delnanti.
 
-### Dan Urutan
+### 3. Dan Urutan
 Kami melihat bahwa daftar dan string memiliki banyak properti umum, seperti operasi pengindeksan dan pengirisan. Mereka adalah dua contoh tipe data urutan (lihat Jenis Urutan — daftar, tupel, rentang ). Karena Python adalah bahasa yang berkembang, tipe data urutan lainnya dapat ditambahkan. Ada juga tipe data urutan standar lainnya: tuple .
 Tuple terdiri dari sejumlah nilai yang dipisahkan dengan koma, misalnya:
 ```
@@ -324,7 +316,7 @@ Pernyataan tersebut adalah contoh pengepakan tuple : nilai , dan dikemas bersama
 ```
 Ini disebut, cukup tepat, pembongkaran urutan dan berfungsi untuk urutan apa pun di sisi kanan. Pembukaan urutan mensyaratkan bahwa ada banyak variabel di sisi kiri tanda sama dengan jumlah elemen dalam urutan. Perhatikan bahwa beberapa penugasan sebenarnya hanyalah kombinasi dari pengemasan Tuple dan pembongkaran urutan.
 
-### Set 
+### 4. Set 
 Python juga menyertakan tipe data untuk set . Himpunan adalah kumpulan yang tidak berurutan tanpa elemen duplikat. Penggunaan dasar termasuk pengujian keanggotaan dan menghilangkan entri duplikat. Set objek juga mendukung operasi matematika seperti serikat pekerja, persimpangan, perbedaan, dan perbedaan simetris.
 
 Kurung kurawal atau set()fungsi dapat digunakan untuk membuat himpunan. Catatan: untuk membuat set kosong Anda harus menggunakan set(), bukan {}; yang terakhir membuat kamus kosong, struktur data yang akan kita bahas di bagian selanjutnya.
@@ -359,7 +351,7 @@ Sama halnya dengan daftar pemahaman , pemahaman set juga didukung:
 >>> a
 {'r', 'd'}
 ```
-### Kamus 
+### 5. Kamus 
 Tipe data lain yang berguna yang dibangun ke dalam Python adalah kamus (lihat Jenis Pemetaan — dict ). Kamus kadang-kadang ditemukan dalam bahasa lain sebagai "ingatan asosiatif" atau "array asosiatif". Tidak seperti urutan, yang diindeks oleh rentang angka, kamus diindeks oleh kunci , yang dapat berupa tipe apa pun yang tidak dapat diubah; string dan angka selalu bisa menjadi kunci. Tuple dapat digunakan sebagai kunci jika hanya berisi string, angka, atau tupel; jika sebuah tuple berisi objek yang bisa berubah baik secara langsung maupun tidak langsung, itu tidak dapat digunakan sebagai kunci. Anda tidak dapat menggunakan daftar sebagai kunci, karena daftar dapat dimodifikasi di tempat menggunakan penetapan indeks, penetapan irisan, atau metode seperti append()dan extend().
 
 Melakukan list(d)di kamus mengembalikan daftar semua kunci yang digunakan dalam kamus, dalam urutan penyisipan (jika Anda ingin diurutkan, gunakan sorted(d)saja). Untuk memeriksa apakah satu kunci ada dalam kamus, gunakan inkata kunci.
@@ -399,7 +391,7 @@ Jika kuncinya adalah string sederhana, terkadang lebih mudah untuk menentukan pa
 >>> dict(sape=4139, guido=4127, jack=4098)
 {'sape': 4139, 'guido': 4127, 'jack': 4098}
 ```
-### Teknik 
+### 6. Teknik 
 Saat mengulang melalui kamus, kunci dan nilai yang sesuai dapat diambil pada saat yang sama menggunakan items()metode ini.
 ```
 >>> knights = {'gallahad': 'the pure', 'robin': 'the brave'}
@@ -476,7 +468,7 @@ Terkadang tergoda untuk mengubah daftar saat Anda mengulangnya; namun, seringkal
 >>> filtered_data
 [56.2, 51.7, 55.3, 52.5, 47.8]
 ```
-### Ketentuan
+### 7. Ketentuan
 Kondisi yang digunakan dalam whiledan ifpernyataan dapat berisi operator apa pun, bukan hanya perbandingan. Operator perbandingan indan merupakan tes keanggotaan yang menentukan apakah suatu nilai ada di (atau tidak) dalam wadah. Operator dan membandingkan apakah dua objek benar-benar objek yang sama. Semua operator pembanding memiliki prioritas yang sama, yaitu lebih rendah dari semua operator numerik.not inisis not 
 Perbandingan dapat dirantai. Misalnya, menguji apakah kurang dari dan apalagi sama dengan .a < b == cabbc
 
@@ -491,7 +483,7 @@ Dimungkinkan untuk menetapkan hasil perbandingan atau ekspresi Boolean lainnya k
 ```
 Perhatikan bahwa dalam Python, tidak seperti C, penugasan di dalam ekspresi harus dilakukan secara eksplisit dengan operator walrus := . Ini menghindari kelas umum dari masalah yang dihadapi dalam program C: mengetik = ekspresi ketika ==dimaksudkan.
 
-### Membandingkan Urutan dan Jenis 
+### 8. Membandingkan Urutan dan Jenis 
 Objek urutan biasanya dapat dibandingkan dengan objek lain dengan jenis urutan yang sama. Perbandingannya menggunakan leksikografispemesanan: pertama dua item pertama dibandingkan, dan jika berbeda, ini menentukan hasil perbandingan; jika mereka sama, dua item berikutnya dibandingkan, dan seterusnya, sampai salah satu urutan habis. Jika dua item yang akan dibandingkan itu sendiri merupakan urutan dari jenis yang sama, perbandingan leksikografis dilakukan secara rekursif. Jika semua item dari dua urutan membandingkan sama, urutan dianggap sama. Jika satu barisan merupakan sub-urutan awal dari yang lain, barisan yang lebih pendek adalah yang lebih kecil (lebih kecil). Urutan leksikografis untuk string menggunakan nomor titik kode Unicode untuk mengurutkan karakter individual. Beberapa contoh perbandingan antara urutan dari jenis yang sama:
 ```
 (1, 2, 3)              < (1, 2, 4)
