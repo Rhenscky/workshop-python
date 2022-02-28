@@ -1,6 +1,5 @@
 # Struktur Data
 Struktur Data adalah struktur yang dapat menyimpan dan mengorganisasikan kumpulan data. Berikut struktur data yang ada dalam Python.
-
 Struktur data berbicara mengenai suatu cara untuk menyimpan, menyusun, mengelompokkan dan merepresentasikan suatu data. Struktur data merupakan hal yang sangat penting dan wajib dikuasai oleh seorang programmer. Di forum-forum pemrograman, saya sering menjumpai pertanyaan-pertanyaan yang menurut saya bisa diselesaikan jika orang tersebut paham mengenai konsep struktur data. Dalam Python terdapat empat struktur data built-in yaitu List, Tuple, Dictionary, dan Set. Sebenarnya masih ada lagi, tapi menurut saya 4 struktur data tersebut yang paling penting dan sering digunakan.
 
 #### 1. List
@@ -29,7 +28,8 @@ Berikut adalah semua metode objek yang digunakan pada daftar Python :
 
 3. List.insert( saya , x )
    
-   Masukkan item pada posisi tertentu. Argumen pertama adalah indeks elemen yang akan disisipkan        sebelumnya, jadi disisipkan di bagian depan daftar, dan sama dengan .a.insert(0, x)a.insert
+   Masukkan item pada posisi tertentu. Argumen pertama adalah indeks elemen yang akan disisipkan        
+   sebelumnya, jadi disisipkan di bagian depan daftar, dan sama dengan .a.insert(0, x)a.insert
    (len(a), x)a.append(x)
 
 4. List.remove( x )
@@ -57,16 +57,16 @@ Berikut adalah semua metode objek yang digunakan pada daftar Python :
 
    Urutkan item dari daftar di tempat (argumen dapat digunakan untuk penyesuaian pengurutan, lihat      sorted()penjelasannya).
 
-10.List.reverse( )
+10. List.reverse( )
 
-   Balikkan elemen daftar di tempatnya.
+    Balikkan elemen daftar di tempatnya.
 
-11.List.copy( )
+11. List.copy( )
    
-   Kembalikan salinan daftar yang dangkal. Setara dengan a[:].
+    Kembalikan salinan daftar yang dangkal. Setara dengan a[:].
 
 
-#### Contoh yang menggunakan sebagian besar metode daftar :
+### Contoh yang menggunakan sebagian besar metode daftar :
 
 ```
 >>> fruits = ['orange', 'apple', 'pear', 'banana', 'kiwi', 'apple', 'banana']
