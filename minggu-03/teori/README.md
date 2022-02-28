@@ -1,4 +1,5 @@
-# Struktur Data
+# Pertemuan 3
+## Struktur Data
 Struktur Data adalah struktur yang dapat menyimpan dan mengorganisasikan kumpulan data. Berikut struktur data yang ada dalam Python.
 Struktur data berbicara mengenai suatu cara untuk menyimpan, menyusun, mengelompokkan dan merepresentasikan suatu data. Struktur data merupakan hal yang sangat penting dan wajib dikuasai oleh seorang programmer. Di forum-forum pemrograman, saya sering menjumpai pertanyaan-pertanyaan yang menurut saya bisa diselesaikan jika orang tersebut paham mengenai konsep struktur data. Dalam Python terdapat empat struktur data built-in yaitu List, Tuple, Dictionary, dan Set. Sebenarnya masih ada lagi, tapi menurut saya 4 struktur data tersebut yang paling penting dan sering digunakan.
 
