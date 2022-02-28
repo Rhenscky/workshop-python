@@ -1,5 +1,5 @@
-# PENGENDALI ALIRAN PROGRAM 
-## 4. FLOW TOOLS
+# Pertemuan 2
+## 4. Pengendalian aliran program (FLOW TOOLS)
 ### 4.1 IF Statements
 
 Dalam bahasa pemrograman seringkali ditemukan pernyataan untuk menyelesaikan suatu permasalahan, pernyataan tersebut terkadang memberi ruang untuk seorang pengembang dalam menentukan nilai seharusnya. Salah satu pernyataan yang banyak digunakan adalah IF, pernyataan atau statemen ini akan menghasilkan dua kemungkinan, yakni benar atau salah, True or False, 0 atau 1, ya atau tidak dsb. 
