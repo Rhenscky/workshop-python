@@ -139,3 +139,105 @@ Anda dapat menggunakan -O atau -OO mengaktifkan perintah Python untuk mengurangi
 * Sebuah program tidak berjalan lebih cepat saat dibaca dari ```.pyc``` file daripada saat dibaca dari .pyfile; satu-satunya hal yang lebih cepat tentang ```.pyc``` file adalah kecepatan pemuatannya.
 * Modul compilealldapat membuat file .pyc untuk semua modul dalam direktori.
 * Ada lebih detail tentang proses ini, termasuk diagram alir keputusan, diPP 3147 .
+
+## Standard Modules
+Python hadir dengan pustaka modul standar, yang dijelaskan dalam dokumen terpisah, Referensi Pustaka Python (“Referensi Pustaka” selanjutnya). Beberapa modul dibangun ke dalam juru bahasa; ini menyediakan akses ke operasi yang bukan bagian dari inti bahasa tetapi tetap dibangun, baik untuk efisiensi atau untuk menyediakan akses ke sistem operasi primitif seperti panggilan sistem. Kumpulan modul tersebut adalah opsi konfigurasi yang juga bergantung pada platform yang mendasarinya. Misalnya, winregmodul hanya disediakan pada sistem Windows. Satu modul tertentu patut mendapat perhatian: sys, yang dibangun ke dalam setiap juru bahasa Python. Variabel ```sys.ps1``` dan ```sys.ps2``` 
+
+### Menentukan string yang digunakan sebagai prompt primer dan sekunder :
+#### ```Kode 4```
+```
+>>> import sys
+>>> sys.ps1
+'>>> '
+>>> sys.ps2
+'... '
+>>> sys.ps1 = 'C> '
+C> print('Yuck!')
+Yuck!
+C>
+```
+Kedua variabel ini hanya ditentukan jika interpreter dalam mode interaktif.
+Variabel ```sys.path``` adalah daftar string yang menentukan jalur pencarian interpreter untuk modul. Ini diinisialisasi ke jalur default yang diambil dari variabel lingkunganPYTHONPATH, atau dari default bawaan jika PYTHONPATHtidak diatur. 
+Anda dapat memodifikasinya menggunakan operasi daftar standar:
+#### ```Kode 4.0```
+```
+>>> import sys
+>>> sys.path.append('/ufs/guido/lib/python')
+```
+
+## The dir() Function
+The built-in function dir() is used to find out which names a module defines. It returns a sorted list of strings:
+#### ```Kode 5```
+```
+>>> import fibo, sys
+>>> dir(fibo)
+['__name__', 'fib', 'fib2']
+>>> dir(sys)  
+['__breakpointhook__', '__displayhook__', '__doc__', '__excepthook__',
+ '__interactivehook__', '__loader__', '__name__', '__package__', '__spec__',
+ '__stderr__', '__stdin__', '__stdout__', '__unraisablehook__',
+ '_clear_type_cache', '_current_frames', '_debugmallocstats', '_framework',
+ '_getframe', '_git', '_home', '_xoptions', 'abiflags', 'addaudithook',
+ 'api_version', 'argv', 'audit', 'base_exec_prefix', 'base_prefix',
+ 'breakpointhook', 'builtin_module_names', 'byteorder', 'call_tracing',
+ 'callstats', 'copyright', 'displayhook', 'dont_write_bytecode', 'exc_info',
+ 'excepthook', 'exec_prefix', 'executable', 'exit', 'flags', 'float_info',
+ 'float_repr_style', 'get_asyncgen_hooks', 'get_coroutine_origin_tracking_depth',
+ 'getallocatedblocks', 'getdefaultencoding', 'getdlopenflags',
+ 'getfilesystemencodeerrors', 'getfilesystemencoding', 'getprofile',
+ 'getrecursionlimit', 'getrefcount', 'getsizeof', 'getswitchinterval',
+ 'gettrace', 'hash_info', 'hexversion', 'implementation', 'int_info',
+ 'intern', 'is_finalizing', 'last_traceback', 'last_type', 'last_value',
+ 'maxsize', 'maxunicode', 'meta_path', 'modules', 'path', 'path_hooks',
+ 'path_importer_cache', 'platform', 'prefix', 'ps1', 'ps2', 'pycache_prefix',
+ 'set_asyncgen_hooks', 'set_coroutine_origin_tracking_depth', 'setdlopenflags',
+ 'setprofile', 'setrecursionlimit', 'setswitchinterval', 'settrace', 'stderr',
+ 'stdin', 'stdout', 'thread_info', 'unraisablehook', 'version', 'version_info',
+ 'warnoptions']
+ ```
+Without arguments, dir() lists the names you have defined currently:
+#### ```Kode 5.0```
+```
+>>> a = [1, 2, 3, 4, 5]
+>>> import fibo
+>>> fib = fibo.fib
+>>> dir()
+['__builtins__', '__name__', 'a', 'fib', 'fibo', 'sys']
+```
+
+Note that it lists all types of names: variables, modules, functions, etc.
+dir() does not list the names of built-in functions and variables. If you want a list of those, they are defined in the standard module builtins:
+#### ```Kode 5.1```
+```
+>>> import builtins
+>>> dir(builtins)  
+['ArithmeticError', 'AssertionError', 'AttributeError', 'BaseException',
+ 'BlockingIOError', 'BrokenPipeError', 'BufferError', 'BytesWarning',
+ 'ChildProcessError', 'ConnectionAbortedError', 'ConnectionError',
+ 'ConnectionRefusedError', 'ConnectionResetError', 'DeprecationWarning',
+ 'EOFError', 'Ellipsis', 'EnvironmentError', 'Exception', 'False',
+ 'FileExistsError', 'FileNotFoundError', 'FloatingPointError',
+ 'FutureWarning', 'GeneratorExit', 'IOError', 'ImportError',
+ 'ImportWarning', 'IndentationError', 'IndexError', 'InterruptedError',
+ 'IsADirectoryError', 'KeyError', 'KeyboardInterrupt', 'LookupError',
+ 'MemoryError', 'NameError', 'None', 'NotADirectoryError', 'NotImplemented',
+ 'NotImplementedError', 'OSError', 'OverflowError',
+ 'PendingDeprecationWarning', 'PermissionError', 'ProcessLookupError',
+ 'ReferenceError', 'ResourceWarning', 'RuntimeError', 'RuntimeWarning',
+ 'StopIteration', 'SyntaxError', 'SyntaxWarning', 'SystemError',
+ 'SystemExit', 'TabError', 'TimeoutError', 'True', 'TypeError',
+ 'UnboundLocalError', 'UnicodeDecodeError', 'UnicodeEncodeError',
+ 'UnicodeError', 'UnicodeTranslateError', 'UnicodeWarning', 'UserWarning',
+ 'ValueError', 'Warning', 'ZeroDivisionError', '_', '__build_class__',
+ '__debug__', '__doc__', '__import__', '__name__', '__package__', 'abs',
+ 'all', 'any', 'ascii', 'bin', 'bool', 'bytearray', 'bytes', 'callable',
+ 'chr', 'classmethod', 'compile', 'complex', 'copyright', 'credits',
+ 'delattr', 'dict', 'dir', 'divmod', 'enumerate', 'eval', 'exec', 'exit',
+ 'filter', 'float', 'format', 'frozenset', 'getattr', 'globals', 'hasattr',
+ 'hash', 'help', 'hex', 'id', 'input', 'int', 'isinstance', 'issubclass',
+ 'iter', 'len', 'license', 'list', 'locals', 'map', 'max', 'memoryview',
+ 'min', 'next', 'object', 'oct', 'open', 'ord', 'pow', 'print', 'property',
+ 'quit', 'range', 'repr', 'reversed', 'round', 'set', 'setattr', 'slice',
+ 'sorted', 'staticmethod', 'str', 'sum', 'super', 'tuple', 'type', 'vars',
+ 'zip']
+ ```
