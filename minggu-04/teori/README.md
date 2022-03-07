@@ -166,7 +166,7 @@ Anda dapat memodifikasinya menggunakan operasi daftar standar:
 ```
 
 ## The dir() Function
-The built-in function dir() is used to find out which names a module defines. It returns a sorted list of strings:
+Fungsi bawaan dir()digunakan untuk mengetahui nama mana yang didefinisikan oleh modul. Ini mengembalikan daftar string yang diurutkan:
 #### ```Kode 5```
 ```
 >>> import fibo, sys
@@ -195,7 +195,7 @@ The built-in function dir() is used to find out which names a module defines. It
  'stdin', 'stdout', 'thread_info', 'unraisablehook', 'version', 'version_info',
  'warnoptions']
  ```
-Without arguments, dir() lists the names you have defined currently:
+Tanpa argumen, buat dir()daftar nama yang telah Anda tetapkan saat ini:
 #### ```Kode 5.0```
 ```
 >>> a = [1, 2, 3, 4, 5]
@@ -204,9 +204,8 @@ Without arguments, dir() lists the names you have defined currently:
 >>> dir()
 ['__builtins__', '__name__', 'a', 'fib', 'fibo', 'sys']
 ```
-
-Note that it lists all types of names: variables, modules, functions, etc.
-dir() does not list the names of built-in functions and variables. If you want a list of those, they are defined in the standard module builtins:
+Perhatikan bahwa ini mencantumkan semua jenis nama: variabel, modul, fungsi, dll.
+dir()tidak mencantumkan nama fungsi dan variabel bawaan. Jika Anda ingin daftarnya, mereka didefinisikan dalam modul standar builtins:
 #### ```Kode 5.1```
 ```
 >>> import builtins
@@ -241,3 +240,97 @@ dir() does not list the names of built-in functions and variables. If you want a
  'sorted', 'staticmethod', 'str', 'sum', 'super', 'tuple', 'type', 'vars',
  'zip']
  ```
+ 
+ ## Packages
+Paket adalah cara menyusun namespace modul Python dengan menggunakan "nama modul bertitik". Misalnya, nama modul A.B menunjuk sebuah submodul yang dinamai ```B``` dalam sebuah paket bernama ```A```. Sama seperti penggunaan modul yang menyelamatkan pembuat modul yang berbeda dari keharusan khawatir tentang nama variabel global satu sama lain, penggunaan nama modul bertitik menyelamatkan penulis paket multi-modul seperti NumPy atau Pillow dari keharusan khawatir tentang nama modul masing-masing. 
+
+Misalkan Anda ingin merancang kumpulan modul ("paket") untuk penanganan file suara dan data suara yang seragam. Ada banyak format file suara yang berbeda (biasanya dikenali dari ekstensinya, misalnya: ```.wav```, ```.aiff```, ```.au```), jadi Anda mungkin perlu membuat dan memelihara koleksi modul yang terus bertambah untuk konversi antara berbagai format file. Ada juga banyak operasi berbeda yang mungkin ingin Anda lakukan pada data suara (seperti mencampur, menambahkan gema, menerapkan fungsi equalizer, membuat efek stereo buatan), jadi selain itu Anda akan menulis aliran modul yang tidak pernah berakhir untuk dilakukan operasi ini. Berikut adalah kemungkinan struktur untuk paket Anda (dinyatakan dalam bentuk sistem file hierarkis):
+
+#### ```Kode 6```
+
+```
+sound/                          Top-level package
+      __init__.py               Initialize the sound package
+      formats/                  Subpackage for file format conversions
+              __init__.py
+              wavread.py
+              wavwrite.py
+              aiffread.py
+              aiffwrite.py
+              auread.py
+              auwrite.py
+              ...
+      effects/                  Subpackage for sound effects
+              __init__.py
+              echo.py
+              surround.py
+              reverse.py
+              ...
+      filters/                  Subpackage for filters
+              __init__.py
+              equalizer.py
+              vocoder.py
+              karaoke.py
+              ...
+```
+
+Saat mengimpor paket, Python mencari melalui direktori untuk sys.pathmencari subdirektori paket.
+File ```__init__``` .pydiperlukan untuk membuat direktori memperlakukan Python yang berisi file sebagai paket. Ini mencegah direktori dengan nama umum, seperti string, secara tidak sengaja menyembunyikan modul valid yang muncul kemudian di jalur pencarian modul. Dalam kasus yang paling sederhana, ```__init__``` .pyhanya dapat berupa file kosong, tetapi juga dapat mengeksekusi kode inisialisasi untuk paket atau mengatur ```__all__``` variabel, yang dijelaskan kemudian.
+
+Pengguna paket dapat mengimpor modul individual dari paket, misalnya:
+#### ```Kode 6.0```
+```
+import sound.effects.echo
+```
+Ini memuat submodule sound.effects.echo. Itu harus dirujuk dengan nama lengkapnya.
+#### ```Kode 6.1```
+```
+sound.effects.echo.echofilter(input, output, delay=0.7, atten=4)
+```
+Cara alternatif untuk mengimpor submodule adalah:
+#### ```Kode 6.2```
+```
+from sound.effects import echo
+```
+Ini juga memuat submodule echo, dan membuatnya tersedia tanpa awalan paketnya, sehingga dapat digunakan sebagai berikut:
+#### ```Kode 6.3```
+```
+echo.echofilter(input, output, delay=0.7, atten=4)
+```
+Namun variasi lain adalah mengimpor fungsi atau variabel yang diinginkan secara langsung:
+#### ```Kode 6.4```
+```
+from sound.effects.echo import echofilter
+```
+Sekali lagi, ini memuat submodule echo, tetapi ini membuat fungsinya echofilter()tersedia secara langsung:
+#### ```Kode 6.5```
+```
+echofilter(input, output, delay=0.7, atten=4)
+```
+
+## Importing * From a Package
+Pernyataan importmenggunakan konvensi berikut: jika ```__init__.py``` kode paket mendefinisikan daftar bernama ```__all__```, itu dianggap sebagai daftar nama modul yang harus diimpor ketika ditemui. Terserah pembuat paket untuk tetap memperbarui daftar ini ketika versi baru dari paket dirilis. Pembuat paket juga dapat memutuskan untuk tidak mendukungnya, jika mereka tidak melihat kegunaan untuk mengimpor * dari paket mereka. Misalnya, file dapat berisi kode berikut:```from package import *sound/effects/__init__.py```
+#### ```Kode 7```
+```
+__all__ = ["echo", "surround", "reverse"]
+```
+Ini berarti bahwa akan mengimpor tiga submodul yang bernama dari paket tersebut.from sound.effects import ```*```sound
+
+Jika ```__all__``` tidak didefinisikan, pernyataan tidak mengimpor semua submodul dari paket ke namespace saat ini; itu hanya memastikan bahwa paket telah diimpor (mungkin menjalankan kode inisialisasi apa pun di ) dan kemudian mengimpor nama apa pun yang ditentukan dalam paket. Ini termasuk nama apa pun yang ditentukan (dan submodul yang dimuat secara eksplisit) oleh . Ini juga mencakup setiap submodul dari paket yang secara eksplisit dimuat oleh pernyataan sebelumnya. Pertimbangkan kode ini:from sound.effects import ```*```sound.effectssound.effects```__init__.py__init__.py```import
+#### ```Kode 7.0```
+```
+import sound.effects.echo
+import sound.effects.surround
+from sound.effects import *
+```
+
+## Referensi Intra- 
+Ketika paket disusun menjadi subpaket (seperti soundpaket dalam contoh), Anda dapat menggunakan impor absolut untuk merujuk ke submodul paket saudara kandung. Misalnya, jika modul sound.filters.vocoderperlu menggunakan echomodul dalam sound.effectspaket, itu dapat menggunakan ```.from sound.effects import echo```
+
+Anda juga dapat menulis impor relatif, dengan bentuk pernyataan impor. Impor ini menggunakan titik awal untuk menunjukkan paket saat ini dan induk yang terlibat dalam impor relatif. Dari modul misalnya, Anda dapat menggunakan: ```from module import name``` surround
+#### ```Kode 8```
+```
+from . import echo
+from .. import formats
+from ..filters import equalizer
+```
