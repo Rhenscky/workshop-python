@@ -58,6 +58,7 @@ Setiap modul memiliki tabel simbol pribadinya sendiri, yang digunakan sebagai ta
 Modul dapat mengimpor modul lain. Merupakan kebiasaan tetapi tidak diharuskan untuk menempatkan semua importpernyataan di awal modul (atau skrip, dalam hal ini). Nama modul yang diimpor ditempatkan di tabel simbol global modul pengimpor.
 
 ### Mengimpor nama dari modul langsung ke tabel simbol modul pengimpor :
+#### ```Kode 2```
 ```
 >>> from fibo import fib, fib2
 >>> fib(500)
@@ -65,7 +66,7 @@ Modul dapat mengimpor modul lain. Merupakan kebiasaan tetapi tidak diharuskan un
 ```
 
 Bahkan ada varian untuk mengimpor semua nama yang didefinisikan oleh modul:
-
+#### ```Kode 2.0```
 ```
 >>> from fibo import *
 >>> fib(500)
@@ -76,16 +77,65 @@ Ini mengimpor semua nama kecuali yang dimulai dengan garis bawah ```(_)```. Dala
 Perhatikan bahwa secara umum praktik mengimpor ```*``` dari modul atau paket tidak disukai, karena sering menyebabkan kode yang tidak dapat dibaca dengan baik. Namun, tidak apa-apa menggunakannya untuk menyimpan pengetikan dalam sesi interaktif.
 
 Jika nama modul diikuti oleh as, maka nama berikut asterikat langsung ke modul yang diimpor.
+#### ```Kode 2.1```
 ```
 >>> import fibo as fib
 >>> fib.fib(500)
 0 1 1 2 3 5 8 13 21 34 55 89 144 233 377
 ```
+
 Ini secara efektif mengimpor modul dengan cara yang sama seperti yang akan dilakukan, dengan satu-satunya perbedaan tersedia sebagai ```.import fibofib```.
 
-Ini juga dapat digunakan saat menggunakan fromdengan efek serupa:
+Ini juga dapat digunakan saat menggunakan fromdengan efek serupa :
+#### ```Kode 2.2```
 ```
 >>> from fibo import fib as fibonacci
 >>> fibonacci(500)
 0 1 1 2 3 5 8 13 21 34 55 89 144 233 377
 ```
+
+
+## Menjalankan modul sebagai
+Saat Anda menjalankan modul Python dengan
+#### ```Kode 3```
+```
+python fibo.py <arguments>
+```
+kode dalam modul akan dieksekusi, sama seperti jika Anda mengimpornya, tetapi dengan ```__name__ ```set ke ```"__main__"```. Itu berarti dengan menambahkan kode ini di akhir modul Anda:
+#### ```Kode 3.0```
+```
+if __name__ == "__main__":
+    import sys
+    fib(int(sys.argv[1]))
+```
+Anda dapat membuat file dapat digunakan sebagai skrip serta modul yang dapat diimpor, karena kode yang mem-parsing baris perintah hanya berjalan jika modul dijalankan sebagai file "utama":
+#### ```Kode 3.1```
+```
+$ python fibo.py 50
+0 1 1 2 3 5 8 13 21 34
+```
+Jika modul diimpor, kode tidak dijalankan:
+#### ```Kode 3.2```
+```
+>>> import fibo
+>>>
+```
+Ini sering digunakan baik untuk menyediakan antarmuka pengguna yang nyaman ke modul, atau untuk tujuan pengujian (menjalankan modul saat skrip mengeksekusi rangkaian pengujian).
+
+## Jalur Pencarian
+Ketika sebuah modul bernama spamdiimpor, interpreter pertama mencari modul built-in dengan nama itu. Jika tidak ditemukan, maka akan mencari file bernama ```spam.py``` dalam daftar direktori yang diberikan oleh variabel sys.path. sys.path diinisialisasi dari lokasi ini :
+
+* Direktori yang berisi skrip input (atau direktori saat ini ketika tidak ada file yang ditentukan).
+* PYTHONPATH(daftar nama direktori, dengan sintaks yang sama dengan variabel shellPATH).
+* Default yang bergantung pada instalasi (berdasarkan konvensi termasuk ```site-packages``` direktori, ditangani oleh sitemodul).
+
+## File Python "Dikompilasi 
+Untuk mempercepat pemuatan modul, Python menyimpan versi kompilasi dari setiap modul dalam ```__pycache__``` direktori dengan nama , di mana versi tersebut mengkodekan format file yang dikompilasi; biasanya berisi nomor versi Python. Misalnya, di CPython rilis 3.3 versi kompilasi dari spam.py akan di-cache sebagai . Konvensi penamaan ini memungkinkan modul yang dikompilasi dari rilis yang berbeda dan versi Python yang berbeda untuk hidup berdampingan```.module.version.pyc__pycache__/spam.cpython-33.pyc```
+Python memeriksa tanggal modifikasi sumber terhadap versi yang dikompilasi untuk melihat apakah itu kedaluwarsa dan perlu dikompilasi ulang. Ini adalah proses yang sepenuhnya otomatis. Juga, modul yang dikompilasi adalah platform-independen, sehingga perpustakaan yang sama dapat dibagi di antara sistem dengan arsitektur yang berbeda.
+
+#### Beberapa tips untuk para ahli :
+Anda dapat menggunakan -O atau -OO mengaktifkan perintah Python untuk mengurangi ukuran modul yang dikompilasi. Sakelar ```-O``` menghapus pernyataan tegas, ```-OO``` sakelar menghapus pernyataan tegas dan string ```__doc__```. Karena beberapa program mungkin bergantung pada ketersediaannya, Anda hanya boleh menggunakan opsi ini jika Anda tahu apa yang Anda lakukan. Modul "Dioptimalkan" memiliki ```opt-``` tag dan biasanya lebih kecil. Rilis mendatang dapat mengubah efek pengoptimalan.
+
+* Sebuah program tidak berjalan lebih cepat saat dibaca dari ```.pyc``` file daripada saat dibaca dari .pyfile; satu-satunya hal yang lebih cepat tentang ```.pyc``` file adalah kecepatan pemuatannya.
+* Modul compilealldapat membuat file .pyc untuk semua modul dalam direktori.
+* Ada lebih detail tentang proses ini, termasuk diagram alir keputusan, diPP 3147 .
