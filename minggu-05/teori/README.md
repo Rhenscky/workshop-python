@@ -103,13 +103,7 @@ for x in range(1, 11):
 ```
 import math
 print('The value of pi is approximately %5.3f.' % math.pi)
-```
-#### ```Kode 14```
-```
 f = open('workfile', 'w')
-```
-#### ```Kode 15```
-```
 with open('workfile') as f:
     read_data = f.read()
 # We can check that the file has been automatically closed.
@@ -119,7 +113,7 @@ f.read()
 ```
 
 ## Metode Objek Berkas
-#### ```Kode 16```
+#### ```Kode 14```
 ```
 f.read()
 f.read()
@@ -127,22 +121,16 @@ f.readline()
 f.readline()
 f.readline()
 ```
-#### ```Kode 17```
+#### ```Kode 15```
 ```
 for line in f:
     print(line, end='')
-```
-#### ```Kode 18```
-```
 f.write('This is a test\n')
-```
-#### ```Kode 19```
-```
 value = ('the answer', 42)
 s = str(value)  # convert the tuple to string
 f.write(s)
 ```
-#### ```Kode 20```
+#### ```Kode 16```
 ```
 f = open('workfile', 'rb+')
 f.write(b'0123456789abcdef')
@@ -153,7 +141,7 @@ f.read(1)
 ```
 
 ## Menyimpan data terstruktur dengan
-#### ```Kode 21```
+#### ```Kode 17```
 ```
 import json
 json.dumps([1, 'simple', 'list'])
