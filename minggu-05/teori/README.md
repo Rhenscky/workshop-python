@@ -4,7 +4,8 @@ Program akan memprosesnya dan menampilkan hasil outputnya.
 Input, proses, dan output adalah inti dari semua program komputer.
 
 
-## Pemformatan Keluaran yang Lebih Menarik
+## Pemformatan Keluaran
+Pemformatan adalah penambahan sentuhan pada teks untuk membuat teks mudah dibaca dan lebih menarik.
 #### ```Kode 1```
 ```
 year = 2016
@@ -35,7 +36,11 @@ repr((x, y, ('spam', 'eggs')))
 ```
 
 
-## Literal String Terformat
+## F-string
+Interpolasi String Literal atau lebih umum sebagai F-string (karena karakter f awal mendahului string literal). Ide dibalik f-string adalah untuk membuat interpolasi string lebih sederhana. 
+Untuk membuat f-string, awali string dengan huruf “ f ”. 
+    String itu sendiri dapat diformat dengan cara yang sama seperti yang Anda lakukan dengan str.format(). F-string menyediakan cara ringkas dan nyaman untuk menyematkan ekspresi python di dalam literal string untuk pemformatan
+F-string lebih cepat daripada dua mekanisme pemformatan string yang paling umum digunakan, yaitu % formatting dan str.format(). 
 #### ```Kode 4```
 ```
 import math
@@ -54,7 +59,8 @@ print(f'My hovercraft is full of {animals}.')
 print(f'My hovercraft is full of {animals!r}.')
 ```
 
-## Metode String format()
+## Pemformatan String ( str.format)
+Pemformatan string "gaya baru" ini menghilangkan %sintaks khusus -operator dan membuat sintaks untuk pemformatan string lebih teratur. Pemformatan sekarang ditangani dengan memanggil .format()objek string .
 #### ```Kode 7```
 ```
 print('We are the {} who say "{}!"'.format('knights', 'Ni'))
@@ -82,6 +88,8 @@ for x in range(1, 11):
 ```
 
 ## Pemformatan String Manual
+Metode str.rjust() dari objek string merata-kanan-kan sebuah string dalam bidang dengan lebar tertentu dengan menambahkannya dengan spasi di sebelah kiri.
+Ada metode lain, str.zfill(), yang melapisi string numerik di sebelah kiri dengan nol.
 #### ```Kode 11```
 ```
 for x in range(1, 11):
@@ -96,7 +104,8 @@ for x in range(1, 11):
 '3.14159265359'.zfill(5)
 ```
 
-## Pemformatan string lama
+## Pemformatan String (% Operator)
+String dalam Python memiliki operasi bawaan unik yang dapat diakses dengan %operator. Ini memungkinkan Anda melakukan pemformatan posisi sederhana dengan sangat mudah.
 #### ```Kode 13```
 ```
 import math
@@ -110,6 +119,8 @@ f.read()
 ```
 
 ## Metode Objek Berkas
+Untuk membaca konten file, panggil f.read(size), yang membaca sejumlah kuantitas data dan mengembalikannya sebagai string (dalam mode teks) atau objek byte (dalam mode biner). size adalah argumen numerik opsional. Jika akhir file telah tercapai, f.read() akan mengembalikan string kosong ('').
+
 #### ```Kode 14```
 ```
 f.read()
@@ -137,7 +148,8 @@ f.seek(-3, 2)
 f.read(1)
 ```
 
-## Menyimpan data terstruktur dengan
+## JSON
+Python memiliki paket bawaan yang disebut json, yang dapat digunakan untuk bekerja dengan data JSON.
 #### ```Kode 17```
 ```
 import json
@@ -147,6 +159,7 @@ x = json.load(f)
 ```
 
 ## Kesimpulan
-
+Fungsi input() untuk memberi jeda atau menghentikan sementara program sampai kita memasukkan data ke dalamnya, ketika data sudah dimasukkan, selanjutnya program akan berjalan kembali dan kemudian memproses data inputan.
+Setelah data dimasukkan lalu diproses  menggunakan fungsi print(). fungsi print() juga dapat menginformasikan pada kita versi python yang digunakan suatu program. Jadi jika kalian menemukan program dengan deklarasi print() di dalamnya maka dapat dipastikan program tersebut sudah menggunakan versi python 3 ke atas. Sedangkan jika di dalam program tersebut ditemukan deklarasi print tanpa tanda kurung, maka dapat dipastikan program tersebut menggunakan python versi lama. Python 2.7 ke bawah.
 
 
