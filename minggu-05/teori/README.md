@@ -28,11 +28,9 @@ x = 10 * 3.25
 y = 200 * 200
 s = 'The value of x is ' + repr(x) + ', and y is ' + repr(y) + '...'
 print(s)
-# The repr() of a string adds string quotes and backslashes:
 hello = 'hello, world\n'
 hellos = repr(hello)
 print(hellos)
-# The argument to repr() may be any Python object:
 repr((x, y, ('spam', 'eggs')))
 ```
 
@@ -106,7 +104,6 @@ print('The value of pi is approximately %5.3f.' % math.pi)
 f = open('workfile', 'w')
 with open('workfile') as f:
     read_data = f.read()
-# We can check that the file has been automatically closed.
 f.closed
 f.close()
 f.read()
@@ -127,16 +124,16 @@ for line in f:
     print(line, end='')
 f.write('This is a test\n')
 value = ('the answer', 42)
-s = str(value)  # convert the tuple to string
+s = str(value)
 f.write(s)
 ```
 #### ```Kode 16```
 ```
 f = open('workfile', 'rb+')
 f.write(b'0123456789abcdef')
-f.seek(5)      # Go to the 6th byte in the file
+f.seek(5) 
 f.read(1)
-f.seek(-3, 2)  # Go to the 3rd byte before the end
+f.seek(-3, 2)  
 f.read(1)
 ```
 
