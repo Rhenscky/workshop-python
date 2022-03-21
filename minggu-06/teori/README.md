@@ -1,161 +1,192 @@
-# INPUT DAN OUTPUT PADA PYTHON
-Input adalah masukan yang kita berikan ke program.
-Program akan memprosesnya dan menampilkan hasil outputnya.
-Input, proses, dan output adalah inti dari semua program komputer.
+# KESALAHAN DAN PENGECUALIAN
 
 
-## Pemformatan Keluaran
-Pemformatan adalah penambahan sentuhan pada teks untuk membuat teks mudah dibaca dan lebih menarik.
+## Kesalahan Sintaksis
 #### ```Kode 1```
 ```
-year = 2016
-event = 'Referendum'
-f'Results of the {year} {event}'
+while True print('Hello world')
+  File "<stdin>", line 1
+    while True print('Hello world')
+                   ^
+SyntaxError: invalid syntax
 ```
+
+## Pengecualian
 #### ```Kode 2```
 ```
-yes_votes = 42_572_654
-no_votes = 43_132_495
-percentage = yes_votes / (yes_votes + no_votes)
-'{:-9} YES votes  {:2.2%}'.format(yes_votes, percentage)
+10 * (1/0)
+4 + spam*3
+'2' + 2
 ```
+
+## Menangani Pengecualian
 #### ```Kode 3```
 ```
-s = 'Hello, world.'
-str(s)
-repr(s)
-str(1/7)
-x = 10 * 3.25
-y = 200 * 200
-s = 'The value of x is ' + repr(x) + ', and y is ' + repr(y) + '...'
-print(s)
-hello = 'hello, world\n'
-hellos = repr(hello)
-print(hellos)
-repr((x, y, ('spam', 'eggs')))
+while True:
+    try:
+        x = int(input("Please enter a number: "))
+        break
+    except ValueError:
+        print("Oops!  That was no valid number.  Try again...")
 ```
-
-
-## F-string
-Interpolasi String Literal atau lebih umum sebagai F-string (karena karakter f awal mendahului string literal). Ide dibalik f-string adalah untuk membuat interpolasi string lebih sederhana. 
-Untuk membuat f-string, awali string dengan huruf “ f ”. 
-    String itu sendiri dapat diformat dengan cara yang sama seperti yang Anda lakukan dengan str.format(). F-string menyediakan cara ringkas dan nyaman untuk menyematkan ekspresi python di dalam literal string untuk pemformatan
-F-string lebih cepat daripada dua mekanisme pemformatan string yang paling umum digunakan, yaitu % formatting dan str.format(). 
 #### ```Kode 4```
 ```
-import math
-print(f'The value of pi is approximately {math.pi:.3f}.')
+except (RuntimeError, TypeError, NameError):
+pass
 ```
 #### ```Kode 5```
 ```
-table = {'Sjoerd': 4127, 'Jack': 4098, 'Dcab': 7678}
-for name, phone in table.items():
-    print(f'{name:10} ==> {phone:10d}')
+class B(Exception):
+    pass
+class C(B):
+    pass
+class D(C):
+    pass
+for cls in [B, C, D]:
+    try:
+        raise cls()
+    except D:
+        print("D")
+    except C:
+        print("C")
+    except B:
+        print("B")
 ```
 #### ```Kode 6```
 ```
-animals = 'eels'
-print(f'My hovercraft is full of {animals}.')
-print(f'My hovercraft is full of {animals!r}.')
+import sys
+try:
+    f = open('myfile.txt')
+    s = f.readline()
+    i = int(s.strip())
+except OSError as err:
+    print("OS error: {0}".format(err))
+except ValueError:
+    print("Could not convert data to an integer.")
+except BaseException as err:
+    print(f"Unexpected {err=}, {type(err)=}")
+    raise
 ```
-
-## Pemformatan String ( str.format)
-Pemformatan string "gaya baru" ini menghilangkan %sintaks khusus -operator dan membuat sintaks untuk pemformatan string lebih teratur. Pemformatan sekarang ditangani dengan memanggil .format()objek string .
 #### ```Kode 7```
 ```
-print('We are the {} who say "{}!"'.format('knights', 'Ni'))
-print('{0} and {1}'.format('spam', 'eggs'))
-print('{1} and {0}'.format('spam', 'eggs'))
-print('This {food} is {adjective}.'.format(
-      food='spam', adjective='absolutely horrible'))
-print('The story of {0}, {1}, and {other}.'.format('Bill', 'Manfred',
+for arg in sys.argv[1:]:
+    try:
+        f = open(arg, 'r')
+    except OSError:
+        print('cannot open', arg)
+    else:
+        print(arg, 'has', len(f.readlines()), 'lines')
+        f.close()
 ```
 #### ```Kode 8```
 ```
-table = {'Sjoerd': 4127, 'Jack': 4098, 'Dcab': 8637678}
-print('Jack: {0[Jack]:d}; Sjoerd: {0[Sjoerd]:d}; '
-      'Dcab: {0[Dcab]:d}'.format(table))
+try:
+    raise Exception('spam', 'eggs')
+except Exception as inst:
+    print(type(inst))    # the exception instance
+    print(inst.args)     # arguments stored in .args
+    print(inst)          # __str__ allows args to be printed directly,
+                         # but may be overridden in exception subclasses
+    x, y = inst.args     # unpack args
+    print('x =', x)
+    print('y =', y)
 ```
 #### ```Kode 9```
 ```
-table = {'Sjoerd': 4127, 'Jack': 4098, 'Dcab': 8637678}
-print('Jack: {Jack:d}; Sjoerd: {Sjoerd:d}; Dcab: {Dcab:d}'.format(**table))
-```
-#### ```Kode 10```
-```
-for x in range(1, 11):
-    print('{0:2d} {1:3d} {2:4d}'.format(x, x*x, x*x*x))
+def this_fails():
+    x = 1/0
+try:
+    this_fails()
+except ZeroDivisionError as err:
+    print('Handling run-time error:', err)
 ```
 
-## Pemformatan String Manual
-Metode str.rjust() dari objek string merata-kanan-kan sebuah string dalam bidang dengan lebar tertentu dengan menambahkannya dengan spasi di sebelah kiri.
-Ada metode lain, str.zfill(), yang melapisi string numerik di sebelah kiri dengan nol.
+## Memunculkan Pengecualian
+#### ```Kode 10```
+```
+raise NameError('HiThere')
+```
 #### ```Kode 11```
 ```
-for x in range(1, 11):
-    print(repr(x).rjust(2), repr(x*x).rjust(3), end=' ')
-    # Note use of 'end' on previous line
-    print(repr(x*x*x).rjust(4))
+raise ValueError  # shorthand for 'raise ValueError()'
 ```
 #### ```Kode 12```
 ```
-'12'.zfill(5)
-'-3.14'.zfill(7)
-'3.14159265359'.zfill(5)
+try:
+    raise NameError('HiThere')
+except NameError:
+    print('An exception flew by!')
+    raise
 ```
 
-## Pemformatan String (% Operator)
-String dalam Python memiliki operasi bawaan unik yang dapat diakses dengan %operator. Ini memungkinkan Anda melakukan pemformatan posisi sederhana dengan sangat mudah.
+## Rantai Pengecualian
 #### ```Kode 13```
 ```
-import math
-print('The value of pi is approximately %5.3f.' % math.pi)
-f = open('workfile', 'w')
-with open('workfile') as f:
-    read_data = f.read()
-f.closed
-f.close()
-f.read()
+# exc must be exception instance or None.
+raise RuntimeError from exc
 ```
-
-## Metode Objek Berkas
-Untuk membaca konten file, panggil f.read(size), yang membaca sejumlah kuantitas data dan mengembalikannya sebagai string (dalam mode teks) atau objek byte (dalam mode biner). size adalah argumen numerik opsional. Jika akhir file telah tercapai, f.read() akan mengembalikan string kosong ('').
-
 #### ```Kode 14```
 ```
-f.read()
-f.read()
-f.readline()
-f.readline()
-f.readline()
+def func():
+    raise ConnectionError
+try:
+    func()
+except ConnectionError as exc:
+    raise RuntimeError('Failed to open database') from exc
 ```
 #### ```Kode 15```
 ```
-for line in f:
-    print(line, end='')
-f.write('This is a test\n')
-value = ('the answer', 42)
-s = str(value)
-f.write(s)
-```
-#### ```Kode 16```
-```
-f = open('workfile', 'rb+')
-f.write(b'0123456789abcdef')
-f.seek(5) 
-f.read(1)
-f.seek(-3, 2)  
-f.read(1)
+try:
+    open('database.sqlite')
+except OSError:
+    raise RuntimeError from None
 ```
 
-## JSON
-Python memiliki paket bawaan yang disebut json, yang dapat digunakan untuk bekerja dengan data JSON.
+## Mendefinisikan Tindakan Pembersihan
+#### ```Kode 16```
+```
+try:
+    raise KeyboardInterrupt
+finally:
+    print('Goodbye, world!')
+KeyboardInterrupt
+```
 #### ```Kode 17```
 ```
-import json
-json.dumps([1, 'simple', 'list'])
-json.dump(x, f)
-x = json.load(f)
+def bool_return():
+    try:
+        return True
+    finally:
+        return False
+bool_return()
+```
+#### ```Kode 18```
+```
+def divide(x, y):
+    try:
+        result = x / y
+    except ZeroDivisionError:
+        print("division by zero!")
+    else:
+        print("result is", result)
+    finally:
+        print("executing finally clause")
+divide(2, 1)
+divide(2, 0)
+divide("2", "1")
+```
+
+## Tindakan Pembersihan yang Sudah Ditentukan
+#### ```Kode 19```
+```
+for line in open("myfile.txt"):
+    print(line, end="")
+```
+#### ```Kode 20```
+```
+with open("myfile.txt") as f:
+    for line in f:
+        print(line, end="")
 ```
 
 ## Kesimpulan
