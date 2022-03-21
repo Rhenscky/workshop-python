@@ -7,8 +7,6 @@
 while True print('Hello world')
   File "<stdin>", line 1
     while True print('Hello world')
-                   ^
-SyntaxError: invalid syntax
 ```
 
 ## Pengecualian
@@ -83,11 +81,11 @@ for arg in sys.argv[1:]:
 try:
     raise Exception('spam', 'eggs')
 except Exception as inst:
-    print(type(inst))    # the exception instance
-    print(inst.args)     # arguments stored in .args
-    print(inst)          # __str__ allows args to be printed directly,
-                         # but may be overridden in exception subclasses
-    x, y = inst.args     # unpack args
+    print(type(inst))   # contoh pengecualian
+    print(inst.args)    # argumen disimpan di .args
+    print(inst)         # __str__ memungkinkan args untuk dicetak secara langsung,
+                        # tetapi dapat diganti dalam subkelas pengecualian
+    x, y = inst.args    # unpack args
     print('x =', x)
     print('y =', y)
 ```
