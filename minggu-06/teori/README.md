@@ -1,15 +1,20 @@
 # KESALAHAN DAN PENGECUALIAN
-
-
+Kesalahan yang terjadi ketika Python tidak dapat memahami apa yang Anda perintahkan
+2 Jenis kesalahan pada penulisan kode python yaitu kesalahan sintaksis atau kesalahan sintaks yang terjadi ketika Python tidak dapat memahami apa yang Anda perintahkan. Sedangkan masalah atau pengecualian (kesalahan saat beroperasi) terjadi ketika Python mengerti apa yang Anda perintahkan tetapi mendapatkan saat mengikuti yang Anda perintahkan (terjadi saat aplikasi sudah mulai beroperasi).
 ## Kesalahan Sintaksis
+Contoh kesalahan pada sintaksis : setelah kondisi dari perintah sementara diharuskan ada tanda titik dua (:)
+Pada kesalahan sintaksis, baris di mana kesalahan terdeteksi dimunculkan kembali, kemudian terdapat tanda panah yang menunjukkan titik paling awal dari kesalahan.
+Kedua contoh di atas memiliki kelompok (tipe) kesalahan yang berbeda, yang pertama adalah IndentationError dan yang kedua adalah SyntaxError. Kemudian setelah penyebutannya, ada pesan detail kesalahan (keterangan), misalnya indentasi yang tidak diharapkan (unexpected).
 #### ```Kode 1```
 ```
 while True print('Hello world')
   File "<stdin>", line 1
-    while True print('Hello world')
+                 ^ 
+SyntaxError: sintaks tidak valid
 ```
 
 ## Pengecualian
+Kesalahan yang terjadi saat proses sedang berlangsung disebut kesalahan (exceptions) dan akan berakibat fatal jika tidak ditangani. sukses di Python tidak ditangani oleh aplikasi, sehingga aplikasi terhenti kemudian muncul pesan kesalahan seperti contoh berikut.
 #### ```Kode 2```
 ```
 10 * (1/0)
@@ -18,6 +23,7 @@ while True print('Hello world')
 ```
 
 ## Menangani Pengecualian
+Pada aplikasi Python yang Anda buat bisa menangani penanganan terhadap penilaian (exceptions handling) dari kelompok (tipe) kesalahan yang Anda tentukan. Proses penanganan menggunakan pernyataan yang berpasangan dengan kecuali .
 #### ```Kode 3```
 ```
 while True:
@@ -100,6 +106,7 @@ except ZeroDivisionError as err:
 ```
 
 ## Memunculkan Pengecualian
+Dalam membuat aplikasi, ada kemungkinan Anda butuh untuk mengembangkan (meningkatkan pengecualian), salah satu caranya dengan menggunakan ide yang ada, hanya menambahkan informasi detailnya saja.
 #### ```Kode 10```
 ```
 raise NameError('HiThere')
@@ -115,6 +122,7 @@ except NameError:
 ```
 
 ## Rantai Pengecualian
+Program dapat memberi nama pengecualian mereka sendiri dengan membuat kelas pengecualian baru (lihat tut-class untuk informasi lebih lanjut tentang kelas Python). Pengecualian biasanya berasal dari kelas Exception, baik secara langsung atau tidak langsung.
 #### ```Kode 12```
 ```
 # exc harus berupa instance pengecualian atau Tidak Ada.
@@ -138,6 +146,7 @@ except OSError:
 ```
 
 ## Mendefinisikan Tindakan Pembersihan
+Pernyataan try memiliki klausa opsional lain yang dimaksudkan untuk menentukan tindakan pembersihan yang harus dijalankan dalam semua keadaan.
 #### ```Kode 15```
 ```
 try:
@@ -172,6 +181,7 @@ divide("2", "1")
 ```
 
 ## Tindakan Pembersihan yang Sudah Ditentukan
+Beberapa objek mendefinisikan tindakan pembersihan standar yang harus dilakukan ketika objek tidak lagi diperlukan, terlepas dari apakah operasi menggunakan objek berhasil atau gagal.
 #### ```Kode 18```
 ```
 for line in open("myfile.txt"):
@@ -185,7 +195,6 @@ with open("myfile.txt") as f:
 ```
 
 ## Kesimpulan
-Fungsi input() untuk memberi jeda atau menghentikan sementara program sampai kita memasukkan data ke dalamnya, ketika data sudah dimasukkan, selanjutnya program akan berjalan kembali dan kemudian memproses data inputan.
-Setelah data dimasukkan lalu diproses  menggunakan fungsi print(). fungsi print() juga dapat menginformasikan pada kita versi python yang digunakan suatu program. Jadi jika kalian menemukan program dengan deklarasi print() di dalamnya maka dapat dipastikan program tersebut sudah menggunakan versi python 3 ke atas. Sedangkan jika di dalam program tersebut ditemukan deklarasi print tanpa tanda kurung, maka dapat dipastikan program tersebut menggunakan python versi lama. Python 2.7 ke bawah.
-
+Kesalahan sintaksis adalah kesalahan dalam sintaksis urutan karakter atau token yang ditangkap oleh penyusun. Kesalahan sintaksis harus diperbaiki agar program berhasil dikompilasi. 
+Kesalahan pengecualian akan terjadi jika kode tersebut benar secara sintaks tetapi ada kesalahan dalam kode itu sendiri.
 
