@@ -103,12 +103,9 @@ except ZeroDivisionError as err:
 #### ```Kode 10```
 ```
 raise NameError('HiThere')
+raise ValueError
 ```
 #### ```Kode 11```
-```
-raise ValueError  # shorthand for 'raise ValueError()'
-```
-#### ```Kode 12```
 ```
 try:
     raise NameError('HiThere')
@@ -118,12 +115,12 @@ except NameError:
 ```
 
 ## Rantai Pengecualian
-#### ```Kode 13```
+#### ```Kode 12```
 ```
-# exc must be exception instance or None.
+# exc harus berupa instance pengecualian atau Tidak Ada.
 raise RuntimeError from exc
 ```
-#### ```Kode 14```
+#### ```Kode 13```
 ```
 def func():
     raise ConnectionError
@@ -132,7 +129,7 @@ try:
 except ConnectionError as exc:
     raise RuntimeError('Failed to open database') from exc
 ```
-#### ```Kode 15```
+#### ```Kode 14```
 ```
 try:
     open('database.sqlite')
@@ -141,7 +138,7 @@ except OSError:
 ```
 
 ## Mendefinisikan Tindakan Pembersihan
-#### ```Kode 16```
+#### ```Kode 15```
 ```
 try:
     raise KeyboardInterrupt
@@ -149,7 +146,7 @@ finally:
     print('Goodbye, world!')
 KeyboardInterrupt
 ```
-#### ```Kode 17```
+#### ```Kode 16```
 ```
 def bool_return():
     try:
@@ -158,7 +155,7 @@ def bool_return():
         return False
 bool_return()
 ```
-#### ```Kode 18```
+#### ```Kode 17```
 ```
 def divide(x, y):
     try:
@@ -175,12 +172,12 @@ divide("2", "1")
 ```
 
 ## Tindakan Pembersihan yang Sudah Ditentukan
-#### ```Kode 19```
+#### ```Kode 18```
 ```
 for line in open("myfile.txt"):
     print(line, end="")
 ```
-#### ```Kode 20```
+#### ```Kode 19```
 ```
 with open("myfile.txt") as f:
     for line in f:
