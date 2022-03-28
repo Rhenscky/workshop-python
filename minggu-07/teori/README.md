@@ -136,7 +136,7 @@ Daftar tricks dalam kode berikut tidak boleh digunakan sebagai variabel kelas ka
 ```
 class Dog:
 
-    tricks = []             # mistaken use of a class variable
+    tricks = []         # kesalahan penggunaan variabel kelas
 
     def __init__(self, name):
         self.name = name
@@ -144,12 +144,11 @@ class Dog:
     def add_trick(self, trick):
         self.tricks.append(trick)
 
->>> d = Dog('Fido')
->>> e = Dog('Buddy')
->>> d.add_trick('roll over')
->>> e.add_trick('play dead')
->>> d.tricks                # unexpectedly shared by all dogs
-['roll over', 'play dead']
+d = Dog('Fido')
+e = Dog('Buddy')
+d.add_trick('roll over')
+e.add_trick('play dead')
+d.tricks                # secara tak terduga dibagikan oleh semua anjing
 ```
 Desain kelas yang benar harus menggunakan variabel instance sebagai gantinya
 #### ```Kode 13```
@@ -158,19 +157,17 @@ class Dog:
 
     def __init__(self, name):
         self.name = name
-        self.tricks = []    # creates a new empty list for each dog
+        self.tricks = []    # membuat daftar kosong baru untuk setiap anjing
 
     def add_trick(self, trick):
         self.tricks.append(trick)
 
->>> d = Dog('Fido')
->>> e = Dog('Buddy')
->>> d.add_trick('roll over')
->>> e.add_trick('play dead')
->>> d.tricks
-['roll over']
->>> e.tricks
-['play dead']
+d = Dog('Fido')
+e = Dog('Buddy')
+d.add_trick('roll over')
+e.add_trick('play dead')
+d.tricks
+e.tricks
 ```
 ## Keterangan Acak
 Ketika nama atribut yang sama muncul di kedua instance dan di kelas, maka pencarian atribut memprioritaskan instance.
@@ -260,13 +257,13 @@ class Mapping:
         for item in iterable:
             self.items_list.append(item)
 
-    __update = update   # private copy of original update() method
+    __update = update   # salinan pribadi dari metode pembaruan () asli
 
 class MappingSubclass(Mapping):
 
     def update(self, keys, values):
-        # provides new signature for update()
-        # but does not break __init__()
+        # memberikan tanda tangan baru untuk pembaruan ()
+        # tetapi tidak merusak __init__()
         for item in zip(keys, values):
             self.items_list.append(item)
 ```
@@ -279,9 +276,9 @@ Tipe data yang mirip dengan "record" Pascal atau "struct" C, menyatukan beberapa
 class Employee:
     pass
 
-john = Employee()  # Create an empty employee record
+john = Employee()  # Buat catatan karyawan kosong
 
-# Fill the fields of the record
+# Isi bidang catatan
 john.name = 'John Doe'
 john.dept = 'computer lab'
 john.salary = 1000
@@ -360,11 +357,11 @@ Fitur utama lainnya adalah variabel lokal dan status eksekusi secara otomatis di
 embangkit generators sederhana dapat dikodekan secara ringkas sebagai ekspresi menggunakan sintaksis yang mirip dengan pemahaman daftar list comprehensions tetapi dengan tanda kurung bukan dengan tanda kurung siku. Ungkapan-ungkapan ini dirancang untuk situasi di mana generator digunakan segera oleh fungsi penutup. Ekspresi generator lebih kompak tetapi kurang fleksibel daripada definisi generator penuh dan cenderung lebih ramah memori daripada pemahaman daftar list comprehensions setara, Contohnya :
 #### ```Kode 27```
 ```
-sum(i*i for i in range(10))                 # sum of squares
+sum(i*i for i in range(10))                 # jumlah kuadrat
 
 xvec = [10, 20, 30]
 yvec = [7, 5, 3]
-sum(x*y for x,y in zip(xvec, yvec))         # dot product
+sum(x*y for x,y in zip(xvec, yvec))         # produk titik
 
 unique_words = set(word for line in page  for word in line.split())
 
