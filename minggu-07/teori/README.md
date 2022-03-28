@@ -1,549 +1,381 @@
-# PENGENDALI ALIRAN PROGRAM 
-## 4. FLOW TOOLS
-### 4.1 IF Statements
+# Kelas-Kelas Pada Python
+Kelas atau class pada python bisa kita katakan sebagai sebuah blueprint (cetakan) dari objek (atau instance) yang ingin kita buat.
+Kelas adalah cetakannya atau definisinya, sedangkan objek (atau instance) adalah objek nyatanya.
 
-Dalam bahasa pemrograman seringkali ditemukan pernyataan untuk menyelesaikan suatu permasalahan, pernyataan tersebut terkadang memberi ruang untuk seorang pengembang dalam menentukan nilai seharusnya. Salah satu pernyataan yang banyak digunakan adalah IF, pernyataan atau statemen ini akan menghasilkan dua kemungkinan, yakni benar atau salah, True or False, 0 atau 1, ya atau tidak dsb. 
+## Contoh Lingkup Scopes dan Ruang Nama Namespaces
+contoh yang menunjukkan cara mereferensikan lingkup scopes dan ruang nama namespaces yang berbeda. Bagaimana global dan nonlocal memengaruhi pengikatan variabel :
+#### ```Kode 1```
+```
+def scope_test():
+    def do_local():
+        spam = "local spam"
 
-Didalam bahasa pemrograman Python pun terdapat fungsi yang serupa yang mana pada tingkatan IF kemungkinan yang dihasilkan hanya berupa satu pernyataan saja, untuk mendapat dua atau lebih kemungkinan maka dbutuhkan tingkat Else If (Elif – singkatan dari else if). 
+    def do_nonlocal():
+        nonlocal spam
+        spam = "nonlocal spam"
 
-Berikut ini merupakan contoh penggunaan IF *statement*/pernyataan pada bahasa python. 
+    def do_global():
+        global spam
+        spam = "global spam"
 
-```python
-x = int(input("Masukkan nilai integer : "))
-if x < 0:
-    x = 0
-    print('Nilai negatif diubah menjadi nol')
-elif x == 0:
-    print('nol')
-elif x == 1:
-    print('satu')
-else:
-    print('lebih')
+    spam = "test spam"
+    do_local()
+    print("After local assignment:", spam)
+    do_nonlocal()
+    print("After nonlocal assignment:", spam)
+    do_global()
+    print("After global assignment:", spam)
 
+scope_test()
+print("In global scope:", spam)
+```
+Keluaran dari contoh kode adalah:
+```
+After local assignment: test spam
+After nonlocal assignment: nonlocal spam
+After global assignment: nonlocal spam
+In global scope: global spam
 ```
 
-
-### 4.2 FOR Statements
-
-Walaupun pada bahasa pemrograman Python ini terdapat FOR *statement*/pernyataan FOR seperti pada bahasa pemrograman lainnya, penggunaannya dalam bahasa ini mempunyai penerapan yang berbeda. Jika pada bahasa lainnya memerlukan pengulangan operasi aritmatika terlebih pada sebuah angka atau menentukan langkah berdasarkan iterasi dan kondisi penghentian, maka pada Python pengulangan hanya akan terjadi pada item dan akan tersusun membentuk sebuah daftar (susunan data dalam urutan) dengan tipe data string. 
-
-Berikut ini merupakan contoh penggunaan FOR :
-
-```python
-# Mencoba nilai string:
-words = ['kucing', 'jendela', 'defenestrate']
-for j in words:
-    print(j, len(j))
+## Sintaks Definisi Kelas
+Definisi kelas paling sederhana
+#### ```Kode 2```
 ```
-
-*source code* yang digunakan untuk memodifikasi sebuah koleksi saat perulangan iterasi untuk koleksi yang sama sedang berjalan akan mengalami kesulitan dalam perbaikannya, atau bisa dikatakan sulit untuk diperbaiki jika sedang berjalan. Adapun hal yang dapat dilakukan sebagai gantinya adalah mengulang salinan *source code* dari koleksi atau membuat yang baru. 
-
-Berikut adalah contohnya :
-
-```python
-# Membuat sampel koleksi
-users = {'Mashiho': 'active', '김준규': 'inactive', 'ハルト': 'active'}
-
-# Strategi: Mengulang salinan
-for user, status in users.copy().items():
-    if status == 'inactive':
-        del users[user]
-        
-# Strategi: Membuat koleksi baru
-active_users = {}
-for user, status in users.items():
-    if status == 'active':
-        active_users[user] = status
+class ClassName:
+    <statement-1>
+    .
+    .
+    .
+    <statement-N>
 ```
+Ini pada dasarnya adalah pembungkus di sekitar isi namespace yang dibuat oleh definisi kelas; kita akan belajar lebih banyak tentang objek kelas di bagian selanjutnya. Lingkup scope lokal asli (yang berlaku tepat sebelum definisi kelas dimasukkan) diaktifkan kembali, dan objek kelas terikat di sini dengan nama kelas yang diberikan dalam header definisi kelas (ClassName dalam contoh).
 
-### 4.3 Fungsi range()
-
-Selain *statement* perulangan (for) dan seleksi (if), pada Python juga terdapat fungsi range(), fungsi yang dapat digunakan untuk mengurutkan kembali urutan angka. Fungsi ini merupakan bawaan dari Python. Fungsi ini dapat digunakan dalam progresi aritmatika. 
-
-```python
-for i in range(5):
-    print(i)
+## Objek Kelas Class Objects
+Kelas pendukung operasi referensi atribut dan inisialisasi.
+Nama atribut yang valid adalah semua nama yang ada di namespace kelas saat objek kelas dibuat.
+#### ```Kode 3```
 ```
+class MyClass:
+    """A simple example class"""
+    i = 12345
 
-Titik akhir pada pengurutan nilai bukanlah bagian dari urutan yang dihasilkan, contoh "range(10)" akan menghasilkan 10 nilai, indeks hukum untuk item tersebut hanya akan menampilkan nilai 10 saja. Hal tersebut juga berlaku untuk nilai yang bersifat negatif :
-
-```python
-range(10)
+    def f(self):
+        return 'hello world'
 ```
-
-
-```python
-list(range(5, 10))
-
-list(range(0, 10, 3))
-
-list(range(-10, -100, -30))
+Instantiation kelas menggunakan notasi fungsi.
+#### ```Kode 4```
 ```
-
-Jika user ingin mengulangi indeks urutan nilai, maka dapat menggabungkan fungsi range() dan len() pada *source code* nya, seperti berikut ini :
-
-```python
-a = ['Haruto', 'is', 'the', 'rapper', 'in', 'TREASURE']
-for i in range(len(a)):
-    print(i, a[i])
+x = MyClass()
 ```
-
-Selain itu, penggunaan enumerate() juga dapat dilakukan jika ingin lebih mudah dalam penanganan kasus serupa yang membutuhkan fungsi tersebut. Berikut ini contoh penggunaan enumerate() berupa sum() :
-
-```python
-sum(range(4)) # 0 + 1 + 2 + 3
+Membuat instance baru dari kelas dan menetapkan objek ini ke variabel lokal x.
+#### ```Kode 5```
 ```
-
-### 4.4 break dan continue Statements, and else Clauses Loops
-
-Pernyataan break, seperti di bahasa C, akan keluar melalui penutup dibagian for ataupun while dari perulangan (loop) paling dalam. 
-
-Pernyataan perulangan (loop) mungkin memiliki else berupa klausa yang nantinya dapat dieksekusi ketika proses *looping* berakhir melalui iterasi for ataupun ketika kondisi bernilai salah ketika while berjalan, namun hal ini tidak akan terjadi jika sebuah perulangan (loop) diakhiri dengan sebuah break didalam pernyataan. 
-Berikut ini merupakan contoh penggunaannya :
-
-```python
-for n in range(2, 10):
-    for x in range(2, n):
-        if n % x == 0:
-            print(n, 'equals', x, '*', n//x)
-            break
-    else:
-        # loop fell through without finding a factor
-        print(n, 'is a prime number')
+def __init__(self):
+    self.data = []
 ```
-
-Ketika digunakan dengan perulangan (loop), klausa else akan memiliki lebih banyak kesamaan dengan klausa else pada pernyataan try. Sebaliknya, jika pernyataan if berjalan ketika tidak ditemukan klausa untuk pernyataan try didalamnya maka pengecualian tidak akan terjadi dan klausa else untuk penyataan perulangan (loop) juga tidak akan ditemukan. 
-Berikut ini merupakan contoh penggunaan klausa lanjut (continue) :
-
-```python
-for num in range(2, 10):
-    if num % 2 == 0:
-        print("Found an even number", num)
-        continue
-    print("Found an odd number", num)
+Mendefinisikan metode __init__(), instantiasi kelas secara otomatis memanggil __init__()
+#### ```Kode 6```
 ```
+x = MyClass()
+```
+Argumen yang diberikan kepada operator instantiasi kelas diteruskan ke __init__()
+#### ```Kode 7```
+```
+class Complex:
+    def __init__(self, realpart, imagpart):
+        self.r = realpart
+        self.i = imagpart
 
-### 4.5 Pernyataan Pass
-
-Pernyataan pass pada Python pada dasarnya tidak menghasilkan nilai apapun, namun dapat digunakan untuk menguji pernyataan secara sintaksis dan tidak memerlukan sebuah tindakan, contohnya :
-
-```python
+x = Complex(3.0, -4.5)
+x.r, x.i
+```
+## Objek Instance
+Operasi yang dipahami oleh objek instan adalah referensi atribut. atribut memiliki dua jenis yaitu atribut data dan metode.
+Kode berikut akan mencetak nilai 16, tanpa meninggalkan jejak.
+#### ```Kode 8```
+```
+x.counter = 1
+while x.counter < 10:
+    x.counter = x.counter * 2
+print(x.counter)
+del x.counter
+```
+## Metode Objek
+metode dipanggil tepat setelah terikat.
+#### ```Kode 9```
+```
+x.f()
+```
+x.f adalah metode objek, dan dapat disimpan dan dipanggil di lain waktu.
+#### ```Kode 10```
+```
+xf = x.f
 while True:
-    pass # Busy-wait for keyboard interrupt (Ctrl+C)
+    print(xf())
+```
+## Variabel Kelas dan Instance
+Variabel instance adalah untuk data unik untuk setiap instance dan variabel kelas adalah untuk atribut dan metode yang dibagikan oleh semua instance kelas.
+#### ```Kode 11```
+```
+class Dog:
+
+    kind = 'canine'         # class variable shared by all instances
+
+    def __init__(self, name):
+        self.name = name    # instance variable unique to each instance
+
+>>> d = Dog('Fido')
+>>> e = Dog('Buddy')
+>>> d.kind                  # shared by all dogs
+'canine'
+>>> e.kind                  # shared by all dogs
+'canine'
+>>> d.name                  # unique to d
+'Fido'
+>>> e.name                  # unique to e
+'Buddy'
+```
+Daftar tricks dalam kode berikut tidak boleh digunakan sebagai variabel kelas karena hanya satu daftar yang akan dibagikan oleh semua Dog instance
+#### ```Kode 12```
+```
+class Dog:
+
+    tricks = []             # mistaken use of a class variable
+
+    def __init__(self, name):
+        self.name = name
+
+    def add_trick(self, trick):
+        self.tricks.append(trick)
+
+>>> d = Dog('Fido')
+>>> e = Dog('Buddy')
+>>> d.add_trick('roll over')
+>>> e.add_trick('play dead')
+>>> d.tricks                # unexpectedly shared by all dogs
+['roll over', 'play dead']
+```
+Desain kelas yang benar harus menggunakan variabel instance sebagai gantinya
+#### ```Kode 13```
+```
+class Dog:
+
+    def __init__(self, name):
+        self.name = name
+        self.tricks = []    # creates a new empty list for each dog
+
+    def add_trick(self, trick):
+        self.tricks.append(trick)
+
+>>> d = Dog('Fido')
+>>> e = Dog('Buddy')
+>>> d.add_trick('roll over')
+>>> e.add_trick('play dead')
+>>> d.tricks
+['roll over']
+>>> e.tricks
+['play dead']
+```
+## Keterangan Acak
+Ketika nama atribut yang sama muncul di kedua instance dan di kelas, maka pencarian atribut memprioritaskan instance.
+#### ```Kode 14```
+```
+class Warehouse:
+w1 = Warehouse()
+print(w1.purpose, w1.region)
+w2 = Warehouse()
+w2.region = 'east'
+print(w2.purpose, w2.region)
+```
+Kelas tidak dapat digunakan untuk mengimplementasikan tipe data abstrak murni.
+Menetapkan objek fungsi ke variabel lokal di kelas sebagai berikut.
+#### ```Kode 15```
+```
+# Function defined outside the class
+def f1(self, x, y):
+    return min(x, x+y)
+class C:
+    f = f1
+    def g(self):
+        return 'hello world'
+    h = g
+```
+Sekarang f, g dan h adalah semua atribut class C yang merujuk ke objek-objek fungsi, dan akibatnya semuanya adalah metode instance dari C --- h sama persis dengan g.
+
+Metod memanggil metod lain dengan menggunakan atribut metode dari argumen self
+#### ```Kode 16```
+```
+class Bag:
+    def __init__(self):
+        self.data = []
+    def add(self, x):
+        self.data.append(x)
+    def addtwice(self, x):
+        self.add(x)
+        self.add(x)
 ```
 
-Atau bisa juga digunakan untuk membuat kelas minimal dan badan kondisional ketika pengembang sedang mengerjakan *source code* yang baru :
-
-```python
-class MyEmptyClass:
-    pass
+## Pewarisan
+Fitur bahasa tidak akan layak untuk nama "class" tanpa mendukung pewarisan, berikut
+sintaks untuk definisi kelas turunan.
+#### ```Kode 17```
 ```
-
-```python
-def initlog(*args):
-    pass   # Remember to implement this!
+class DerivedClassName(BaseClassName):
+    <statement-1>
+    .
+    .
+    .
+    <statement-N>
 ```
+Nama BaseClassName harus didefinisikan dalam lingkup yang berisi definisi kelas turunan.
 
-### 4.6 Pernyataan match
-
-Pernyataan march berfungsi untuk mengambil ekspresi dan membandingkan nilai suatu variabel sesuai dengan pola berurutan yang diberikan sebagai satu atau lebih blok kasus. Pernyataan ini hampir serupa dengan pernyataan switch pada bahasa lain, namun lebih handal dalam mengekstrak komponen dari suatu nilai kedalam variabel. 
-
-```python
-def http_error(status):
-    match status:
-        case 400:
-            return "Bad request"
-        case 404:
-            return "Not found"
-        case 418:
-            return "I'm a teapot"
-        case 401 | 403 | 404:
-            return "Not allowed"
-        case _:
-            return "Something's wrong with the internet"
+#### ```Kode 18```
 ```
-
-Penggunaan _ dalam *source code* berfungsi sebagai *wildcard* yang akan mencocokkan nilai yang mana jika tidak ditemukan kasus yang cocok atau tidak ditemukan cabang yang akan dieksekusi. Selain _, penggunaan | yang berarti "atau" dalam *source code* juga dapat diterapkan sebagai sebuah pola, pola sendiri dapat terlihat seperti membongkar tugas dan mengikat sebuah variabel : 
-
-```python
-# point is an (x, y) tuple
-match point:
-    case (0, 0):
-        print("Origin")
-    case (0, y):
-        print(f"Y={y}")
-    case (x, 0):
-        print(f"X={x}")
-    case (x, y):
-        print(f"X={x}, Y={y}")
-    case _:
-        raise ValueError("Not a point")
+class DerivedClassName(modname.BaseClassName):
 ```
+Python memiliki dua fungsi bawaan yang bekerja dengan warisan:
 
-Menggunakan class point untuk mengikat nilai dari variabel pada dua pola yang membuatnya konseptual mirip dengan tugas membongkar (x, y) = point. 
+* Gunakan isinstance() untuk memeriksa jenis instance: isinstance(obj, int) akan menjadi True hanya jika obj.__class__ adalah int atau beberapa kelas yang diturunkan dari int.
 
-```python
-class Point:
-    x: int
-    y: int
+* Gunakan issubclass() untuk memeriksa warisan kelas: issubclass(bool, int)``adalah ``True karena bool adalah subkelas dari int. Namun, issubclass(float, int) adalah False karena float bukan subkelas dari int.
 
-def where_is(point):
-    match point:
-        case Point(x=0, y=0):
-            print("Origin")
-        case Point(x=0, y=y):
-            print(f"Y={y}")
-        case Point(x=x, y=0):
-            print(f"X={x}")
-        case Point():
-            print("Somewhere else")
-        case _:
-            print("Not a point")
+## Pewarisan Berganda
+Bentuk pewarisan berganda dengan beberapa kelas dasar.
+#### ```Kode 19```
 ```
-
-Pola dapat bersarang secara sewenang-wenang. Misalnya, jika kita memiliki daftar poin yang pendek, maka dapat dicocokkan dengan cara seperti berikut ini : 
-
-```python
-match points:
-    case []:
-        print("No points")
-    case [Point(0, 0)]:
-        print("The origin")
-    case [Point(x, y)]:
-        print(f"Single point {x}, {y}")
-    case [Point(0, y1), Point(0, y2)]:
-        print(f"Two on the Y axis at {y1}, {y2}")
-    case _:
-        print("Something else")
+class DerivedClassName(Base1, Base2, Base3):
+    <statement-1>
+    .
+    .
+    .
+    <statement-N>
 ```
-
-ataupun dengan cara berbeda seperti yang satu ini :
-
-```python
-match point:
-    case Point(x, y) if x == y:
-        print(f"Y=X at {x}")
-    case Point(x, y):
-        print(f"Not on the diagonal")
+## Variabel Privat
+Variabel "Private" yang tidak dapat diakses kecuali dari dalam suatu objek tidak ada dalam Python. Namun, ada konvensi yang diikuti oleh sebagian besar kode Python: nama diawali dengan garis bawah (mis. _spam) harus diperlakukan sebagai bagian non-publik dari API (apakah itu fungsi, metode atau anggota data).
+Name mangling sangat membantu untuk membiarkan subclass menimpa metode tanpa memutus panggilan metode intraclass.
+#### ```Kode 20```
 ```
+class Mapping:
+    def __init__(self, iterable):
+        self.items_list = []
+        self.__update(iterable)
 
-```python
-from enum import Enum
-class Color(Enum):
-    RED = 'red'
-    GREEN = 'green'
-    BLUE = 'blue'
+    def update(self, iterable):
+        for item in iterable:
+            self.items_list.append(item)
 
-color = Color(input("Enter your choice of 'red', 'blue' or 'green': "))
+    __update = update   # private copy of original update() method
 
-match color:
-    case Color.RED:
-        print("I see red!")
-    case Color.GREEN:
-        print("Grass is green")
-    case Color.BLUE:
-        print("I'm feeling the blues :(")
+class MappingSubclass(Mapping):
+
+    def update(self, keys, values):
+        # provides new signature for update()
+        # but does not break __init__()
+        for item in zip(keys, values):
+            self.items_list.append(item)
 ```
+Contoh di atas akan berfungsi bahkan jika MappingSubclass akan memperkenalkan sebuah pengidentifikasi update karena diganti dengan Mapping update di kelas Mapping dan MappingSubclass update di kelas MappingSubclass masing-masing.
 
-
-### 4.7 Mendefenisikan Fungsi 
-
-Membuat deret fibonacci menggunakan fungsi bawaan python :
-```python
-def fib(n):    # Menulis fibonacci
-    """ Mencetak nilai fibonacci ."""
-    a, b = 0, 1
-    while a < n:
-        print(a, end=' ')
-        a, b = b, a+b
-    print()
-
-# Memanggil fungsi yang telah didefenisikan:
-fib(2000)
+## Barang Sisa Odds and Ends
+Tipe data yang mirip dengan "record" Pascal atau "struct" C, menyatukan beberapa item data bernama.
+#### ```Kode 21```
 ```
-
-Kata kunci pada cuplikan atau potongan *source code* diatas memperkenalkan fungsi def. Penggunaan fungsi ini haruslah diikuti dengan nama fungsi serta daftar parameter formal dalam kurung. Pernyataan - pernyataan yang membentuk badan fungsi akan dimulai pada baris berikutnya dan akan melalui proses diindentasi. 
-
-
-Definisi fungsi mengaitkan nama fungsi dengan objek fungsi dalam tabel simbol saat ini. Interpreter mengenali objek yang ditunjuk dengan nama itu sebagai fungsi yang ditentukan pengguna. Nama lain juga dapat menunjuk ke objek fungsi yang sama dan juga dapat digunakan untuk mengakses fungsi:
-
-```python
-fib
-
-f = fib
-f(100)
-
-fib(0)
-print(fib(0))
-```
-Sangat mudah untuk menulis fungsi yang mengembalikan daftar nomor deret Fibonacci, alih-alih mencetaknya:
-
-```python
-def fib2(n):  # return Fibonacci series up to n
-    """Return a list containing the Fibonacci series up to n."""
-    result = []
-    a, b = 0, 1
-    while a < n:
-        result.append(a)    # see below
-        a, b = b, a+b
-    return result
-
-f100 = fib2(100)    # call it
-f100                # write the result
-```
-
-
-### 4.8 Mendefenisikan lebih lanjut tentang fungsi
-
-#### 4.8.1 Nilai Argumen
-Bentuk yang paling berguna adalah untuk menentukan nilai default untuk satu atau lebih argumen. Ini menciptakan fungsi yang dapat dipanggil dengan argumen yang lebih sedikit daripada yang ditentukan untuk diizinkan. Sebagai contoh:
-
-```python
-def ask_ok(prompt, retries=4, reminder='Please try again!'):
-    while True:
-        ok = input(prompt)
-        if ok in ('y', 'ye', 'yes'):
-            return True
-        if ok in ('n', 'no', 'nop', 'nope'):
-            return False
-        retries = retries - 1
-        if retries < 0:
-            raise ValueError('invalid user response')
-        print(reminder)
-```
-
-
-#### 4.8.2 Argumen Kata
-Fungsi juga dapat dipanggil menggunakan argumen kata kunci dari formulir kwarg=value. menerima satu argumen wajib ( voltage) dan tiga argumen opsional ( state, action, dan type). Misalnya, fungsi berikut:
-
-```python
-def parrot(voltage, state='a stiff', action='voom', type='Norwegian Blue'):
-    print("-- This parrot wouldn't", action, end=' ')
-    print("if you put", voltage, "volts through it.")
-    print("-- Lovely plumage, the", type)
-    print("-- It's", state, "!")
-
-parrot(1000)                                          # 1 positional argument
-parrot(voltage=1000)                                  # 1 keyword argument
-parrot(voltage=1000000, action='VOOOOOM')             # 2 keyword arguments
-parrot(action='VOOOOOM', voltage=1000000)             # 2 keyword arguments
-parrot('a million', 'bereft of life', 'jump')         # 3 positional arguments
-parrot('a thousand', state='pushing up the daisies')  # 1 positional, 1 keyword    
-```
-
-Dalam panggilan fungsi, argumen kata kunci harus mengikuti argumen posisi. Semua argumen kata kunci yang diteruskan harus cocok dengan salah satu argumen yang diterima oleh fungsi (misalnya actorbukan argumen yang valid untuk parrotfungsi tersebut), dan urutannya tidak penting. Ini juga termasuk argumen non-opsional (misalnya parrot(voltage=1000)valid juga). Tidak ada argumen yang dapat menerima nilai lebih dari sekali. Berikut adalah contoh yang gagal karena pembatasan ini:
-
-```python
-def function(a):
+class Employee:
     pass
 
-function(0, a=0)
+john = Employee()  # Create an empty employee record
+
+# Fill the fields of the record
+john.name = 'John Doe'
+john.dept = 'computer lab'
+john.salary = 1000
 ```
-
-Ketika parameter formal terakhir dari formulir **name hadir, ia menerima kamus yang berisi semua argumen kata kunci kecuali yang terkait dengan parameter formal. Ini dapat digabungkan dengan parameter formal dari formulir *name yang menerima tupel yang berisi argumen posisi di luar daftar parameter formal. Misalnya, jika kita mendefinisikan fungsi seperti ini:
-
-```python
-def cheeseshop(kind, *arguments, **keywords):
-    print("-- Do you have any", kind, "?")
-    print("-- I'm sorry, we're all out of", kind)
-    for arg in arguments:
-        print(arg)
-    print("-" * 40)
-    for kw in keywords:
-        print(kw, ":", keywords[kw])
-
-cheeseshop("Limburger", "It's very runny, sir.",
-           "It's really very, VERY runny, sir.",
-           shopkeeper="Michael Palin",
-           client="John Cleese",
-           sketch="Cheese Shop Sketch")
+Objek metode instance memiliki atribut, juga: m.__self__ adalah objek instan dengan metode m(), dan m.__func__ adalah objek fungsi yang sesuai dengan metode tersebut.
+## Iterators
+Sebagian besar objek penampung container dapat dibuat perulangan menggunakan pernyataan for
+#### ```Kode 22```
 ```
-
-#### 4.8.3 Parameter
-Secara default, argumen dapat diteruskan ke fungsi Python baik dengan posisi atau secara eksplisit dengan kata kunci. Untuk keterbacaan dan kinerja, masuk akal untuk membatasi cara argumen dapat diteruskan sehingga pengembang hanya perlu melihat definisi fungsi untuk menentukan apakah item dilewatkan berdasarkan posisi, posisi atau kata kunci, atau kata kunci.
-
-Definisi fungsi mungkin terlihat seperti :
-
+for element in [1, 2, 3]:
+    print(element)
+for element in (1, 2, 3):
+    print(element)
+for key in {'one':1, 'two':2}:
+    print(key)
+for char in "123":
+    print(char)
+for line in open("myfile.txt"):
+    print(line, end='')
 ```
-def f(pos1, pos2, /, pos_or_kwd, *, kwd1, kwd2):
-      -----------    ----------     ----------
-        |             |                  |
-        |        Positional or keyword   |
-        |                                - Keyword only
-         -- Positional only
+Pernyataan for memanggil iter() pada objek penampung container. Fungsi mengembalikan objek iterator yang mendefinisikan metode __next__() yang mengakses elemen dalam penampung container satu per satu. Ketika tidak ada lagi elemen, __next__() memunculkan pengecualian StopIteration yang memberi tahu perulangan for untuk mengakhiri. 
+Memanggil metode __next__() menggunakan next() fungsi bawaan :
+#### ```Kode 23```
 ```
-
-Dimana karakter / dan * adalah pilihan opsional yang mana jika digunakan akan menunjukkan jenis parameter melalui bagaimana argumen dapat diteruskan ke fungsi baik itu sebagai hanya posisional, posisional ataupun kata kunci dan hanya kata kunci. Parameter kata kunci juga kerap kali disebut parameter bernama. 
-
-1. Parameter posisional
-    Jika karakter / dan * tidak tercatat didalam defenisi fungsi, maka argumen dapat diteruskan ke fungsi berikutnya berdasarkan posisi atau kata kunci berada. 
-
-2. Parameter hanya posisional
-    Melihat ini sedikit lebih detail, dimungkinkan untuk menandai parameter tertentu sebagai hanya posisional . Jika hanya posisional , urutan parameter penting, dan parameter tidak dapat diteruskan oleh kata kunci. Parameter posisional saja ditempatkan sebelum /(garis miring ke depan). The /digunakan untuk secara logis memisahkan parameter posisional saja dari parameter lainnya. Jika tidak ada /dalam definisi fungsi, tidak ada parameter posisional saja.
-
-    Parameter yang mengikuti /mungkin berupa posisi-atau-kata kunci atau hanya-kata kunci .
-
-3. Parameter hanya kata kunci
-    Untuk menandai parameter sebagai hanya kata kunci , yang menunjukkan parameter harus diteruskan oleh argumen kata kunci, tempatkan an *di daftar argumen tepat sebelum parameter khusus kata kunci pertama .
-
-4. Contoh
-    Contoh definisi fungsi menggunakan karakter / dan * :
-    ```python
-    def standard_arg(arg):
-    print(arg)
-
-    def pos_only_arg(arg, /):
-        print(arg)
-
-    def kwd_only_arg(*, arg):
-        print(arg)
-
-    def combined_example(pos_only, /, standard, *, kwd_only):
-        print(pos_only, standard, kwd_only)
-    ```
-
-    * Fungsi pertama, standard_arg, bentuk yang paling dikenal, tidak membatasi konvensi pemanggilan dan argumen dapat diteruskan oleh posisi atau kata kunci :
-        ```python
-        standard_arg(2)
-
-        standard_arg(arg=2)
-        ```
-
-    * Fungsi kedua pos_only_arg dibatasi hanya menggunakan parameter posisi karena ada / dalam definisi fungsi :
-        ```python
-        pos_only_arg(1)
-
-        pos_only_arg(arg=1)
-        ```
-
-    * Fungsi ketiga kwd_only_argshanya mengizinkan argumen kata kunci seperti yang ditunjukkan oleh a * dalam definisi fungsi :
-        ```python
-        kwd_only_arg(3)
-
-        kwd_only_arg(arg=3)
-        ```
-    
-    * Menggunakan ketiga konvensi pemanggilan dalam definisi fungsi yang sama :
-        ```python
-        combined_example(1, 2, 3)
-
-        combined_example(1, 2, kwd_only=3)
-
-        combined_example(1, standard=2, kwd_only=3)
-
-        combined_example(pos_only=1, standard=2, kwd_only=3)
-        ```
-
-        Akhirnya, pertimbangkan definisi fungsi ini yang memiliki potensi benturan antara argumen posisi name dan **kwds yang memiliki name kunci:
-        ```python
-        def foo(name, **kwds):
-            return 'name' in kwds
-
-        foo(1, **{'name': 2})
-
-
-        def foo(name, /, **kwds):
-            return 'name' in kwds
-        >>> foo(1, **{'name': 2})
-        True
-        ```
-
-    5. Rekap
-    Kasus penggunaan akan menentukan parameter mana yang akan digunakan dalam definisi fungsi :
-    ```
-    def f(pos1, pos2, /, pos_or_kwd, *, kwd1, kwd2):
-    ```
-
-#### 4.8.4 Daftar Argumen 
-Opsi yang paling jarang digunakan adalah menentukan bahwa suatu fungsi dapat dipanggil dengan sejumlah argumen yang berubah-ubah. Argumen-argumen ini akan dibungkus dalam sebuah tuple. Sebelum jumlah variabel argumen, nol atau lebih argumen normal dapat terjadi.
-
-```python
-def write_multiple_items(file, separator, *args):
-    file.write(separator.join(args))
+s = 'abc'
+it = iter(s)
+it
+next(it)
+next(it)
+next(it)
+next(it)
 ```
-
-Biasanya, variadic argumen ini akan menjadi yang terakhir dalam daftar parameter formal, karena mereka mengambil semua argumen input yang tersisa yang diteruskan ke fungsi. Parameter formal apa pun yang muncul setelah *args parameter adalah argumen 'hanya kata kunci', artinya parameter tersebut hanya dapat digunakan sebagai kata kunci daripada argumen posisi.
-
-```python
-def concat(*args, sep="/"):
-    return sep.join(args)
-
-concat("earth", "mars", "venus")
-
-concat("earth", "mars", "venus", sep=".")
+Definisikan metode __iter__() yang mengembalikan objek dengan metode __next__(). Jika kelas mendefinisikan __next__(), maka __iter__() bisa langsung mengembalikan self
+#### ```Kode 24```
 ```
+class Reverse:
+    """Iterator for looping over a sequence backwards."""
+    def __init__(self, data):
+        self.data = data
+        self.index = len(data)
 
-#### 4.8.5 Membongkar Daftar
-Situasi sebaliknya terjadi ketika argumen sudah ada dalam daftar atau tupel tetapi perlu dibongkar untuk pemanggilan fungsi yang memerlukan argumen posisi terpisah. Misalnya, range()fungsi bawaan mengharapkan argumen mulai dan berhenti yang terpisah. Jika tidak tersedia secara terpisah, tulis pemanggilan fungsi dengan *-operator untuk membongkar argumen dari daftar atau tupel:
+    def __iter__(self):
+        return self
 
-```python
-list(range(3, 6))            # normal call with separate arguments
-
-args = [3, 6]
-list(range(*args))            # call with arguments unpacked from a list
+    def __next__(self):
+        if self.index == 0:
+            raise StopIteration
+        self.index = self.index - 1
+        return self.data[self.index]
 ```
-
-Dengan cara yang sama, kamus dapat mengirimkan argumen kata kunci dengan **-operator:
-
-```python
-def parrot(voltage, state='a stiff', action='voom'):
-    print("-- This parrot wouldn't", action, end=' ')
-    print("if you put", voltage, "volts through it.", end=' ')
-    print("E's", state, "!")
-
-d = {"voltage": "four million", "state": "bleedin' demised", "action": "VOOM"}
-parrot(**d)
+#### ```Kode 25```
 ```
+rev = Reverse('spam')
+iter(rev)
 
-#### 4.8.6 Ekspresi 
-
-Fungsi anonim kecil dapat dibuat dengan lambda kata kunci. Fungsi ini mengembalikan jumlah dari dua argumennya: . Fungsi Lambda dapat digunakan di mana pun objek fungsi diperlukan. Mereka secara sintaksis terbatas pada satu ekspresi. Secara semantik, mereka hanyalah gula sintaksis untuk definisi fungsi normal. Seperti definisi fungsi bersarang, fungsi lambda dapat mereferensikan variabel dari cakupan yang berisi:lambda a, b: a+b
-
-```python
-def make_incrementor(n):
-    return lambda x: x + n
-
-f = make_incrementor(42)
-f(0)
-
-f(1)
+for char in rev:
+    print(char)
 ```
-
-Penggunaan lain adalah untuk melewatkan fungsi kecil sebagai argumen:
-
-```python
-pairs = [(1, 'one'), (2, 'two'), (3, 'three'), (4, 'four')]
-pairs.sort(key=lambda pair: pair[1])
-pairs
+## Pembangkit Generator
+Generators adalah sebuah tool yang sederhana dan simpel untuk membuat sebuah iterasi. Itu ditulis seperti fungsi biasa tapi menggunakan pernyataan yield setiap kali ingin mengembalikan sebuah data. 
+#### ```Kode 26```
 ```
-
-#### 4.8.7 String Dokumentasi
-Beberapa konvensi tentang konten dan pemformatan string dokumentasi.
-
-```python
-def my_function():
-    """Do nothing, but document it.
-
-    No, really, it doesn't do anything.
-    """
-    pass
-
-print(my_function.__doc__)
+def reverse(data):
+    for index in range(len(data)-1, -1, -1):
+        yield data[index]
 ```
-
-#### 4.8.8 Fungsi Anotasi 
-Anotasi fungsi merupakan sebuah informasi metadata opsional tentang jenis yang digunakan oleh fungsi yang ditentukan pengguna. Anotasi disimpan dalam__annotations__ atribut fungsi sebagai kamus dan tidak berpengaruh pada bagian lain dari fungsi tersebut. Anotasi parameter ditentukan oleh titik dua setelah nama parameter, diikuti dengan ekspresi yang mengevaluasi nilai anotasi. Contoh berikut memiliki argumen yang diperlukan, argumen opsional, dan nilai kembalian yang dianotasi :
-
-```python
-def f(ham: str, eggs: str = 'eggs') -> str:
-    print("Annotations:", f.__annotations__)
-    print("Arguments:", ham, eggs)
-    return ham + ' and ' + eggs
-
-f('spam')
+#### ```Kode 27```
 ```
+for char in reverse('golf'):
+    print(char)
+```
+Apa pun yang dapat dilakukan dengan pembangkit generator juga dapat dilakukan dengan iterator berbasis kelas seperti yang dijelaskan pada bagian sebelumnya. Apa yang membuat pembangkit generator sangat kompak adalah bahwa metode __iter__() dan __next__() dibuat secara otomatis.
+Fitur utama lainnya adalah variabel lokal dan status eksekusi secara otomatis disimpan di antara pemanggilan.
 
-### 4.9 Intermezzo : Gaya
-Sekarang Anda akan menulis bagian Python yang lebih panjang dan lebih kompleks, ini saat yang tepat untuk berbicara tentang gaya pengkodean . Sebagian besar bahasa dapat ditulis (atau lebih ringkas, diformat ) dalam gaya yang berbeda; beberapa lebih mudah dibaca daripada yang lain. Mempermudah orang lain untuk membaca kode Anda selalu merupakan ide yang bagus, dan mengadopsi gaya pengkodean yang bagus sangat membantu untuk itu.
+## Ekspresi Pembangkit Generator
+embangkit generators sederhana dapat dikodekan secara ringkas sebagai ekspresi menggunakan sintaksis yang mirip dengan pemahaman daftar list comprehensions tetapi dengan tanda kurung bukan dengan tanda kurung siku. Ungkapan-ungkapan ini dirancang untuk situasi di mana generator digunakan segera oleh fungsi penutup. Ekspresi generator lebih kompak tetapi kurang fleksibel daripada definisi generator penuh dan cenderung lebih ramah memori daripada pemahaman daftar list comprehensions setara, Contohnya :
+#### ```Kode 27```
+```
+sum(i*i for i in range(10))                 # sum of squares
 
-Untuk Python,PEP 8 telah muncul sebagai panduan gaya yang dipatuhi sebagian besar proyek; itu mempromosikan gaya pengkodean yang sangat mudah dibaca dan menyenangkan mata.
+xvec = [10, 20, 30]
+yvec = [7, 5, 3]
+sum(x*y for x,y in zip(xvec, yvec))         # dot product
+
+unique_words = set(word for line in page  for word in line.split())
+
+valedictorian = max((student.gpa, student.name) for student in graduates)
+
+data = 'golf'
+list(data[i] for i in range(len(data)-1, -1, -1))
+```
+## Kesimpulan
+Mekanisme kelas Python yang menambah kelas dengan minimum sintaksis dan semantik baru, adalah campuran dari mekanisme kelas yang ditemukan dalam C++. Kelas Python menyediakan semua fitur standar Pemrograman Berorientasi Objek, mekanisme pewarisan kelas memungkinkan beberapa kelas dasar, kelas turunan dapat menimpa metode apa pun dari kelas dasar atau kelasnya, dan metode dapat memanggil metode kelas dasar dengan nama yang sama. Objek dapat berisi jumlah dan jenis data yang berubah-ubah. Seperti halnya untuk modul, kelas mengambil bagian dari sifat dinamis Python, mereka dibuat pada saat runtime, dan dapat dimodifikasi lebih lanjut setelah pembuatan.
