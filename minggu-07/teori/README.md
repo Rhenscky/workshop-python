@@ -119,21 +119,17 @@ Variabel instance adalah untuk data unik untuk setiap instance dan variabel kela
 ```
 class Dog:
 
-    kind = 'canine'         # class variable shared by all instances
+    kind = 'canine'         # variabel kelas dibagikan oleh semua instance
 
     def __init__(self, name):
-        self.name = name    # instance variable unique to each instance
+        self.name = name    # variabel instance unik untuk setiap instance
 
->>> d = Dog('Fido')
->>> e = Dog('Buddy')
->>> d.kind                  # shared by all dogs
-'canine'
->>> e.kind                  # shared by all dogs
-'canine'
->>> d.name                  # unique to d
-'Fido'
->>> e.name                  # unique to e
-'Buddy'
+d = Dog('Fido')
+e = Dog('Buddy')
+d.kind                  # dibagikan oleh semua anjing
+e.kind                  # dibagikan oleh semua anjing
+d.name                  # unik untuk d
+e.name                  # unik untuk e
 ```
 Daftar tricks dalam kode berikut tidak boleh digunakan sebagai variabel kelas karena hanya satu daftar yang akan dibagikan oleh semua Dog instance
 #### ```Kode 12```
