@@ -1,549 +1,504 @@
-# PENGENDALI ALIRAN PROGRAM 
-## 4. FLOW TOOLS
-### 4.1 IF Statements
+# Tur Singkat Pustaka Standar
 
-Dalam bahasa pemrograman seringkali ditemukan pernyataan untuk menyelesaikan suatu permasalahan, pernyataan tersebut terkadang memberi ruang untuk seorang pengembang dalam menentukan nilai seharusnya. Salah satu pernyataan yang banyak digunakan adalah IF, pernyataan atau statemen ini akan menghasilkan dua kemungkinan, yakni benar atau salah, True or False, 0 atau 1, ya atau tidak dsb. 
-
-Didalam bahasa pemrograman Python pun terdapat fungsi yang serupa yang mana pada tingkatan IF kemungkinan yang dihasilkan hanya berupa satu pernyataan saja, untuk mendapat dua atau lebih kemungkinan maka dbutuhkan tingkat Else If (Elif – singkatan dari else if). 
-
-Berikut ini merupakan contoh penggunaan IF *statement*/pernyataan pada bahasa python. 
-
-```python
-x = int(input("Masukkan nilai integer : "))
-if x < 0:
-    x = 0
-    print('Nilai negatif diubah menjadi nol')
-elif x == 0:
-    print('nol')
-elif x == 1:
-    print('satu')
-else:
-    print('lebih')
-
+## Antarmuka Sistem Operasi
+Modul os menyediakan puluhan fungsi untuk berinteraksi dengan sistem operasi :
+#### ```Kode 1```
 ```
-
-
-### 4.2 FOR Statements
-
-Walaupun pada bahasa pemrograman Python ini terdapat FOR *statement*/pernyataan FOR seperti pada bahasa pemrograman lainnya, penggunaannya dalam bahasa ini mempunyai penerapan yang berbeda. Jika pada bahasa lainnya memerlukan pengulangan operasi aritmatika terlebih pada sebuah angka atau menentukan langkah berdasarkan iterasi dan kondisi penghentian, maka pada Python pengulangan hanya akan terjadi pada item dan akan tersusun membentuk sebuah daftar (susunan data dalam urutan) dengan tipe data string. 
-
-Berikut ini merupakan contoh penggunaan FOR :
-
-```python
-# Mencoba nilai string:
-words = ['kucing', 'jendela', 'defenestrate']
-for j in words:
-    print(j, len(j))
+>>> import os
+>>> os.getcwd()      # Return the current working directory
+'C:\\Python310'
+>>> os.chdir('/server/accesslogs')   # Change current working directory
+>>> os.system('mkdir today')   # Run the command mkdir in the system shell
+0
 ```
-
-*source code* yang digunakan untuk memodifikasi sebuah koleksi saat perulangan iterasi untuk koleksi yang sama sedang berjalan akan mengalami kesulitan dalam perbaikannya, atau bisa dikatakan sulit untuk diperbaiki jika sedang berjalan. Adapun hal yang dapat dilakukan sebagai gantinya adalah mengulang salinan *source code* dari koleksi atau membuat yang baru. 
-
-Berikut adalah contohnya :
-
-```python
-# Membuat sampel koleksi
-users = {'Mashiho': 'active', '김준규': 'inactive', 'ハルト': 'active'}
-
-# Strategi: Mengulang salinan
-for user, status in users.copy().items():
-    if status == 'inactive':
-        del users[user]
-        
-# Strategi: Membuat koleksi baru
-active_users = {}
-for user, status in users.items():
-    if status == 'active':
-        active_users[user] = status
+Fungsi bawaan dir() dan help() berguna sebagai alat bantu interaktif untuk bekerja dengan modul besar seperti os :
+#### ```Kode 2```
 ```
-
-### 4.3 Fungsi range()
-
-Selain *statement* perulangan (for) dan seleksi (if), pada Python juga terdapat fungsi range(), fungsi yang dapat digunakan untuk mengurutkan kembali urutan angka. Fungsi ini merupakan bawaan dari Python. Fungsi ini dapat digunakan dalam progresi aritmatika. 
-
-```python
-for i in range(5):
-    print(i)
+>>> import os
+>>> dir(os)
+<returns a list of all module functions>
+>>> help(os)
+<returns an extensive manual page created from the module's docstrings>
 ```
-
-Titik akhir pada pengurutan nilai bukanlah bagian dari urutan yang dihasilkan, contoh "range(10)" akan menghasilkan 10 nilai, indeks hukum untuk item tersebut hanya akan menampilkan nilai 10 saja. Hal tersebut juga berlaku untuk nilai yang bersifat negatif :
-
-```python
-range(10)
+Untuk tugas manajemen berkas dan direktori sehari-hari, modul shutil menyediakan antarmuka level yang lebih tinggi yang lebih mudah digunakan:
+#### ```Kode 3```
 ```
-
-
-```python
-list(range(5, 10))
-
-list(range(0, 10, 3))
-
-list(range(-10, -100, -30))
+>>> import shutil
+>>> shutil.copyfile('data.db', 'archive.db')
+'archive.db'
+>>> shutil.move('/build/executables', 'installdir')
+'installdir'
 ```
-
-Jika user ingin mengulangi indeks urutan nilai, maka dapat menggabungkan fungsi range() dan len() pada *source code* nya, seperti berikut ini :
-
-```python
-a = ['Haruto', 'is', 'the', 'rapper', 'in', 'TREASURE']
-for i in range(len(a)):
-    print(i, a[i])
+## Berkas Wildcard
+Modul glob menyediakan fungsi untuk membuat daftar berkas dari pencarian wildcard di direktori :
+#### ```Kode 4```
 ```
-
-Selain itu, penggunaan enumerate() juga dapat dilakukan jika ingin lebih mudah dalam penanganan kasus serupa yang membutuhkan fungsi tersebut. Berikut ini contoh penggunaan enumerate() berupa sum() :
-
-```python
-sum(range(4)) # 0 + 1 + 2 + 3
+>>> import glob
+>>> glob.glob('*.py')
+['primes.py', 'random.py', 'quote.py']
 ```
-
-### 4.4 break dan continue Statements, and else Clauses Loops
-
-Pernyataan break, seperti di bahasa C, akan keluar melalui penutup dibagian for ataupun while dari perulangan (loop) paling dalam. 
-
-Pernyataan perulangan (loop) mungkin memiliki else berupa klausa yang nantinya dapat dieksekusi ketika proses *looping* berakhir melalui iterasi for ataupun ketika kondisi bernilai salah ketika while berjalan, namun hal ini tidak akan terjadi jika sebuah perulangan (loop) diakhiri dengan sebuah break didalam pernyataan. 
-Berikut ini merupakan contoh penggunaannya :
-
-```python
-for n in range(2, 10):
-    for x in range(2, n):
-        if n % x == 0:
-            print(n, 'equals', x, '*', n//x)
-            break
-    else:
-        # loop fell through without finding a factor
-        print(n, 'is a prime number')
+## Baris Perintah Berargumen
+Skrip utilitas umum seringkali perlu memproses argumen baris perintah. Argumen-argumen ini disimpan dalam atribut argv dari modul sys sebagai daftar. Sebagai contoh, hasil keluaran berikut dari menjalankan python demo.py one two three di baris perintah
+#### ```Kode 5```
 ```
-
-Ketika digunakan dengan perulangan (loop), klausa else akan memiliki lebih banyak kesamaan dengan klausa else pada pernyataan try. Sebaliknya, jika pernyataan if berjalan ketika tidak ditemukan klausa untuk pernyataan try didalamnya maka pengecualian tidak akan terjadi dan klausa else untuk penyataan perulangan (loop) juga tidak akan ditemukan. 
-Berikut ini merupakan contoh penggunaan klausa lanjut (continue) :
-
-```python
-for num in range(2, 10):
-    if num % 2 == 0:
-        print("Found an even number", num)
-        continue
-    print("Found an odd number", num)
+>>> import sys
+>>> print(sys.argv)
+['demo.py', 'one', 'two', 'three']
 ```
-
-### 4.5 Pernyataan Pass
-
-Pernyataan pass pada Python pada dasarnya tidak menghasilkan nilai apapun, namun dapat digunakan untuk menguji pernyataan secara sintaksis dan tidak memerlukan sebuah tindakan, contohnya :
-
-```python
-while True:
-    pass # Busy-wait for keyboard interrupt (Ctrl+C)
+Script berikut mengekstrak satu atau lebih nama file dan sejumlah baris opsional untuk ditampilkan:
+#### ```Kode 6```
 ```
+import argparse
 
-Atau bisa juga digunakan untuk membuat kelas minimal dan badan kondisional ketika pengembang sedang mengerjakan *source code* yang baru :
-
-```python
-class MyEmptyClass:
-    pass
+parser = argparse.ArgumentParser(
+    prog='top',
+    description='Show top lines from each file')
+parser.add_argument('filenames', nargs='+')
+parser.add_argument('-l', '--lines', type=int, default=10)
+args = parser.parse_args()
+print(args)
 ```
-
-```python
-def initlog(*args):
-    pass   # Remember to implement this!
+## Pengalihan Output Kesalahan dan Pengakhiran Program
+Modul sys juga memiliki atribut untuk stdin, stdout, dan stderr. Yang terakhir berguna untuk mengirimkan peringatan dan pesan kesalahan untuk membuatnya terlihat bahkan ketika stdout telah dialihkan:
+#### ```Kode 7```
 ```
-
-### 4.6 Pernyataan match
-
-Pernyataan march berfungsi untuk mengambil ekspresi dan membandingkan nilai suatu variabel sesuai dengan pola berurutan yang diberikan sebagai satu atau lebih blok kasus. Pernyataan ini hampir serupa dengan pernyataan switch pada bahasa lain, namun lebih handal dalam mengekstrak komponen dari suatu nilai kedalam variabel. 
-
-```python
-def http_error(status):
-    match status:
-        case 400:
-            return "Bad request"
-        case 404:
-            return "Not found"
-        case 418:
-            return "I'm a teapot"
-        case 401 | 403 | 404:
-            return "Not allowed"
-        case _:
-            return "Something's wrong with the internet"
+>>> sys.stderr.write('Warning, log file not found starting a new one\n')
+Warning, log file not found starting a new one
 ```
-
-Penggunaan _ dalam *source code* berfungsi sebagai *wildcard* yang akan mencocokkan nilai yang mana jika tidak ditemukan kasus yang cocok atau tidak ditemukan cabang yang akan dieksekusi. Selain _, penggunaan | yang berarti "atau" dalam *source code* juga dapat diterapkan sebagai sebuah pola, pola sendiri dapat terlihat seperti membongkar tugas dan mengikat sebuah variabel : 
-
-```python
-# point is an (x, y) tuple
-match point:
-    case (0, 0):
-        print("Origin")
-    case (0, y):
-        print(f"Y={y}")
-    case (x, 0):
-        print(f"X={x}")
-    case (x, y):
-        print(f"X={x}, Y={y}")
-    case _:
-        raise ValueError("Not a point")
+## Pencocokan Pola String
+Modul re menyediakan alat ekspresi reguler untuk pemrosesan string lanjutan. Untuk pencocokan dan manipulasi yang kompleks, ekspresi reguler menawarkan solusi yang ringkas dan dioptimalkan:
+#### ```Kode 8```
 ```
-
-Menggunakan class point untuk mengikat nilai dari variabel pada dua pola yang membuatnya konseptual mirip dengan tugas membongkar (x, y) = point. 
-
-```python
-class Point:
-    x: int
-    y: int
-
-def where_is(point):
-    match point:
-        case Point(x=0, y=0):
-            print("Origin")
-        case Point(x=0, y=y):
-            print(f"Y={y}")
-        case Point(x=x, y=0):
-            print(f"X={x}")
-        case Point():
-            print("Somewhere else")
-        case _:
-            print("Not a point")
+>>> import re
+>>> re.findall(r'\bf[a-z]*', 'which foot or hand fell fastest')
+['foot', 'fell', 'fastest']
+>>> re.sub(r'(\b[a-z]+) \1', r'\1', 'cat in the the hat')
+'cat in the hat'
 ```
-
-Pola dapat bersarang secara sewenang-wenang. Misalnya, jika kita memiliki daftar poin yang pendek, maka dapat dicocokkan dengan cara seperti berikut ini : 
-
-```python
-match points:
-    case []:
-        print("No points")
-    case [Point(0, 0)]:
-        print("The origin")
-    case [Point(x, y)]:
-        print(f"Single point {x}, {y}")
-    case [Point(0, y1), Point(0, y2)]:
-        print(f"Two on the Y axis at {y1}, {y2}")
-    case _:
-        print("Something else")
+Ketika hanya kemampuan sederhana yang diperlukan, metode string lebih disukai karena lebih mudah dibaca dan dilakukan debug:
+#### ```Kode 9```
 ```
-
-ataupun dengan cara berbeda seperti yang satu ini :
-
-```python
-match point:
-    case Point(x, y) if x == y:
-        print(f"Y=X at {x}")
-    case Point(x, y):
-        print(f"Not on the diagonal")
+>>> 'tea for too'.replace('too', 'two')
+'tea for two'
 ```
-
-```python
-from enum import Enum
-class Color(Enum):
-    RED = 'red'
-    GREEN = 'green'
-    BLUE = 'blue'
-
-color = Color(input("Enter your choice of 'red', 'blue' or 'green': "))
-
-match color:
-    case Color.RED:
-        print("I see red!")
-    case Color.GREEN:
-        print("Grass is green")
-    case Color.BLUE:
-        print("I'm feeling the blues :(")
+## Matematika
+Modul math memberikan akses ke fungsi-fungsi pustaka C yang mendasari untuk matematika angka pecahan floating point:
+#### ```Kode 10```
 ```
-
-
-### 4.7 Mendefenisikan Fungsi 
-
-Membuat deret fibonacci menggunakan fungsi bawaan python :
-```python
-def fib(n):    # Menulis fibonacci
-    """ Mencetak nilai fibonacci ."""
-    a, b = 0, 1
-    while a < n:
-        print(a, end=' ')
-        a, b = b, a+b
-    print()
-
-# Memanggil fungsi yang telah didefenisikan:
-fib(2000)
+>>> import math
+>>> math.cos(math.pi / 4)
+0.70710678118654757
+>>> math.log(1024, 2)
+10.0
 ```
-
-Kata kunci pada cuplikan atau potongan *source code* diatas memperkenalkan fungsi def. Penggunaan fungsi ini haruslah diikuti dengan nama fungsi serta daftar parameter formal dalam kurung. Pernyataan - pernyataan yang membentuk badan fungsi akan dimulai pada baris berikutnya dan akan melalui proses diindentasi. 
-
-
-Definisi fungsi mengaitkan nama fungsi dengan objek fungsi dalam tabel simbol saat ini. Interpreter mengenali objek yang ditunjuk dengan nama itu sebagai fungsi yang ditentukan pengguna. Nama lain juga dapat menunjuk ke objek fungsi yang sama dan juga dapat digunakan untuk mengakses fungsi:
-
-```python
-fib
-
-f = fib
-f(100)
-
-fib(0)
-print(fib(0))
+Modul random menyediakan alat untuk membuat pilihan acak:
+#### ```Kode 11```
 ```
-Sangat mudah untuk menulis fungsi yang mengembalikan daftar nomor deret Fibonacci, alih-alih mencetaknya:
-
-```python
-def fib2(n):  # return Fibonacci series up to n
-    """Return a list containing the Fibonacci series up to n."""
-    result = []
-    a, b = 0, 1
-    while a < n:
-        result.append(a)    # see below
-        a, b = b, a+b
-    return result
-
-f100 = fib2(100)    # call it
-f100                # write the result
+>>> import random
+>>> random.choice(['apple', 'pear', 'banana'])
+'apple'
+>>> random.sample(range(100), 10)   # sampling without replacement
+[30, 83, 16, 4, 8, 81, 41, 50, 18, 33]
+>>> random.random()    # random float
+0.17970987693706186
+>>> random.randrange(6)    # random integer chosen from range(6)
+4
 ```
-
-
-### 4.8 Mendefenisikan lebih lanjut tentang fungsi
-
-#### 4.8.1 Nilai Argumen
-Bentuk yang paling berguna adalah untuk menentukan nilai default untuk satu atau lebih argumen. Ini menciptakan fungsi yang dapat dipanggil dengan argumen yang lebih sedikit daripada yang ditentukan untuk diizinkan. Sebagai contoh:
-
-```python
-def ask_ok(prompt, retries=4, reminder='Please try again!'):
-    while True:
-        ok = input(prompt)
-        if ok in ('y', 'ye', 'yes'):
-            return True
-        if ok in ('n', 'no', 'nop', 'nope'):
-            return False
-        retries = retries - 1
-        if retries < 0:
-            raise ValueError('invalid user response')
-        print(reminder)
+Modul statistics menghitung sifat statistik dasar (rata-rata, median, varian, dll.) dari data numerik:
+#### ```Kode 12```
 ```
-
-
-#### 4.8.2 Argumen Kata
-Fungsi juga dapat dipanggil menggunakan argumen kata kunci dari formulir kwarg=value. menerima satu argumen wajib ( voltage) dan tiga argumen opsional ( state, action, dan type). Misalnya, fungsi berikut:
-
-```python
-def parrot(voltage, state='a stiff', action='voom', type='Norwegian Blue'):
-    print("-- This parrot wouldn't", action, end=' ')
-    print("if you put", voltage, "volts through it.")
-    print("-- Lovely plumage, the", type)
-    print("-- It's", state, "!")
-
-parrot(1000)                                          # 1 positional argument
-parrot(voltage=1000)                                  # 1 keyword argument
-parrot(voltage=1000000, action='VOOOOOM')             # 2 keyword arguments
-parrot(action='VOOOOOM', voltage=1000000)             # 2 keyword arguments
-parrot('a million', 'bereft of life', 'jump')         # 3 positional arguments
-parrot('a thousand', state='pushing up the daisies')  # 1 positional, 1 keyword    
+>>> import statistics
+>>> data = [2.75, 1.75, 1.25, 0.25, 0.5, 1.25, 3.5]
+>>> statistics.mean(data)
+1.6071428571428572
+>>> statistics.median(data)
+1.25
+>>> statistics.variance(data)
+1.3720238095238095
 ```
-
-Dalam panggilan fungsi, argumen kata kunci harus mengikuti argumen posisi. Semua argumen kata kunci yang diteruskan harus cocok dengan salah satu argumen yang diterima oleh fungsi (misalnya actorbukan argumen yang valid untuk parrotfungsi tersebut), dan urutannya tidak penting. Ini juga termasuk argumen non-opsional (misalnya parrot(voltage=1000)valid juga). Tidak ada argumen yang dapat menerima nilai lebih dari sekali. Berikut adalah contoh yang gagal karena pembatasan ini:
-
-```python
-def function(a):
-    pass
-
-function(0, a=0)
+## Akses internet
+Ada sejumlah modul untuk mengakses internet dan memproses protokol internet. Dua yang paling sederhana adalah urllib.request untuk mengambil data dari URL dan smtplib untuk mengirim email:
+#### ```Kode 13```
 ```
+>>> from urllib.request import urlopen
+>>> with urlopen('http://worldtimeapi.org/api/timezone/etc/UTC.txt') as response:
+...     for line in response:
+...         line = line.decode()             # Convert bytes to a str
+...         if line.startswith('datetime'):
+...             print(line.rstrip())         # Remove trailing newline
+...
+datetime: 2022-01-01T01:36:47.689215+00:00
 
-Ketika parameter formal terakhir dari formulir **name hadir, ia menerima kamus yang berisi semua argumen kata kunci kecuali yang terkait dengan parameter formal. Ini dapat digabungkan dengan parameter formal dari formulir *name yang menerima tupel yang berisi argumen posisi di luar daftar parameter formal. Misalnya, jika kita mendefinisikan fungsi seperti ini:
-
-```python
-def cheeseshop(kind, *arguments, **keywords):
-    print("-- Do you have any", kind, "?")
-    print("-- I'm sorry, we're all out of", kind)
-    for arg in arguments:
-        print(arg)
-    print("-" * 40)
-    for kw in keywords:
-        print(kw, ":", keywords[kw])
-
-cheeseshop("Limburger", "It's very runny, sir.",
-           "It's really very, VERY runny, sir.",
-           shopkeeper="Michael Palin",
-           client="John Cleese",
-           sketch="Cheese Shop Sketch")
+>>> import smtplib
+>>> server = smtplib.SMTP('localhost')
+>>> server.sendmail('soothsayer@example.org', 'jcaesar@example.org',
+... """To: jcaesar@example.org
+... From: soothsayer@example.org
+...
+... Beware the Ides of March.
+... """)
+>>> server.quit()
 ```
-
-#### 4.8.3 Parameter
-Secara default, argumen dapat diteruskan ke fungsi Python baik dengan posisi atau secara eksplisit dengan kata kunci. Untuk keterbacaan dan kinerja, masuk akal untuk membatasi cara argumen dapat diteruskan sehingga pengembang hanya perlu melihat definisi fungsi untuk menentukan apakah item dilewatkan berdasarkan posisi, posisi atau kata kunci, atau kata kunci.
-
-Definisi fungsi mungkin terlihat seperti :
-
+## Tanggal dan Waktu
+Modul datetime menyediakan kelas untuk memanipulasi tanggal dan waktu dengan cara yang sederhana dan kompleks. Sementara aritmatika tanggal dan waktu didukung, fokus implementasi adalah pada ekstraksi anggota yang efisien untuk pemformatan dan manipulasi keluaran. Modul ini juga mendukung objek yang sadar zona waktu.
+#### ```Kode 14```
 ```
-def f(pos1, pos2, /, pos_or_kwd, *, kwd1, kwd2):
-      -----------    ----------     ----------
-        |             |                  |
-        |        Positional or keyword   |
-        |                                - Keyword only
-         -- Positional only
+>>> # dates are easily constructed and formatted
+>>> from datetime import date
+>>> now = date.today()
+>>> now
+datetime.date(2003, 12, 2)
+>>> now.strftime("%m-%d-%y. %d %b %Y is a %A on the %d day of %B.")
+'12-02-03. 02 Dec 2003 is a Tuesday on the 02 day of December.'
+
+>>> # dates support calendar arithmetic
+>>> birthday = date(1964, 7, 31)
+>>> age = now - birthday
+>>> age.days
+14368
 ```
-
-Dimana karakter / dan * adalah pilihan opsional yang mana jika digunakan akan menunjukkan jenis parameter melalui bagaimana argumen dapat diteruskan ke fungsi baik itu sebagai hanya posisional, posisional ataupun kata kunci dan hanya kata kunci. Parameter kata kunci juga kerap kali disebut parameter bernama. 
-
-1. Parameter posisional
-    Jika karakter / dan * tidak tercatat didalam defenisi fungsi, maka argumen dapat diteruskan ke fungsi berikutnya berdasarkan posisi atau kata kunci berada. 
-
-2. Parameter hanya posisional
-    Melihat ini sedikit lebih detail, dimungkinkan untuk menandai parameter tertentu sebagai hanya posisional . Jika hanya posisional , urutan parameter penting, dan parameter tidak dapat diteruskan oleh kata kunci. Parameter posisional saja ditempatkan sebelum /(garis miring ke depan). The /digunakan untuk secara logis memisahkan parameter posisional saja dari parameter lainnya. Jika tidak ada /dalam definisi fungsi, tidak ada parameter posisional saja.
-
-    Parameter yang mengikuti /mungkin berupa posisi-atau-kata kunci atau hanya-kata kunci .
-
-3. Parameter hanya kata kunci
-    Untuk menandai parameter sebagai hanya kata kunci , yang menunjukkan parameter harus diteruskan oleh argumen kata kunci, tempatkan an *di daftar argumen tepat sebelum parameter khusus kata kunci pertama .
-
-4. Contoh
-    Contoh definisi fungsi menggunakan karakter / dan * :
-    ```python
-    def standard_arg(arg):
-    print(arg)
-
-    def pos_only_arg(arg, /):
-        print(arg)
-
-    def kwd_only_arg(*, arg):
-        print(arg)
-
-    def combined_example(pos_only, /, standard, *, kwd_only):
-        print(pos_only, standard, kwd_only)
-    ```
-
-    * Fungsi pertama, standard_arg, bentuk yang paling dikenal, tidak membatasi konvensi pemanggilan dan argumen dapat diteruskan oleh posisi atau kata kunci :
-        ```python
-        standard_arg(2)
-
-        standard_arg(arg=2)
-        ```
-
-    * Fungsi kedua pos_only_arg dibatasi hanya menggunakan parameter posisi karena ada / dalam definisi fungsi :
-        ```python
-        pos_only_arg(1)
-
-        pos_only_arg(arg=1)
-        ```
-
-    * Fungsi ketiga kwd_only_argshanya mengizinkan argumen kata kunci seperti yang ditunjukkan oleh a * dalam definisi fungsi :
-        ```python
-        kwd_only_arg(3)
-
-        kwd_only_arg(arg=3)
-        ```
-    
-    * Menggunakan ketiga konvensi pemanggilan dalam definisi fungsi yang sama :
-        ```python
-        combined_example(1, 2, 3)
-
-        combined_example(1, 2, kwd_only=3)
-
-        combined_example(1, standard=2, kwd_only=3)
-
-        combined_example(pos_only=1, standard=2, kwd_only=3)
-        ```
-
-        Akhirnya, pertimbangkan definisi fungsi ini yang memiliki potensi benturan antara argumen posisi name dan **kwds yang memiliki name kunci:
-        ```python
-        def foo(name, **kwds):
-            return 'name' in kwds
-
-        foo(1, **{'name': 2})
-
-
-        def foo(name, /, **kwds):
-            return 'name' in kwds
-        >>> foo(1, **{'name': 2})
-        True
-        ```
-
-    5. Rekap
-    Kasus penggunaan akan menentukan parameter mana yang akan digunakan dalam definisi fungsi :
-    ```
-    def f(pos1, pos2, /, pos_or_kwd, *, kwd1, kwd2):
-    ```
-
-#### 4.8.4 Daftar Argumen 
-Opsi yang paling jarang digunakan adalah menentukan bahwa suatu fungsi dapat dipanggil dengan sejumlah argumen yang berubah-ubah. Argumen-argumen ini akan dibungkus dalam sebuah tuple. Sebelum jumlah variabel argumen, nol atau lebih argumen normal dapat terjadi.
-
-```python
-def write_multiple_items(file, separator, *args):
-    file.write(separator.join(args))
+## Kompresi Data
+Format pengarsipan dan kompresi data umum didukung langsung oleh modul-modul yang ada antara lain: :mod: zlib, gzip, bz2, lzma, zipfile dan tarfile.
+#### ```Kode 15```
 ```
-
-Biasanya, variadic argumen ini akan menjadi yang terakhir dalam daftar parameter formal, karena mereka mengambil semua argumen input yang tersisa yang diteruskan ke fungsi. Parameter formal apa pun yang muncul setelah *args parameter adalah argumen 'hanya kata kunci', artinya parameter tersebut hanya dapat digunakan sebagai kata kunci daripada argumen posisi.
-
-```python
-def concat(*args, sep="/"):
-    return sep.join(args)
-
-concat("earth", "mars", "venus")
-
-concat("earth", "mars", "venus", sep=".")
+>>> import zlib
+>>> s = b'witch which has which witches wrist watch'
+>>> len(s)
+41
+>>> t = zlib.compress(s)
+>>> len(t)
+37
+>>> zlib.decompress(t)
+b'witch which has which witches wrist watch'
+>>> zlib.crc32(s)
+226805979
 ```
-
-#### 4.8.5 Membongkar Daftar
-Situasi sebaliknya terjadi ketika argumen sudah ada dalam daftar atau tupel tetapi perlu dibongkar untuk pemanggilan fungsi yang memerlukan argumen posisi terpisah. Misalnya, range()fungsi bawaan mengharapkan argumen mulai dan berhenti yang terpisah. Jika tidak tersedia secara terpisah, tulis pemanggilan fungsi dengan *-operator untuk membongkar argumen dari daftar atau tupel:
-
-```python
-list(range(3, 6))            # normal call with separate arguments
-
-args = [3, 6]
-list(range(*args))            # call with arguments unpacked from a list
+## Pengukuran Kinerja
+Beberapa pengguna Python mengembangkan minat yang mendalam untuk mengetahui kinerja relatif dari berbagai pendekatan untuk masalah yang sama. Python menyediakan alat pengukuran yang segera menjawab pertanyaan-pertanyaan itu.
+Misalnya, mungkin tergoda untuk menggunakan fitur tuple packing dan unpacking daripada pendekatan tradisional untuk bertukar argumen. Modul :mod: timeit dengan cepat menunjukkan keunggulan kinerja secara sederhana:
+#### ```Kode 16```
 ```
-
-Dengan cara yang sama, kamus dapat mengirimkan argumen kata kunci dengan **-operator:
-
-```python
-def parrot(voltage, state='a stiff', action='voom'):
-    print("-- This parrot wouldn't", action, end=' ')
-    print("if you put", voltage, "volts through it.", end=' ')
-    print("E's", state, "!")
-
-d = {"voltage": "four million", "state": "bleedin' demised", "action": "VOOM"}
-parrot(**d)
+>>> from timeit import Timer
+>>> Timer('t=a; a=b; b=t', 'a=1; b=2').timeit()
+0.57535828626024577
+>>> Timer('a,b = b,a', 'a=1; b=2').timeit()
+0.54962537085770791
 ```
-
-#### 4.8.6 Ekspresi 
-
-Fungsi anonim kecil dapat dibuat dengan lambda kata kunci. Fungsi ini mengembalikan jumlah dari dua argumennya: . Fungsi Lambda dapat digunakan di mana pun objek fungsi diperlukan. Mereka secara sintaksis terbatas pada satu ekspresi. Secara semantik, mereka hanyalah gula sintaksis untuk definisi fungsi normal. Seperti definisi fungsi bersarang, fungsi lambda dapat mereferensikan variabel dari cakupan yang berisi:lambda a, b: a+b
-
-```python
-def make_incrementor(n):
-    return lambda x: x + n
-
-f = make_incrementor(42)
-f(0)
-
-f(1)
+## Kontrol kualitas
+Salah satu pendekatan untuk mengembangkan perangkat lunak berkualitas tinggi adalah dengan menulis tes untuk setiap fungsi yang dikembangkan dan untuk sering menjalankan tes tersebut selama proses pengembangan.
+Modul: mod:doctest menyediakan alat untuk memindai modul dan memvalidasi tes yang tertanam dalam dokumen program. Konstruksi pengujian sesederhana memotong dan menempel panggilan khas beserta hasilnya ke dalam docstring. Ini meningkatkan dokumentasi dengan memberikan contoh kepada pengguna dan memungkinkan modul doctest untuk memastikan kode tetap benar untuk dokumentasi:
+#### ```Kode 17```
 ```
+def average(values):
+    """Computes the arithmetic mean of a list of numbers.
 
-Penggunaan lain adalah untuk melewatkan fungsi kecil sebagai argumen:
-
-```python
-pairs = [(1, 'one'), (2, 'two'), (3, 'three'), (4, 'four')]
-pairs.sort(key=lambda pair: pair[1])
-pairs
-```
-
-#### 4.8.7 String Dokumentasi
-Beberapa konvensi tentang konten dan pemformatan string dokumentasi.
-
-```python
-def my_function():
-    """Do nothing, but document it.
-
-    No, really, it doesn't do anything.
+    >>> print(average([20, 30, 70]))
+    40.0
     """
-    pass
+    return sum(values) / len(values)
 
-print(my_function.__doc__)
+import doctest
+doctest.testmod()   # automatically validate the embedded tests
+```
+Modul unittest tidak semudah modul doctest, tetapi memungkinkan serangkaian tes yang lebih komprehensif untuk dipertahankan dalam file terpisah:
+#### ```Kode 18```
+```
+import unittest
+
+class TestStatisticalFunctions(unittest.TestCase):
+
+    def test_average(self):
+        self.assertEqual(average([20, 30, 70]), 40.0)
+        self.assertEqual(round(average([1, 5, 7]), 1), 4.3)
+        with self.assertRaises(ZeroDivisionError):
+            average([])
+        with self.assertRaises(TypeError):
+            average(20, 30, 70)
+
+unittest.main()  # Calling from the command line invokes all tests
+```
+# Tur Singkat Pustaka Standar --- Bagian II
+Tur kedua ini mencakup modul lanjutan yang mendukung kebutuhan pemrograman profesional. Modul-modul ini jarang terjadi dalam skrip kecil.
+## Pemformatan Output
+Modul reprlib menyediakan versi repr() yang disesuaikan untuk tampilan yang disingkat dari wadah containers yang besar atau sangat bersarang
+#### ```Kode 19```
+```
+>>> import reprlib
+>>> reprlib.repr(set('supercalifragilisticexpialidocious'))
+"{'a', 'c', 'd', 'e', 'f', 'g', ...}"
+```
+Modul pprint menawarkan kontrol yang lebih canggih atas pencetakan objek bawaan dan yang ditentukan pengguna dengan cara yang dapat dibaca oleh interpreter. Ketika hasilnya lebih dari satu baris, "pretty printer" menambahkan jeda baris dan indentasi untuk lebih jelas mengungkapkan struktur data:
+#### ```Kode 20```
+```
+>>> import pprint
+>>> t = [[[['black', 'cyan'], 'white', ['green', 'red']], [['magenta',
+...     'yellow'], 'blue']]]
+...
+>>> pprint.pprint(t, width=30)
+[[[['black', 'cyan'],
+   'white',
+   ['green', 'red']],
+  [['magenta', 'yellow'],
+   'blue']]]
+```
+Modul textwrap memformat paragraf teks agar sesuai dengan lebar layar yang diberikan:
+#### ```Kode 21```
+```
+>>> import textwrap
+>>> doc = """The wrap() method is just like fill() except that it returns
+... a list of strings instead of one big string with newlines to separate
+... the wrapped lines."""
+...
+>>> print(textwrap.fill(doc, width=40))
+The wrap() method is just like fill()
+except that it returns a list of strings
+instead of one big string with newlines
+to separate the wrapped lines.
+```
+Modul locale mengakses basis data format data kultur khusus. Atribut pengelompokan fungsi format lokal locale menyediakan cara langsung memformat angka dengan pemisah grup:
+#### ```Kode 22```
+```
+>>> import locale
+>>> locale.setlocale(locale.LC_ALL, 'English_United States.1252')
+'English_United States.1252'
+>>> conv = locale.localeconv()          # get a mapping of conventions
+>>> x = 1234567.8
+>>> locale.format("%d", x, grouping=True)
+'1,234,567'
+>>> locale.format_string("%s%.*f", (conv['currency_symbol'],
+...                      conv['frac_digits'], x), grouping=True)
+'$1,234,567.80'
+```
+## Templating
+Modul string menyertakan kelas serbaguna Template dengan sintaks yang disederhanakan yang cocok untuk diedit oleh pengguna. Ini memungkinkan pengguna untuk menyesuaikan aplikasi mereka tanpa harus mengubah aplikasi.
+Format ini menggunakan nama penampung yang dibentuk oleh $ dengan pengidentifikasi Python yang valid (karakter alfanumerik dan garis bawah). Mengitari placeholder dengan kurung kurawal memungkinkannya diikuti oleh lebih banyak huruf alfanumerik tanpa spasi. Menulis $$ menciptakan satu yang terpisah $
+#### ```Kode 23```
+```
+>>> from string import Template
+>>> t = Template('${village}folk send $$10 to $cause.')
+>>> t.substitute(village='Nottingham', cause='the ditch fund')
+'Nottinghamfolk send $10 to the ditch fund.'
+```
+Metode substitute() memunculkan KeyError saat placeholder tidak disertakan dalam dictionary atau argumen kata kunci keyword argument. Untuk aplikasi gaya gabungan-surat mail-merge, data yang diberikan pengguna mungkin tidak lengkap dan metode safe_substitute() mungkin lebih tepat --- itu akan membuat placeholder tidak berubah jika data hilang
+#### ```Kode 24```
+```
+>>> t = Template('Return the $item to $owner.')
+>>> d = dict(item='unladen swallow')
+>>> t.substitute(d)
+Traceback (most recent call last):
+  ...
+KeyError: 'owner'
+>>> t.safe_substitute(d)
+'Return the unladen swallow to $owner.'
+```
+Subkelas templat dapat menentukan pembatas khusus. Misalnya, utilitas penggantian nama setumpuk batch untuk browser foto dapat memilih untuk menggunakan tanda persen untuk penampung seperti tanggal saat ini, nomor urut gambar, atau format berkas:
+#### ```Kode 25```
+```
+>>> import time, os.path
+>>> photofiles = ['img_1074.jpg', 'img_1076.jpg', 'img_1077.jpg']
+>>> class BatchRename(Template):
+...     delimiter = '%'
+>>> fmt = input('Enter rename style (%d-date %n-seqnum %f-format):  ')
+Enter rename style (%d-date %n-seqnum %f-format):  Ashley_%n%f
+
+>>> t = BatchRename(fmt)
+>>> date = time.strftime('%d%b%y')
+>>> for i, filename in enumerate(photofiles):
+...     base, ext = os.path.splitext(filename)
+...     newname = t.substitute(d=date, n=i, f=ext)
+...     print('{0} --> {1}'.format(filename, newname))
+
+img_1074.jpg --> Ashley_0.jpg
+img_1076.jpg --> Ashley_1.jpg
+img_1077.jpg --> Ashley_2.jpg
+```
+## Bekerja dengan Tata Letak Rekam Data Biner
+Modul struct menyediakan pack() dan unpack() berfungsi untuk bekerja dengan format rekaman biner yang memiliki panjang variabel. Contoh berikut menunjukkan bagaimana cara loop tajuk header informasi dalam berkas ZIP tanpa menggunakan modul zipfile. Kode paket "H" dan "I" masing-masing mewakili dua dan empat byte angka yang tidak bertanda unsigned. "<" Menunjukkan bahwa mereka adalah ukuran standar dan dalam urutan byte little-endian:
+#### ```Kode 26```
+```
+import struct
+
+with open('myfile.zip', 'rb') as f:
+    data = f.read()
+
+start = 0
+for i in range(3):                      # show the first 3 file headers
+    start += 14
+    fields = struct.unpack('<IIIHH', data[start:start+16])
+    crc32, comp_size, uncomp_size, filenamesize, extra_size = fields
+
+    start += 16
+    filename = data[start:start+filenamesize]
+    start += filenamesize
+    extra = data[start:start+extra_size]
+    print(filename, hex(crc32), comp_size, uncomp_size)
+
+    start += extra_size + comp_size     # skip to the next header
+```
+## Multi-threading
+Threading adalah teknik untuk memisahkan tugas yang tidak tergantung secara berurutan. Utas threads dapat digunakan untuk meningkatkan responsif aplikasi yang menerima masukan pengguna saat tugas lain beroperasi di latar belakang. Kasus penggunaan terkait menjalankan I/O secara paralel dengan perhitungan di utas thread lainnya.
+Kode berikut menunjukkan bagaimana tingkat tinggi modul:mod:threading dapat menjalankan tugas di latar belakang sementara program utama terus beroperasi:
+#### ```Kode 27```
+```
+import threading, zipfile
+
+class AsyncZip(threading.Thread):
+    def __init__(self, infile, outfile):
+        threading.Thread.__init__(self)
+        self.infile = infile
+        self.outfile = outfile
+
+    def run(self):
+        f = zipfile.ZipFile(self.outfile, 'w', zipfile.ZIP_DEFLATED)
+        f.write(self.infile)
+        f.close()
+        print('Finished background zip of:', self.infile)
+
+background = AsyncZip('mydata.txt', 'myarchive.zip')
+background.start()
+print('The main program continues to run in foreground.')
+
+background.join()    # Wait for the background task to finish
+print('Main program waited until background was done.')
+```
+Tantangan utama aplikasi multi-utas multi-threaded adalah mengoordinasikan utas thread yang berbagi data atau sumber daya lainnya. Untuk itu, modul threading menyediakan sejumlah primitif sinkronisasi termasuk kunci locks, peristiwa events, variabel kondisi, dan semafor.
+
+## Pencatatan
+Modul logging menawarkan sistem pencatatan logging yang lengkap dan fleksibel. Paling sederhana, catatan log pesan dikirim ke berkas atau ke sys.stderr:
+#### ```Kode 27```
+```
+import logging
+logging.debug('Debugging information')
+logging.info('Informational message')
+logging.warning('Warning:config file %s not found', 'server.conf')
+logging.error('Error occurred')
+logging.critical('Critical error -- shutting down')
+```
+Ini menghasilkan keluaran berikut:
+```
+WARNING:root:Warning:config file server.conf not found
+ERROR:root:Error occurred
+CRITICAL:root:Critical error -- shutting down
+```
+Secara bawaan, pesan informasi dan debugging ditutupi suppressed dan keluaran dikirim ke standar kesalahan. Opsi keluaran lainnya termasuk merutekan pesan melalui email, datagram, soket, atau ke Server HTTP. Filter baru dapat memilih rute berbeda berdasarkan prioritas pesan: DEBUG, INFO, WARNING, ERROR, dan CRITICAL.
+
+## Referensi yang Lemah
+Python melakukan manajemen memori otomatis (penghitungan referensi untuk sebagian besar objek dan garbage collection untuk menghilangkan siklus). Memori dibebaskan tidak lama setelah referensi terakhir untuk itu telah dihilangkan.
+Pendekatan ini berfungsi dengan baik untuk sebagian besar aplikasi tetapi kadang-kadang ada kebutuhan untuk melacak objek hanya selama mereka digunakan oleh sesuatu yang lain. Sayangnya, hanya melacak mereka membuat referensi yang membuatnya permanen. Modul weakref menyediakan alat untuk melacak objek tanpa membuat referensi. Ketika objek tidak lagi diperlukan, itu secara otomatis dihapus dari tabel weakref dan panggilan balik callback dipicu untuk weakref. Aplikasi yang umum termasuk caching objek yang mahal untuk dibuat:
+#### ```Kode 28```
+```
+>>> import weakref, gc
+>>> class A:
+...     def __init__(self, value):
+...         self.value = value
+...     def __repr__(self):
+...         return str(self.value)
+...
+>>> a = A(10)                   # create a reference
+>>> d = weakref.WeakValueDictionary()
+>>> d['primary'] = a            # does not create a reference
+>>> d['primary']                # fetch the object if it is still alive
+10
+>>> del a                       # remove the one reference
+>>> gc.collect()                # run garbage collection right away
+0
+>>> d['primary']                # entry was automatically removed
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+    d['primary']                # entry was automatically removed
+  File "C:/python38/lib/weakref.py", line 46, in __getitem__
+    o = self.data[key]()
+KeyError: 'primary'
+```
+## Alat untuk Bekerja dengan Daftar Lists
+Banyak kebutuhan struktur data dapat dipenuhi dengan tipe daftar list bawaan. Namun, kadang-kadang ada kebutuhan untuk implementasi alternatif dengan mengorbankan kinerja yang menurun.
+Modul array menyediakan objek array() yang seperti daftar list dimana hanya menyimpan data homogen dan menyimpannya dengan lebih kompak. Contoh berikut menunjukkan array angka yang disimpan sebagai dua byte angka biner yang tidak ditandai (kode tipe "H") daripada 16 byte per entri biasa untuk daftar list reguler objek int Python:
+#### ```Kode 29```
+```
+>>> from array import array
+>>> a = array('H', [4000, 10, 700, 22222])
+>>> sum(a)
+26932
+>>> a[1:3]
+array('H', [10, 700])
+```
+Modul collections menyediakan objek deque() yang seperti daftar list dengan tambahan yang lebih cepat dan muncul dari sisi kiri tetapi pencarian yang lebih lambat di tengah. Objek-objek ini sangat cocok untuk mengimplementasikan antrian dan pencarian pohon pertama yang luas breadth first tree searches:
+#### ```Kode 30```
+```
+>>> from collections import deque
+>>> d = deque(["task1", "task2", "task3"])
+>>> d.append("task4")
+>>> print("Handling", d.popleft())
+Handling task1
+unsearched = deque([starting_node])
+def breadth_first_search(unsearched):
+    node = unsearched.popleft()
+    for m in gen_moves(node):
+        if is_goal(m):
+            return m
+        unsearched.append(m)
+```
+Selain implementasi daftar list alternatif, di pustaka juga menawarkan alat-alat lain seperti modul bisect dengan fungsi untuk memanipulasi daftar list yang diurutkan:
+#### ```Kode 31```
+```
+>>> import bisect
+>>> scores = [(100, 'perl'), (200, 'tcl'), (400, 'lua'), (500, 'python')]
+>>> bisect.insort(scores, (300, 'ruby'))
+>>> scores
+[(100, 'perl'), (200, 'tcl'), (300, 'ruby'), (400, 'lua'), (500, 'python')]
+```
+Modul heapq menyediakan fungsi untuk mengimplementasikan heaps berdasarkan daftar list reguler. Entri dengan nilai terendah selalu disimpan di posisi nol. Ini berguna untuk aplikasi yang berulang kali mengakses elemen terkecil tetapi tidak ingin mengoperasikan daftar pengurutan list secara penuh:
+#### ```Kode 32```
+```
+>>> from heapq import heapify, heappop, heappush
+>>> data = [1, 3, 5, 7, 9, 2, 4, 6, 8, 0]
+>>> heapify(data)                      # rearrange the list into heap order
+>>> heappush(data, -5)                 # add a new entry
+>>> [heappop(data) for i in range(3)]  # fetch the three smallest entries
+[-5, 0, 1]
+```
+## Aritmatika Pecahan Floating Point Desimal
+Modul decimal menawarkan Decimal tipe data untuk aritmatika pecahan desimal. Dibandingkan dengan implementasi bawaan float dari pecahan floating point biner, kelas ini sangat membantu
+
+* aplikasi keuangan dan penggunaan lainnya yang membutuhkan representasi desimal yang tepat,
+
+* kontrol atas presisi,
+
+* kontrol atas pembulatan untuk memenuhi persyaratan sah legal atau peraturan,
+
+* pelacakan tempat desimal yang signifikan, atau
+
+* aplikasi tempat pengguna mengharapkan hasil agar sesuai dengan perhitungan yang dilakukan dengan tangan.
+
+Misalnya, menghitung pajak 5% pada biaya telepon 70 sen memberikan hasil berbeda dalam pecahan floating point desimal dan pecahan floating point biner. Perbedaannya menjadi signifikan jika hasilnya dibulatkan ke sen terdekat:
+#### ```Kode 33```
+```
+>>> from decimal import *
+>>> round(Decimal('0.70') * Decimal('1.05'), 2)
+Decimal('0.74')
+>>> round(.70 * 1.05, 2)
+0.73
+```
+Representasi yang tepat memungkinkan kelas Decimal untuk melakukan perhitungan modulo dan tes persamaan yang tidak cocok untuk angka pecahan floating point biner:
+#### ```Kode 34```
+```
+>>> Decimal('1.00') % Decimal('.10')
+Decimal('0.00')
+>>> 1.00 % 0.10
+0.09999999999999995
+
+>>> sum([Decimal('0.1')]*10) == Decimal('1.0')
+True
+>>> sum([0.1]*10) == 1.0
+False
+```
+Modul decimal menyediakan aritmatika dengan ketelitian sebanyak yang dibutuhkan:
+#### ```Kode 35```
+```
+>>> getcontext().prec = 36
+>>> Decimal(1) / Decimal(7)
+Decimal('0.142857142857142857142857142857142857')
 ```
 
-#### 4.8.8 Fungsi Anotasi 
-Anotasi fungsi merupakan sebuah informasi metadata opsional tentang jenis yang digunakan oleh fungsi yang ditentukan pengguna. Anotasi disimpan dalam__annotations__ atribut fungsi sebagai kamus dan tidak berpengaruh pada bagian lain dari fungsi tersebut. Anotasi parameter ditentukan oleh titik dua setelah nama parameter, diikuti dengan ekspresi yang mengevaluasi nilai anotasi. Contoh berikut memiliki argumen yang diperlukan, argumen opsional, dan nilai kembalian yang dianotasi :
+## Kesimpulan
 
-```python
-def f(ham: str, eggs: str = 'eggs') -> str:
-    print("Annotations:", f.__annotations__)
-    print("Arguments:", ham, eggs)
-    return ham + ' and ' + eggs
-
-f('spam')
-```
-
-### 4.9 Intermezzo : Gaya
-Sekarang Anda akan menulis bagian Python yang lebih panjang dan lebih kompleks, ini saat yang tepat untuk berbicara tentang gaya pengkodean . Sebagian besar bahasa dapat ditulis (atau lebih ringkas, diformat ) dalam gaya yang berbeda; beberapa lebih mudah dibaca daripada yang lain. Mempermudah orang lain untuk membaca kode Anda selalu merupakan ide yang bagus, dan mengadopsi gaya pengkodean yang bagus sangat membantu untuk itu.
-
-Untuk Python,PEP 8 telah muncul sebagai panduan gaya yang dipatuhi sebagian besar proyek; itu mempromosikan gaya pengkodean yang sangat mudah dibaca dan menyenangkan mata.
