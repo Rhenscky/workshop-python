@@ -1,4 +1,4 @@
-# 11. Tur Singkat Standar Perpustakaan — Bagian II / Brief Tour of the Standard Library — Part II
+# Tur Singkat Standar Perpustakaan — Bagian II / Brief Tour of the Standard Library — Part II
 ---
 ## 11.1. Format Keluaran / Output Formatting
 Modul `reprlib` menyediakan versi `repr()` yang disesuaikan untuk tampilan singkat container besar atau bersarang. Contoh:
@@ -8,9 +8,6 @@ Modul `reprlib` menyediakan versi `repr()` yang disesuaikan untuk tampilan singk
  >>> reprlib.repr(set('supercalifragilisticexpialidocious'))
  # "{'a', 'c', 'd', 'e', 'f', 'g', ...}" (Output)
  ```
-
-**Penjelasan**:
-Modul ``pprint`` menawarkan kontrol yang lebih canggih atas pencetakan objek bawaan dan objek yang ditentukan pengguna dengan cara yang dapat dibaca oleh penerjemah. Ketika hasilnya lebih dari satu baris,maka program akan menambahkan jeda baris dan lekukan untuk mengungkapkan struktur data dengan lebih jelas. Contoh:
 
 ```python
  >>> import pprint
@@ -74,9 +71,6 @@ Modul ``string`` menyertakan kelas ``Template`` serbaguna dengan sintaks yang di
  # 'Nottinghamfolk send $10 to the ditch fund.' (Output)
  ```
 
-**Penjelasan**:
-Menggunakan nama Format placeholder yang dibentuk menggunakan ``$`` dengan pengidentifikasian Python yang valid karakter alfanumerik dan garis bawah. Mengelilingi placeholder dengan kurung memungkinkan untuk diikuti oleh lebih banyak huruf alfanumerik tanpa spasi.
-
 Metode ``subtitute()`` memunculkan ``KeyError`` ketika placeholder tidak disediakan dalam kamus atau argumen kata kunci. Untuk aplikasi dengan gaya gabungan surat, data yang diberikan pengguna mungkin tidak lengkap dan metode ``safe_substitute()`` mungkin lebih tepat, hal ini akan membuat placeholder tidak berubah jika data hilang. Contoh:
 
 ```python
@@ -118,10 +112,6 @@ Subkelas template dapat menentukan pembatas kustom. Misalnya, utilitas pengganti
  """
  ```
 
-**Penjelasan**:
-Aplikasi lain untuk templating adalah memisahkan logika program dari detail beberapa format output. Hal ini memungkinkan untuk mengganti template kustom untuk file XML, laporan teks biasa, dan laporan web HTML.
-
----
 
 ## 1.3. Bekerja dengan Tata Letak Rekaman Data Biner / Working with Binary Data Record Layouts
 
@@ -148,10 +138,6 @@ Modul struct menyediakan fungsi pack() dan unpack() untuk bekerja dengan format 
     start += extra_size + comp_size     # lompat ke judul berikutnya
  ```
 
-**Penjelasan**:
-Contoh diatas menunjukkan cara mengulang informasi header dalam file ZIP tanpa menggunakan modul ``zipfile``. Kode paket ``"H"`` dan ``"I"`` masing-masing mewakili dua dan empat byte angka tidak bertanda. tanda ``"<"`` menunjukkan bahwa ukuran standar dan dalam urutan byte little-endian
-
----
 ## 11.4. Utas Ganda / Multi-threading
 
 Threading adalah teknik untuk memisahkan tugas yang tidak bergantung secara berurutan. Utas dapat digunakan untuk meningkatkan daya tanggap aplikasi yang menerima masukan pengguna saat tugas lain berjalan di latar belakang. Kasus penggunaan terkait menjalankan I/O (Input dan Output) secara paralel dengan perhitungan di utas lain. Kode berikut menunjukkan bagaimana modul threading tingkat tinggi dapat menjalankan tugas di latar belakang sementara program utama terus berjalan:
@@ -179,10 +165,6 @@ Threading adalah teknik untuk memisahkan tugas yang tidak bergantung secara beru
  print('Main program waited until background was done.')
  ```
 
-**Penjelasan**:
-Tantangan utama aplikasi multi-utas adalah mengoordinasikan utas yang berbagi data atau sumber daya lainnya. Untuk itu, modul threading menyediakan sejumlah primitif sinkronisasi termasuk kunci, peristiwa, variabel kondisi, dan semaphore. Meskipun alat-alat tersebut sangat kuat, kesalahan desain kecil dapat mengakibatkan masalah yang sulit untuk direproduksi. Jadi, pendekatan yang lebih disukai untuk koordinasi tugas adalah memusatkan semua akses ke sumber daya dalam satu utas dan kemudian menggunakan modul antrian untuk memberi makan utas itu dengan permintaan dari utas lain. Aplikasi yang menggunakan objek Antrian untuk komunikasi dan koordinasi antar-utas lebih mudah dirancang, lebih mudah dibaca, dan lebih andal.
-
----
 ## 11.5. Pencatatan / Logging
 
 Modul logging menawarkan sistem logging berfitur lengkap dan fleksibel. Paling sederhana, pesan log dikirim ke file atau ke ``sys.stderr``. Contoh:
@@ -203,10 +185,6 @@ Modul logging menawarkan sistem logging berfitur lengkap dan fleksibel. Paling s
  """
  ```
 
-**Penjelasan**:
-Secara default, pesan informasi dan debugging ditekan dan output dikirim ke kesalahan standar. Opsi keluaran lainnya termasuk perutean pesan melalui email, datagram, soket, atau ke Server HTTP. Filter baru dapat memilih perutean yang berbeda berdasarkan prioritas pesan. Misal: DEBUG, INFO, WARNING, ERROR, and CRITICAL. Sistem logging dapat dikonfigurasi langsung dari Python atau dapat dimuat dari file konfigurasi yang dapat diedit pengguna untuk logging yang disesuaikan tanpa mengubah aplikasi.
-
----
 ## 11.6. Referensi Lemah / Weak References 
 Python melakukan manajemen memori otomatis disinya artinya penghitungan referensi untuk sebagian besar objek dan pengumpulan sampah untuk menghilangkan siklus. Memori segera dibebaskan setelah referensi terakhir dihilangkan. Pendekatan ini bekerja dengan baik untuk sebagian besar aplikasi, tetapi terkadang ada kebutuhan untuk melacak objek yang hanya selama mereka digunakan oleh sesuatu yang lain. Modul ``weakref`` menyediakan alat untuk melacak objek tanpa membuat referensi. Ketika objek tidak lagi diperlukan, objek tersebut secara otomatis dihapus dari tabel referensi yang lemah dan panggilan balik dipicu untuk objek referensi yang lemah. Aplikasi umum termasuk objek caching yang mahal untuk dibuat. Contoh:
 
@@ -312,9 +290,6 @@ Sebagai contoh, menghitung pajak 5% untuk biaya telepon 70 sen memberikan hasil 
  >>> round(.70 * 1.05, 2)
  # 0.73 (Output)
  ```
-
-**Penjelasan**:
-Hasil Desimal mempertahankan angka nol, secara otomatis menyimpulkan signifikansi empat tempat dari perkalian dengan signifikansi dua tempat. Desimal mereproduksi matematika seperti yang dilakukan dengan tangan dan menghindari masalah yang dapat muncul ketika titik float biner tidak dapat secara tepat mewakili jumlah desimal.
 
 Representasi yang tepat memungkinkan kelas Desimal untuk melakukan perhitungan modulo dan tes kesetaraan yang tidak cocok untuk floating point biner.Modul desimal menyediakan dukungan untuk aritmatika floating point desimal yang dibulatkan dengan benar dengan cepat. Contoh:
 
