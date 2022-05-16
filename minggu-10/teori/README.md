@@ -65,7 +65,7 @@ Balances at Fri Oct 30 18:27:00 2020:
 
 # Menggunakan cluster lokal
 ## 1. Mulai CockroachDB
-1. [unduh biner CockroachDB.](https://www-cockroachlabs-com.translate.goog/docs/v21.2/install-cockroachdb?_x_tr_sl=en&_x_tr_tl=id&_x_tr_hl=id&_x_tr_pto=wapp)
+1. unduh biner CockroachDB.
 2. Jalankan perintah cockroach start-single-node :
 ```python
 cockroach start-single-node --advertise-addr 'localhost' --insecure
@@ -86,7 +86,7 @@ Kloning repo GitHub kode sampel:
 ```
 Kode sampel di *example.py* melakukan hal berikut :
 * Membuat *accounts* tabel dan menyisipkan beberapa baris
-* Mentransfer dana antara dua akun dalam suatu [transaksi](https://www-cockroachlabs-com.translate.goog/docs/v21.2/transactions?_x_tr_sl=en&_x_tr_tl=id&_x_tr_hl=id&_x_tr_pto=wapp)
+* Mentransfer dana antara dua akun dalam suatu transaksi
 * Hapus akun dari tabel sebelum keluar sehingga dapat menjalankan kembali kode contoh.
 
 ## 3. Instal driver psycopg2
