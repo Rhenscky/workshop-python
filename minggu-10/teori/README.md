@@ -1,12 +1,9 @@
-# Minggu ke-10 : Akses Ke Basis Data dan Mengerjakan Akses Ke Basis Data [CockroachDB Menggunakan psycopg2](https://www.cockroachlabs.com/docs/stable/build-a-python-app-with-cockroachdb.html) Dan Menggunakan [SQLAlchemy](https://www.cockroachlabs.com/docs/stable/build-a-python-app-with-cockroachdb-sqlalchemy.html)
-
-Membuka dan mempelajari [PEP-249](https://www.python.org/dev/peps/pep-0249/), [dokumentasi psycopg](https://www.psycopg.org/), [PyMongo](https://github.com/mongodb/mongo-python-driver), [SQLAlchemy](https://www.sqlalchemy.org/). Kemudian mengerjakan langkah-langkah dibawah ini. 
-
-# Bangun Aplikasi Python dengan CockroachDB dan psycopg2
+# Akses Ke Basis Data dan Mengerjakan Akses Ke Basis Data
+## Bangun Aplikasi Python dengan CockroachDB dan psycopg2
 Tutorial ini menunjukkan bagaimana membangun aplikasi Python sederhana dengan CockroachDB dan driver psycopg2 .
 
 # Menggunakan CockroachDB tanpa server(beta)
-## Langkah 1. Mulai CockroachDB
+## 1. Mulai CockroachDB
 
 **Buat Cluster Gratis**
 1. [Daftar akun CockroachDB Cloud](https://translate.google.com/website?sl=en&tl=id&hl=id&client=webapp&u=https://cockroachlabs.cloud/signup?referralId%3Ddocs_python_psycopg2)
@@ -28,7 +25,7 @@ Tutorial ini menunjukkan bagaimana membangun aplikasi Python sederhana dengan Co
 **Dapatkan Koneksi String**
 Buka bagian General connection string, lalu salin connection string yang disediakan dan simpan di lokasi yang aman.
 
-## Langkah 2. Dapatkan kode sampel
+## 2. Dapatkan kode sampel
 Kloning repo GitHub kode sampel :
 ```python
 git clone https://github.com/cockroachlabs/hello-world-python-psycopg2
@@ -38,7 +35,7 @@ Kode sampel di *example.py* melakukan hal berikut :
 * Mentransfer dana antara dua akun dalam suatu [transaksi](https://www-cockroachlabs-com.translate.goog/docs/v21.2/transactions?_x_tr_sl=en&_x_tr_tl=id&_x_tr_hl=id&_x_tr_pto=wapp).
 * Hapus akun dari tabel sebelum keluar sehingga dapat menjalankan kembali kode contoh.
 
-## Langkah 3. Instal driver psycopg2
+## 3. Instal driver psycopg2
 *psycopg2-binary* adalah satu-satunya dependensi modul pihak ketiga aplikasi sampel.
 Untuk menginstal *psycopg2-binary*, jalankan perintah berikut :
 ```python
@@ -46,7 +43,7 @@ pip install psycopg2-binary
 ```
 Untuk cara lain menginstal psycopg2, lihat [dokumentasi resmi](https://translate.google.com/website?sl=en&tl=id&hl=id&client=webapp&u=http://initd.org/psycopg/docs/install.html).
 
-## Langkah 4. Jalankan kode
+## 4. Jalankan kode
 1. Setel *DATABASE_URL* variabel lingkungan ke string koneksi ke cluster CockroachDB Cloud :
 ```python
 export DATABASE_URL="{connection-string}"
@@ -72,7 +69,7 @@ Balances at Fri Oct 30 18:27:00 2020:
 ```
 
 # Menggunakan cluster lokal
-## Langkah 1. Mulai CockroachDB
+## 1. Mulai CockroachDB
 1. [unduh biner CockroachDB.](https://www-cockroachlabs-com.translate.goog/docs/v21.2/install-cockroachdb?_x_tr_sl=en&_x_tr_tl=id&_x_tr_hl=id&_x_tr_pto=wapp)
 2. Jalankan perintah [cockroach start-single-node](https://www-cockroachlabs-com.translate.goog/docs/v21.2/cockroach-start-single-node?_x_tr_sl=en&_x_tr_tl=id&_x_tr_hl=id&_x_tr_pto=wapp) :
 ```python
@@ -89,7 +86,7 @@ sql:                 postgresql://root@localhost:26257?sslmode=disable
 ```
 Akan menggunakan *sql* string koneksi untuk terhubung ke cluster nanti dalam tutorial ini.
 
-## Langkah 2. Dapatkan kode sampel
+## 2. Dapatkan kode sampel
 Kloning repo GitHub kode sampel :
 ```python
 Kloning repo GitHub kode sampel:
@@ -99,14 +96,14 @@ Kode sampel di *example.py* melakukan hal berikut :
 * Mentransfer dana antara dua akun dalam suatu [transaksi](https://www-cockroachlabs-com.translate.goog/docs/v21.2/transactions?_x_tr_sl=en&_x_tr_tl=id&_x_tr_hl=id&_x_tr_pto=wapp)
 * Hapus akun dari tabel sebelum keluar sehingga dapat menjalankan kembali kode contoh.
 
-## Langkah 3. Instal driver psycopg2
+## 3. Instal driver psycopg2
 Untuk menginstal psycopg2-binary, jalankan perintah berikut :
 ```python
 pip install psycopg2-binary
 ```
 Untuk cara lain menginstal psycopg2, lihat dokumentasi resmi.
 
-## Langkah 4. Jalankan kode
+## 4. Jalankan kode
 1. Setel *DATABASE_URL* variabel lingkungan ke string koneksi ke cluster CockroachDB Cloud :
 ```python
 export DATABASE_URL="postgresql://root@localhost:26257?sslmode=disable"
@@ -132,7 +129,7 @@ Balances at Fri Oct 30 18:27:00 2020:
 Tutorial ini menunjukkan bagaimana membangun aplikasi Python CRUD sederhana dengan CockroachDB dan SQLAlchemy ORM.
 
 # Menggunakan CockroachDB tanpa server(beta)
-## Langkah 1. Mulai CockroachDB
+## 1. Mulai CockroachDB
 **Buat cluster gratis**
 1. [Daftar akun CockroachDB Cloud.](https://translate.google.com/website?sl=en&tl=id&hl=id&client=webapp&u=https://cockroachlabs.cloud/signup?referralId%3Ddocs_python_sqlalchemy)
 2. [Masuk](https://translate.google.com/website?sl=en&tl=id&hl=id&client=webapp&u=https://cockroachlabs.cloud/) ke akun Cloud CockroachDB.
@@ -155,7 +152,7 @@ Dialog Buat pengguna SQL memungkinkan membuat pengguna dan kata sandi SQL baru.
 **Dapatkan string koneksi**
 Buka bagian General connection string, lalu salin connection string yang disediakan dan simpan di lokasi yang aman.
 
-## Langkah 2. Dapatkan kodenya
+## 2. Dapatkan kodenya
 Kloning kode repo GitHub :
 ```python
 git clone https://github.com/cockroachlabs/example-app-python-sqlalchemy/
@@ -287,7 +284,7 @@ if __name__ == '__main__':
 ```
 *main.py* juga mengeksekusi mainmetode program.
 
-## Langkah 3. Instal persyaratan aplikasi
+## 3. Instal persyaratan aplikasi
 Tutorial ini digunakan virtualenvuntuk manajemen ketergantungan.
 1. Instal *virtualenv* :
 ```python
@@ -305,7 +302,7 @@ source env/bin/activate
 pip install -r requirements.txt
 ```
 
-## Langkah 4. Inisialisasi database
+## 4. Inisialisasi database
 1. Setel *DATABASE_URL* variabel lingkungan ke string koneksi untuk cluster :
 ```python
 export DATABASE_URL="{connection-string}"
@@ -321,7 +318,7 @@ CREATE TABLE
 Time: 102ms
 ```
 
-## Langkah 5. Jalankan kodenya
+## 5. Jalankan kodenya
 Jalankan aplikasi :
 ```python
 Langkah 5. Jalankan kodenya
@@ -362,7 +359,7 @@ SELECT COUNT(*) FROM accounts;
 ```
 
 # Menggunakan cluster lokal
-## Langkah 1. Mulai CockroachDB
+## 1. Mulai CockroachDB
 1. [Unduh biner CockroachDB.](https://www-cockroachlabs-com.translate.goog/docs/v21.2/install-cockroachdb?_x_tr_sl=en&_x_tr_tl=id&_x_tr_hl=id&_x_tr_pto=wapp)
 2. Jalankan cockroach perintah start-single-node :
 ```python
@@ -377,7 +374,7 @@ sql:                 postgresql://root@localhost:26257?sslmode=disable
 ```
 Akan menggunakan sqlstring koneksi untuk terhubung ke cluster nanti dalam tutorial ini.
 
-## Langkah 2. Dapatkan kodenya
+## 2. Dapatkan kodenya
 Kloning kode repo GitHub :
 ```python
 git clone https://github.com/cockroachlabs/example-app-python-sqlalchemy/
@@ -509,7 +506,7 @@ if __name__ == '__main__':
 ```
 *main.py* juga mengeksekusi mainmetode program.
 
-## Langkah 3. Instal persyaratan aplikasi
+## 3. Instal persyaratan aplikasi
 Tutorial ini digunakan virtualenvuntuk manajemen ketergantungan.
 1. Instal *virtualenv* :
 ```python
@@ -527,7 +524,7 @@ source env/bin/activate
 pip install -r requirements.txt
 ```
 
-## Langkah 4. Inisialisasi database
+## 4. Inisialisasi database
 1. Setel *DATABASE_URL* variabel lingkungan ke string koneksi untuk cluster :
 ```python
 export DATABASE_URL="{connection-string}"
@@ -543,7 +540,7 @@ CREATE TABLE
 Time: 102ms
 ```
 
-## Langkah 5. Jalankan kodenya
+## 5. Jalankan kodenya
 Jalankan aplikasi :
 ```python
 $ python main.py
