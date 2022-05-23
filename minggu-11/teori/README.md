@@ -3,30 +3,13 @@
 Flask adalah sebuah web framework yang ditulis dengan bahasa Python dan tergolong sebagai jenis microframework. Flask
 berfungsi sebagai kerangka kerja aplikasi dan tampilan dari suatu web. Dengan menggunakan Flask dan bahasa Python, pengembang dapat membuat sebuah web yang terstruktur dan dapat mengatur behaviour suatu web dengan lebih mudah.
 
-Selamat datang di dokumentasi `Flask`. Mulailah dengan `Instalasi` dan kemudian dapatkan ikhtisar dengan `Quickstart`. Ada juga `Tutorial` lebih detail yang menunjukkan cara membuat aplikasi kecil tapi lengkap dengan Flask. Pola umum dijelaskan di bagian  `Patterns for Flask`. Dokumen lainnya menjelaskan setiap komponen Flask secara detail, dengan referensi lengkap di bagian `API`.
-
 Flask bergantung pada mesin template `Jinja` dan toolkit `WSGI Werkzeug`. Dokumentasi untuk perpustakaan ini dapat ditemukan di:
  * Dokumentasi Jinja
 
 Jinja adalah mesin templating yang cepat, ekspresif, dan dapat diperluas. Placeholder khusus dalam template memungkinkan penulisan kode yang mirip dengan sintaks Python. Kemudian template dilewatkan data untuk membuat dokumen akhir.
 
-Itu termasuk:
-
-1. Warisan dan penyertaan template.
-2. Tentukan dan impor makro dalam template.
-3. Template HTML dapat menggunakan autoescaping untuk mencegah XSS dari input pengguna yang tidak dipercaya.
-4. Lingkungan sandbox dapat dengan aman merender template yang tidak tepercaya.
-5. Dukungan async untuk membuat template yang secara otomatis menangani fungsi sinkronisasi dan asinkron tanpa sintaks tambahan.
-6. Dukungan I18N dengan Babel.
-7. Template dikompilasi ke kode Python yang dioptimalkan tepat waktu dan di-cache, atau dapat dikompilasi sebelumnya.
-8. Pengecualian menunjuk ke baris yang benar di template untuk mempermudah proses debug.
-9. Filter, pengujian, fungsi, dan bahkan sintaks yang dapat diperluas.
-
-Filosofi Jinja adalah bahwa sementara logika aplikasi milik Python jika memungkinkan, seharusnya tidak membuat pekerjaan desainer template menjadi sulit dengan membatasi fungsionalitas terlalu banyak.
-
 **Instalasi**
-
-Kami merekomendasikan menggunakan versi terbaru dari Python. Jinja mendukung Python 3.7 dan yang lebih baru. Kami juga merekomendasikan penggunaan lingkungan virtual untuk mengisolasi dependensi proyek Anda dari proyek lain dan sistem.
+Jinja mendukung Python 3.7 dan yang lebih baru. Kami juga merekomendasikan penggunaan lingkungan virtual untuk mengisolasi dependensi proyek Anda dari proyek lain dan sistem.
 
 Instal versi Jinja terbaru menggunakan pip:
 
@@ -63,19 +46,12 @@ Baca ini sebelum Anda mulai menggunakan Flask. Mudah-mudahan ini menjawab bebera
 
 "Mikro" tidak berarti bahwa seluruh aplikasi web Anda harus masuk ke dalam satu file Python (walaupun tentu saja bisa), juga tidak berarti bahwa Flask tidak memiliki fungsionalitas. "Mikro" dalam kerangka mikro berarti Flask bertujuan untuk menjaga inti tetap sederhana namun dapat diperluas. Flask tidak akan membuat banyak keputusan untuk Anda, seperti database apa yang akan digunakan. Keputusan yang dibuatnya, seperti mesin templating apa yang digunakan, mudah diubah. Segala sesuatu yang lain terserah Anda, sehingga Flask bisa menjadi semua yang Anda butuhkan dan tidak ada yang tidak Anda butuhkan.
 
-Secara default, Flask tidak menyertakan lapisan abstraksi basis data, validasi formulir, atau apa pun di mana pustaka yang berbeda sudah ada yang dapat menanganinya. Sebagai gantinya, Flask mendukung ekstensi untuk menambahkan fungsionalitas tersebut ke aplikasi Anda seolah-olah itu diterapkan di Flask itu sendiri. Banyak ekstensi menyediakan integrasi database, validasi formulir, penanganan unggahan, berbagai teknologi otentikasi terbuka, dan banyak lagi. Labu mungkin “mikro”, tetapi siap untuk digunakan produksi pada berbagai kebutuhan.
-
 **Konfigurasi dan Konvensi**
 
 Flask memiliki banyak nilai konfigurasi, dengan default yang masuk akal, dan beberapa konvensi saat memulai. Dengan konvensi, template dan file statis disimpan dalam subdirektori di dalam pohon sumber Python aplikasi, dengan nama templatesdan masing- static masing. Meskipun ini dapat diubah, Anda biasanya tidak perlu melakukannya, terutama saat memulai.
 
 **Tumbuh dengan Flask**
-
-Setelah Anda menjalankan dan menjalankan Flask, Anda akan menemukan berbagai ekstensi yang tersedia di komunitas untuk mengintegrasikan proyek Anda untuk produksi.
-
 Saat basis kode Anda tumbuh, Anda bebas membuat keputusan desain yang sesuai untuk proyek Anda. Flask akan terus memberikan lapisan lem yang sangat sederhana untuk yang terbaik yang ditawarkan Python. Anda dapat menerapkan pola lanjutan di SQLAlchemy atau alat database lain, memperkenalkan persistensi data non-relasional yang sesuai, dan memanfaatkan alat kerangka-agnostik yang dibuat untuk WSGI, antarmuka web Python.
-
-Flask menyertakan banyak kait untuk menyesuaikan perilakunya. Jika Anda membutuhkan lebih banyak penyesuaian, kelas Flask dibuat untuk subkelas. Jika Anda penasaran dengan prinsip-prinsip desain Flask, buka bagian tentang Keputusan Desain di Flask.
 
 ## Installation
 
@@ -102,17 +78,13 @@ Distribusi ini tidak akan diinstal secara otomatis. Flask akan mendeteksi dan me
 **greenlet**
 
 Anda dapat memilih untuk menggunakan gevent atau eventlet dengan aplikasi Anda. Dalam hal ini, diperlukan greenlet>=1.0. Saat menggunakan PyPy, PyPy>=7.3.7 diperlukan.
-
 Ini bukan versi minimum yang didukung, mereka hanya menunjukkan versi pertama yang menambahkan fitur yang diperlukan. Anda harus menggunakan versi terbaru dari masing-masing.
 
 **Virtual environments**
 
 Gunakan lingkungan virtual untuk mengelola dependensi untuk proyek Anda, baik dalam pengembangan maupun produksi.
-
 Masalah apa yang dipecahkan oleh lingkungan virtual? Semakin banyak proyek Python yang Anda miliki, semakin besar kemungkinan Anda perlu bekerja dengan berbagai versi pustaka Python, atau bahkan Python itu sendiri. Versi pustaka yang lebih baru untuk satu proyek dapat merusak kompatibilitas di proyek lain.
-
 Lingkungan virtual adalah grup independen dari pustaka Python, satu untuk setiap proyek. Paket yang diinstal untuk satu proyek tidak akan memengaruhi proyek lain atau paket sistem operasi.
-
 Python dibundel dengan venv modul untuk membuat lingkungan virtual.
 
 **Create an environment**
@@ -269,10 +241,6 @@ build/
 
 Aplikasi Flask adalah turunan dari Flask kelas. Segala sesuatu tentang aplikasi, seperti konfigurasi dan URL, akan didaftarkan dengan kelas ini.
 
-Cara paling mudah untuk membuat aplikasi Flask adalah dengan membuat Flask instance global langsung di bagian atas kode Anda, seperti bagaimana "Hello, World!" contoh lakukan pada halaman sebelumnya. Meskipun ini sederhana dan berguna dalam beberapa kasus, ini dapat menyebabkan beberapa masalah rumit saat proyek berkembang.
-
-Alih-alih membuat Flask instance secara global, Anda akan membuatnya di dalam suatu fungsi. Fungsi ini dikenal sebagai pabrik aplikasi . Setiap konfigurasi, registrasi, dan pengaturan lain yang dibutuhkan aplikasi akan terjadi di dalam fungsi, kemudian aplikasi akan dikembalikan.
-
 ## The Application Factory
 
 Saatnya untuk memulai pengkodean! Buat flaskr direktori dan tambahkan __init__.pyfile. Melayani tugas ganda : __init__.py itu akan berisi pabrik aplikasi, dan memberitahu Python bahwa flaskr direktori harus diperlakukan sebagai sebuah paket.
@@ -320,8 +288,6 @@ def create_app(test_config=None):
 
 ## Run The Application
 
-Sekarang Anda dapat menjalankan aplikasi Anda menggunakan flask perintah. Dari terminal, beri tahu Flask di mana menemukan aplikasi Anda, lalu jalankan dalam mode pengembangan. flask-tutorial Ingat, Anda harus tetap berada di direktori tingkat atas , bukan flaskr paket.
-
 Mode pengembangan menampilkan debugger interaktif setiap kali halaman memunculkan pengecualian, dan memulai ulang server setiap kali Anda membuat perubahan pada kode. Anda dapat membiarkannya berjalan dan hanya memuat ulang halaman browser saat Anda mengikuti tutorial.
 
 ```python
@@ -349,10 +315,6 @@ Jika program lain sudah menggunakan port 5000, Anda akan melihat atau saat serve
 ## Define and Access the Database
 
 Aplikasi akan menggunakan database SQLite untuk menyimpan pengguna dan posting. Python hadir dengan dukungan bawaan untuk SQLite dalam sqlite3 modul.
-
-SQLite nyaman karena tidak memerlukan pengaturan server database terpisah dan sudah terintegrasi dengan Python. Namun, jika permintaan bersamaan mencoba menulis ke database pada saat yang sama, permintaan tersebut akan melambat karena setiap penulisan terjadi secara berurutan. Aplikasi kecil tidak akan memperhatikan ini. Setelah Anda menjadi besar, Anda mungkin ingin beralih ke database yang berbeda.
-
-Tutorial tidak membahas secara detail tentang SQL. Jika Anda tidak terbiasa dengannya, dokumen SQLite menjelaskan bahasanya.
 
 **Connect to the Database**
 
@@ -478,8 +440,6 @@ Fungsi tampilan adalah kode yang Anda tulis untuk menanggapi permintaan ke aplik
 
 Blueprint adalah cara untuk mengatur sekelompok tampilan terkait dan kode lainnya. Daripada mendaftarkan tampilan dan kode lain secara langsung dengan aplikasi, mereka terdaftar dengan cetak biru. Kemudian cetak biru didaftarkan dengan aplikasi ketika tersedia di fungsi pabrik.
 
-Flaskr akan memiliki dua cetak biru, satu untuk fungsi otentikasi dan satu lagi untuk fungsi posting blog. Kode untuk setiap cetak biru akan dimasukkan ke dalam modul terpisah. Karena blog perlu mengetahui tentang autentikasi, Anda akan menulis autentikasi terlebih dahulu.
-
 `flaskr/auth.py`
 
 ```python
@@ -515,8 +475,6 @@ def create_app():
 **The First View: Register**
 
 Saat pengguna mengunjungi /auth/registerURL, register tampilan akan mengembalikan HTML dengan formulir untuk mereka isi. Ketika mereka mengirimkan formulir, itu akan memvalidasi input mereka dan menampilkan formulir lagi dengan pesan kesalahan atau membuat pengguna baru dan pergi ke halaman login.
-
-Untuk saat ini Anda hanya akan menulis kode tampilan. Pada halaman berikutnya, Anda akan menulis template untuk menghasilkan formulir HTML.
 
 `flaskr/auth.py`
 
@@ -634,19 +592,11 @@ def login_required(view):
 
 Fungsi url_for() menghasilkan URL ke tampilan berdasarkan nama dan argumen. Nama yang terkait dengan tampilan juga disebut titik akhir , dan secara default sama dengan nama fungsi tampilan.
 
-Misalnya, hello()tampilan yang ditambahkan ke pabrik aplikasi sebelumnya dalam tutorial memiliki nama 'hello' dan dapat ditautkan dengan url_for('hello'). Jika dibutuhkan argumen, yang akan Anda lihat nanti, itu akan ditautkan dengan menggunakan .url_for('hello', who='World')
-
-Saat menggunakan cetak biru, nama cetak biru didahulukan dengan nama fungsi, jadi titik akhir untuk loginfungsi yang Anda tulis di atas adalah 'auth.login'karena Anda menambahkannya ke `auth` cetak biru.
-
 ## Templates
 
 Anda telah menulis tampilan autentikasi untuk aplikasi Anda, tetapi jika Anda menjalankan server dan mencoba membuka salah satu URL, Anda akan melihat TemplateNotFound kesalahan. Itu karena tampilan memanggil render_template(), tetapi Anda belum menulis template. File template akan disimpan di templates direktori di dalam flaskr paket.
 
 Template adalah file yang berisi data statis serta placeholder untuk data dinamis. Sebuah template diberikan dengan data tertentu untuk menghasilkan dokumen akhir. Flask menggunakan perpustakaan template Jinja untuk merender template.
-
-Dalam aplikasi Anda, Anda akan menggunakan template untuk merender HTML yang akan ditampilkan di browser pengguna. Di Flask, Jinja dikonfigurasi untuk autoescape data apa pun yang dirender dalam template HTML. Ini berarti aman untuk merender input pengguna; karakter apa pun yang mereka masukkan yang dapat mengacaukan HTML, seperti `<` dan `>` akan diloloskan dengan nilai aman yang terlihat sama di browser tetapi tidak menimbulkan efek yang tidak diinginkan.
-
-Jinja terlihat dan berperilaku seperti Python. Pembatas khusus digunakan untuk membedakan sintaks Jinja dari data statis dalam template. Apa pun antara `{{` dan `}}` adalah ekspresi yang akan menjadi output ke dokumen akhir. `{%` dan `%}` menunjukkan pernyataan aliran kontrol seperti `if` dan `for`. Tidak seperti Python, blok dilambangkan dengan tag awal dan akhir daripada lekukan karena teks statis dalam blok dapat mengubah lekukan.
 
 **The Base Layout**
 
@@ -729,12 +679,6 @@ Setiap halaman dalam aplikasi akan memiliki tata letak dasar yang sama di sekita
 
 Sekarang setelah template otentikasi ditulis, Anda dapat mendaftarkan pengguna. Pastikan server masih berjalan ( jika tidak), lalu buka http://127.0.0.1:5000/auth/register .`flask run`
 
-Coba klik tombol "Daftar" tanpa mengisi formulir dan lihat bahwa browser menampilkan pesan kesalahan. Coba hapus required atribut dari register.html template dan klik "Daftar" lagi. Alih-alih browser menunjukkan kesalahan, halaman akan dimuat ulang dan kesalahan dari flash() dalam tampilan akan ditampilkan.
-
-Isi username dan password dan Anda akan diarahkan ke halaman login. Coba masukkan nama pengguna yang salah, atau nama pengguna yang benar dan kata sandi yang salah. Jika Anda masuk, Anda akan mendapatkan kesalahan karena belum ada index tampilan untuk dialihkan.
-
-## File Statis
-
 Tampilan dan template autentikasi berfungsi, tetapi saat ini terlihat sangat sederhana. Beberapa CSS dapat ditambahkan untuk menambahkan gaya ke tata letak HTML yang Anda buat. Gaya tidak akan berubah, jadi ini adalah file statis, bukan template.
 
 Flask secara otomatis menambahkan statictampilan yang mengambil jalur relatif ke `flaskr/static` direktori dan menyajikannya. Template base.html sudah memiliki tautan ke style.css file:
@@ -781,8 +725,6 @@ input[type=submit] { align-self: start; min-width: 10em; }
 ## Blog Blueprint
 
 Kita akan menggunakan teknik yang sama yang Kita pelajari saat menulis cetak biru otentikasi untuk menulis cetak biru blog. Blog harus mencantumkan semua posting, mengizinkan pengguna yang masuk untuk membuat posting, dan mengizinkan penulis posting untuk mengedit atau menghapusnya.
-
-Saat Kita menerapkan setiap tampilan, jaga agar server pengembangan tetap berjalan. Saat Kita menyimpan perubahan Kita, coba buka URL di browser Kita dan ujilah.
 
 **The Blueprint**
 
@@ -874,8 +816,6 @@ Saat pengguna masuk, `header` blok menambahkan tautan ke `create` tampilan. Saat
 **Create**
 
 Tampilan createberfungsi sama dengan `register` tampilan auth. Baik formulir ditampilkan, atau data yang diposting divalidasi dan postingan ditambahkan ke database atau kesalahan ditampilkan.
-
-Dekorator yang `login_required` Kita tulis sebelumnya digunakan pada tampilan blog. Seorang pengguna harus login untuk mengunjungi tampilan ini, jika tidak mereka akan diarahkan ke halaman login.
 
 ```python
 @bp.route('/create', methods=('GET', 'POST'))
@@ -1243,364 +1183,3 @@ def test_init_db_command(runner, monkeypatch):
 
 Tes ini menggunakan monkeypatchperlengkapan Pytest untuk mengganti `init_db` fungsi dengan yang mencatat bahwa itu telah dipanggil. Perlengkapan `runner` yang Anda tulis di atas digunakan untuk memanggil `init-db` perintah dengan nama.
 
-**Authentication**
-
-Untuk sebagian besar tampilan, pengguna harus masuk. Cara termudah untuk melakukan ini dalam pengujian adalah membuat `POST` permintaan ke `login` tampilan dengan klien. Daripada menuliskannya setiap saat, Anda dapat menulis kelas dengan metode untuk melakukan itu, dan menggunakan perlengkapan untuk memberikannya kepada klien untuk setiap pengujian.
-
-`tests/conftest.py`
-
-```python
-class AuthActions(object):
-    def __init__(self, client):
-        self._client = client
-
-    def login(self, username='test', password='test'):
-        return self._client.post(
-            '/auth/login',
-            data={'username': username, 'password': password}
-        )
-
-    def logout(self):
-        return self._client.get('/auth/logout')
-
-
-@pytest.fixture
-def auth(client):
-    return AuthActions(client)
-```
-
-`tests/test_auth.py`
-
-```python
-import pytest
-from flask import g, session
-from flaskr.db import get_db
-
-
-def test_register(client, app):
-    assert client.get('/auth/register').status_code == 200
-    response = client.post(
-        '/auth/register', data={'username': 'a', 'password': 'a'}
-    )
-    assert response.headers["Location"] == "/auth/login"
-
-    with app.app_context():
-        assert get_db().execute(
-            "SELECT * FROM user WHERE username = 'a'",
-        ).fetchone() is not None
-
-
-@pytest.mark.parametrize(('username', 'password', 'message'), (
-    ('', '', b'Username is required.'),
-    ('a', '', b'Password is required.'),
-    ('test', 'test', b'already registered'),
-))
-def test_register_validate_input(client, username, password, message):
-    response = client.post(
-        '/auth/register',
-        data={'username': username, 'password': password}
-    )
-    assert message in response.data
-```
-
-`tests/test_auth.py`
-
-```python
-def test_login(client, auth):
-    assert client.get('/auth/login').status_code == 200
-    response = auth.login()
-    assert response.headers["Location"] == "/"
-
-    with client:
-        client.get('/')
-        assert session['user_id'] == 1
-        assert g.user['username'] == 'test'
-
-
-@pytest.mark.parametrize(('username', 'password', 'message'), (
-    ('a', 'test', b'Incorrect username.'),
-    ('test', 'a', b'Incorrect password.'),
-))
-def test_login_validate_input(auth, username, password, message):
-    response = auth.login(username, password)
-    assert message in response.data
-```
-
-`tests/test_auth.py`
-
-```python
-def test_logout(client, auth):
-    auth.login()
-
-    with client:
-        auth.logout()
-        assert 'user_id' not in session
-```
-
-**Blog**
-
-Semua tampilan blog menggunakan `auth` perlengkapan yang Kita tulis sebelumnya. Panggilan `auth.login()` dan permintaan berikutnya dari klien akan masuk sebagai `test` pengguna.
-
-Tampilan `index` harus menampilkan informasi tentang postingan yang ditambahkan dengan data pengujian. Saat masuk sebagai penulis, harus ada tautan untuk mengedit posting.
-
-Kita juga dapat menguji beberapa perilaku autentikasi lagi saat menguji `index` tampilan. Saat tidak masuk, setiap halaman menampilkan tautan untuk masuk atau mendaftar. Saat masuk, ada tautan untuk keluar.
-
-`tests/test_blog.py`
-
-```python
-import pytest
-from flaskr.db import get_db
-
-
-def test_index(client, auth):
-    response = client.get('/')
-    assert b"Log In" in response.data
-    assert b"Register" in response.data
-
-    auth.login()
-    response = client.get('/')
-    assert b'Log Out' in response.data
-    assert b'test title' in response.data
-    assert b'by test on 2018-01-01' in response.data
-    assert b'test\nbody' in response.data
-    assert b'href="/1/update"' in response.data
-```
-
-`tests/test_blog.py`
-
-```python
-@pytest.mark.parametrize('path', (
-    '/create',
-    '/1/update',
-    '/1/delete',
-))
-def test_login_required(client, path):
-    response = client.post(path)
-    assert response.headers["Location"] == "/auth/login"
-
-
-def test_author_required(app, client, auth):
-    # change the post author to another user
-    with app.app_context():
-        db = get_db()
-        db.execute('UPDATE post SET author_id = 2 WHERE id = 1')
-        db.commit()
-
-    auth.login()
-    # current user can't modify other user's post
-    assert client.post('/1/update').status_code == 403
-    assert client.post('/1/delete').status_code == 403
-    # current user doesn't see edit link
-    assert b'href="/1/update"' not in client.get('/').data
-
-
-@pytest.mark.parametrize('path', (
-    '/2/update',
-    '/2/delete',
-))
-def test_exists_required(client, auth, path):
-    auth.login()
-    assert client.post(path).status_code == 404
-```
-
-`tests/test_blog.py`
-
-```python
-def test_create(client, auth, app):
-    auth.login()
-    assert client.get('/create').status_code == 200
-    client.post('/create', data={'title': 'created', 'body': ''})
-
-    with app.app_context():
-        db = get_db()
-        count = db.execute('SELECT COUNT(id) FROM post').fetchone()[0]
-        assert count == 2
-
-
-def test_update(client, auth, app):
-    auth.login()
-    assert client.get('/1/update').status_code == 200
-    client.post('/1/update', data={'title': 'updated', 'body': ''})
-
-    with app.app_context():
-        db = get_db()
-        post = db.execute('SELECT * FROM post WHERE id = 1').fetchone()
-        assert post['title'] == 'updated'
-
-
-@pytest.mark.parametrize('path', (
-    '/create',
-    '/1/update',
-))
-def test_create_update_validate(client, auth, path):
-    auth.login()
-    response = client.post(path, data={'title': '', 'body': ''})
-    assert b'Title is required.' in response.data
-```
-
-Tampilan `delete` harus dialihkan ke URL indeks dan pos seharusnya tidak ada lagi di database.
-
-`tests/test_blog.py`
-
-```python
-def test_delete(client, auth, app):
-    auth.login()
-    response = client.post('/1/delete')
-    assert response.headers["Location"] == "/"
-
-    with app.app_context():
-        db = get_db()
-        post = db.execute('SELECT * FROM post WHERE id = 1').fetchone()
-        assert post is None
-```
-
-**Running the Tests**
-
-Beberapa konfigurasi tambahan, yang tidak diperlukan tetapi membuat pengujian berjalan dengan cakupan yang lebih sedikit, dapat ditambahkan ke file proyek `setup.cfg`.
-
-`setup.cfg`
-
-```python
-[tool:pytest]
-testpaths = tests
-
-[coverage:run]
-branch = True
-source =
-    flaskr
-```
-
-Untuk menjalankan tes, gunakan `pytest` perintah. Ini akan menemukan dan menjalankan semua fungsi pengujian yang telah Anda tulis.
-
-```python
-$ pytest
-
-========================= test session starts ==========================
-platform linux -- Python 3.6.4, pytest-3.5.0, py-1.5.3, pluggy-0.6.0
-rootdir: /home/user/Projects/flask-tutorial, inifile: setup.cfg
-collected 23 items
-
-tests/test_auth.py ........                                      [ 34%]
-tests/test_blog.py ............                                  [ 86%]
-tests/test_db.py ..                                              [ 95%]
-tests/test_factory.py ..                                         [100%]
-
-====================== 24 passed in 0.64 seconds =======================
-```
-
-Jika ada tes yang gagal, pytest akan menunjukkan kesalahan yang muncul. Kita dapat menjalankan untuk mendapatkan daftar setiap fungsi pengujian daripada titik `.pytest -v`
-
-Untuk mengukur cakupan kode pengujian Kita, gunakan `coverage` perintah untuk menjalankan pytest alih-alih menjalankannya secara langsung.
-
-```python
-$ coverage run -m pytest
-```
-
-Kita dapat melihat laporan cakupan sederhana di terminal:
-
-```python
-$ coverage report
-
-Name                 Stmts   Miss Branch BrPart  Cover
-------------------------------------------------------
-flaskr/__init__.py      21      0      2      0   100%
-flaskr/auth.py          54      0     22      0   100%
-flaskr/blog.py          54      0     16      0   100%
-flaskr/db.py            24      0      4      0   100%
-------------------------------------------------------
-TOTAL                  153      0     44      0   100%
-```
-
-Laporan HTML memungkinkan Kita melihat baris mana yang tercakup dalam setiap file:
-
-```python
-$ coverage html
-```
-
-Ini menghasilkan file dalam `htmlcov` direktori. Buka `htmlcov/index.html` di browser Kita untuk melihat laporan.
-
-## Deploy to Production
-
-Bagian dari tutorial ini mengasumsikan Kita memiliki server yang ingin Kita gunakan untuk menyebarkan aplikasi Kita. Ini memberikan gambaran umum tentang cara membuat file distribusi dan menginstalnya, tetapi tidak akan membahas secara spesifik tentang server atau perangkat lunak apa yang digunakan. Kita dapat menyiapkan lingkungan baru di komputer pengembangan Kita untuk mencoba petunjuk di bawah ini, tetapi mungkin sebaiknya tidak menggunakannya untuk menghosting aplikasi publik yang sebenarnya. Lihat Opsi Penerapan untuk daftar berbagai cara untuk menghosting aplikasi Kita.
-
-**Build and Install**
-
-Saat Kita ingin menyebarkan aplikasi Kita di tempat lain, Kita membangun file distribusi. Standar saat ini untuk distribusi Python adalah format roda , dengan `.whlekstensi`. Pastikan perpustakaan roda diinstal terlebih dahulu:
-
-```python
-$ pip install wheel
-```
-
-Menjalankan `setup.py` dengan Python memberi Kita alat baris perintah untuk mengeluarkan perintah terkait build. Perintah `bdist_wheel` akan membangun file distribusi roda.
-
-```python
-$ python setup.py bdist_wheel
-```
-
-Kita dapat menemukan file di `dist/flaskr-1.0.0-py3-none-any.whl`. Nama file dalam format `{project name}-{version}-{python tag} -{abi tag}-{platform tag}`.
-
-Salin file ini ke komputer lain, siapkan virtualenv baru , lalu instal file dengan ekstensi `pip`.
-
-```python
-$ pip install flaskr-1.0.0-py3-none-any.whl
-```
-
-Karena ini adalah mesin yang berbeda, Kita perlu menjalankannya `init-db` lagi untuk membuat database di folder instance.
-
-```python
-> set FLASK_APP=flaskr
-> flask init-db
-```
-
-**Configure the Secret Key**
-
-Di awal tutorial yang Kita berikan nilai default untuk SECRET_KEY. Ini harus diubah menjadi beberapa byte acak dalam produksi. Jika tidak, penyerang dapat menggunakan kunci publik 'dev'untuk memodifikasi cookie sesi, atau apa pun yang menggunakan kunci rahasia.
-
-Kita dapat menggunakan perintah berikut untuk menampilkan kunci rahasia acak:
-
-```python
-$ python -c 'import secrets; print(secrets.token_hex())'
-
-'192b9bdd22ab9ed4d12e236c78afcb9a393ec15f71bbf5dc987d54727823bcbf'
-```
-
-Buat `config.py` file di folder instance, yang akan dibaca oleh pabrik jika ada. Salin nilai yang dihasilkan ke dalamnya.
-
-`venv/var/flaskr-instance/config.py`
-
-```python
-SECRET_KEY = '192b9bdd22ab9ed4d12e236c78afcb9a393ec15f71bbf5dc987d54727823bcbf'
-```
-
-Kita juga dapat mengatur konfigurasi lain yang diperlukan di sini, meskipun SECRET_KEYini adalah satu-satunya yang diperlukan untuk Flaskr.
-
-
-**Run with a Production Server**
-
-Saat menjalankan secara publik alih-alih dalam pengembangan, Kita tidak boleh menggunakan server pengembangan bawaan ( ). Server pengembangan disediakan oleh Werkzeug untuk kenyamanan, tetapi tidak dirancang untuk menjadi sangat efisien, stabil, atau aman.flask run
-
-Sebagai gantinya, gunakan server WSGI produksi. Misalnya, untuk menggunakan Waitress , instal terlebih dahulu di lingkungan virtual:
-
-```python
-$ pip install waitress
-```
-
-Kita perlu memberi tahu Waitress tentang aplikasi Kita, tetapi aplikasi itu tidak menggunakan `FLASK_APP` like. Kita perlu memberitahunya untuk mengimpor dan memanggil pabrik aplikasi untuk mendapatkan objek aplikasi `.flask run`
-
-```python
-$ waitress-serve --call 'flaskr:create_app'
-
-Serving on http://0.0.0.0:8080
-```
-
----
-
-# Patterns for Flask
-
-Fitur dan interaksi tertentu cukup umum sehingga Kita akan menemukannya di sebagian besar aplikasi web. Misalnya, banyak aplikasi menggunakan database relasional dan otentikasi pengguna. Mereka akan membuka koneksi database di awal permintaan dan mendapatkan informasi untuk pengguna yang masuk. Di akhir permintaan, koneksi database ditutup.
-
-# API
-
-Bagian dokumentasi ini mencakup semua antarmuka Flask. Untuk bagian di mana Flask bergantung pada perpustakaan eksternal, kami mendokumentasikan yang paling penting di sini dan menyediakan tautan ke dokumentasi kanonik.
-
----
