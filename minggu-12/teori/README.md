@@ -1,3 +1,27 @@
+# Install Jupyter
+Install Jupyter dengan perintah berikut :
+```
+pip install jupyterlab
+```
+```
+Jupyter-lab # Buka jupyter notebook
+```
+```
+[I 2022-05-30 20:31:53.153 ServerApp] jupyterlab | extension was successfully linked.
+[W 2022-05-30 20:31:53.168 ServerApp] The 'min_open_files_limit' trait of a ServerApp instance expected an int, not the NoneType None.
+[I 2022-05-30 20:31:53.258 LabApp] JupyterLab extension loaded from C:\Users\GF63-9RCX-622ID\anaconda3\lib\site-packages\jupyterlab
+[I 2022-05-30 20:31:53.258 LabApp] JupyterLab application directory is C:\Users\GF63-9RCX-622ID\anaconda3\share\jupyter\lab
+[I 2022-05-30 20:31:53.262 ServerApp] jupyterlab | extension was successfully loaded.
+[I 2022-05-30 20:31:53.658 ServerApp] nbclassic | extension was successfully loaded.
+[I 2022-05-30 20:31:53.658 ServerApp] Serving notebooks from local directory: C:\Users\GF63-9RCX-622ID
+[I 2022-05-30 20:31:53.658 ServerApp] Jupyter Server 1.4.1 is running at:
+[I 2022-05-30 20:31:53.658 ServerApp] http://localhost:8888/lab?token=e6eda36ad5e4fd9b68c9dd03b461bd7b1ebb470c3a808e30
+[I 2022-05-30 20:31:53.658 ServerApp]  or http://127.0.0.1:8888/lab?token=e6eda36ad5e4fd9b68c9dd03b461bd7b1ebb470c3a808e30
+[I 2022-05-30 20:31:53.658 ServerApp] Use Control-C to stop this server and shut down all kernels (twice to skip confirmation).
+[C 2022-05-30 20:31:53.712 ServerApp]
+```
+Setelah Jupyter notebook sudah dibuka, kerjakan materi Struktur Data pada minggu ke 3
+
 # Struktur Data
 Bab ini menjelaskan beberapa hal yang telah Anda pelajari secara lebih rinci, dan menambahkan beberapa hal baru juga.
 
