@@ -27,7 +27,7 @@ Bab ini menjelaskan beberapa hal yang telah Anda pelajari secara lebih rinci, da
 
 ## Lebih Lanjut tentang Daftar Lists
 Tipe data daftar list memiliki beberapa metode lagi.
-### Code 1 
+#### Code 1 
 ```
 fruits = ['orange', 'apple', 'pear', 'banana', 'kiwi', 'apple', 'banana']
 fruits.count('apple')
@@ -53,7 +53,7 @@ Anda mungkin telah memperhatikan bahwa metode seperti insert, remove atau sort y
 
 ## Menggunakan Daftar Lists sebagai Tumpukan Stacks
 Metode daftar membuatnya sangat mudah untuk menggunakan daftar lust sebagai tumpukan stack, di mana elemen terakhir yang ditambahkan adalah elemen pertama yang diambil ("last-in, first-out"). Untuk menambahkan item ke atas tumpukan, gunakan append(). Untuk mengambil item dari atas tumpukan, gunakan pop() tanpa indeks eksplisit. Sebagai contoh:
-### Code 2
+#### Code 2
 ```
 stack = [3, 4, 5]
 stack.append(6)
@@ -73,7 +73,7 @@ stack
 ## Menggunakan Daftar Lists sebagai Antrian Queues
 Dimungkinkan juga untuk menggunakan daftar sebagai antrian, di mana elemen pertama yang ditambahkan adalah elemen pertama yang diambil ("first-in, first-out"); namun, daftar tidak efisien untuk tujuan ini. Sementara menambahkan dan muncul dari akhir daftar cepat, melakukan memasukkan atau muncul dari awal daftar lambat (karena semua elemen lain harus digeser satu).
 Untuk mengimplementasikan antrian, gunakan collections.deque yang dirancang untuk menambahkan dan muncul dengan cepat dari kedua ujungnya. Sebagai contoh:
-### Code 3 
+#### Code 3 
 ```
 from collections import deque
 queue = deque(["Eric", "John", "Michael"])
@@ -88,7 +88,7 @@ queue                           # Remaining queue in order of arrival
 ## Daftar List Comprehensions
 Pemahaman daftar list comprehensions menyediakan cara singkat untuk membuat daftar. Aplikasi umum adalah membuat daftar baru di mana setiap elemen adalah hasil dari beberapa operasi yang diterapkan pada setiap anggota dari urutan lain atau iterable, atau untuk membuat urutan elemen-elemen yang memenuhi kondisi tertentu.
 Misalnya, anggap kita ingin membuat daftar kotak, seperti:
-### Code 4 
+#### Code 4 
 ```
 squares = []
 for x in range(10):
@@ -194,7 +194,7 @@ list(zip(*matrix))
 ```
 ## Pernyataan del
 Ada cara untuk menghapus item dari daftar yang diberikan indeksnya, bukan nilainya: pernyataan del. Ini berbeda dari metode pop() yang mengembalikan nilai. Pernyataan del juga dapat digunakan untuk menghapus irisan dari daftar list atau menghapus seluruh daftar list (yang kami lakukan sebelumnya dengan menetapkan daftar kosong pada slice). Sebagai contoh:
-### Code 5 
+#### Code 5 
 ```
 a = [-1, 1, 66.25, 333, 333, 1234.5]
 del a[0]
@@ -215,7 +215,7 @@ Merujuk nama a selanjutnya adalah kesalahan (setidaknya sampai nilai lain diteta
 ## uples and Urutan Sequences
 Kita melihat bahwa daftar list dan string memiliki banyak properti yang sama, seperti operasi pengindeksan dan pemotongan. Mereka adalah dua contoh tipe data sequence (lihat Sequence Types --- list, tuple, range). Karena Python adalah bahasa yang berkembang, tipe data urutan lainnya dapat ditambahkan. Ada juga tipe data urutan standar lain: tuple.
 Sebuah tuple terdiri dari sejumlah nilai yang dipisahkan oleh koma, misalnya:
-### Code 6 
+#### Code 6 
 ```
 t = 12345, 54321, 'hello!'
 t[0]
@@ -287,7 +287,7 @@ Tipe data lain yang berguna yang dibangun ke dalam Python adalah dictionary (lih
 Melakukan list(d) pada kamus mengembalikan daftar list semua kunci yang digunakan dalam kamus, dalam urutan penyisipan (jika Anda ingin diurutkan, cukup gunakan sorted(d) sebagai gantinya). Untuk memeriksa apakah ada satu kunci dalam kamus, gunakan kaca kunci in.
 
 Ini adalah contoh kecil menggunakan kamus dictionary:
-### Code 7 
+#### Code 7 
 ```
 tel = {'jack': 4098, 'sape': 4139}
 tel['guido'] = 4127
@@ -321,7 +321,7 @@ dict(sape=4139, guido=4127, jack=4098)
 ```
 ## Teknik Perulangan
 Saat mengulang kamus dictionaries, kunci key dan nilai value terkait dapat diambil pada saat yang sama menggunakan metode items().
-### Code 8
+#### Code 8
 ```
 knights = {'gallahad': 'the pure', 'robin': 'the brave'}
 for k, v in knights.items():
@@ -373,7 +373,7 @@ Perbandingan dapat digabungkan menggunakan operator Boolean and dan or, dan hasi
 
 Operator Boolean and dan or disebut operator short-circuit: argumen mereka dievaluasi dari kiri ke kanan, dan evaluasi berhenti segera setelah hasilnya ditentukan. Misalnya, jika A dan C bernilai benar tetapi B salah, A and B and C tidak mengevaluasi ekspresi C. Ketika digunakan sebagai nilai umum dan bukan sebagai Boolean, nilai kembalian dari operator hubung singkat short-circuit adalah argumen terakhir yang dievaluasi.
 Dimungkinkan untuk menetapkan hasil perbandingan atau ekspresi Boolean lainnya ke variabel. Sebagai contoh,
-### Code 9
+#### Code 9
 ```
 string1, string2, string3 = '', 'Trondheim', 'Hammer Dance'
 non_null = string1 or string2 or string3
@@ -381,7 +381,7 @@ non_null
 ```
 ## Membandingkan Urutan Sequences dan Jenis Lainnya
 Objek urutan sequence biasanya dapat dibandingkan dengan objek lain dengan jenis urutan yang sama. Perbandingan menggunakan pengurutan lexicographical: pertama dua item pertama dibandingkan, dan jika mereka berbeda ini menentukan hasil perbandingan; jika mereka sama, dua item berikutnya dibandingkan, dan seterusnya, sampai urutan mana pun habis. Jika dua item yang akan dibandingkan adalah urutannya sendiri dari jenis yang sama, perbandingan leksikografis dilakukan secara rekursif. Jika semua item dari dua urutan membandingkan hasilnya sama, urutannya dianggap sama. Jika satu urutan adalah sub-urutan awal dari yang lain, urutan yang lebih pendek adalah yang lebih kecil (lebih pendek). Pengurutan leksikografis untuk string menggunakan nomor titik kode Unicode untuk mengurutkan masing-masing karakter. Beberapa contoh perbandingan antara urutan dengan tipe yang sama:
-### Code 10
+#### Code 10
 ```
 (1, 2, 3)              < (1, 2, 4)
 [1, 2, 3]              < [1, 2, 4]
