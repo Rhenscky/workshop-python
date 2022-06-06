@@ -1,37 +1,13 @@
-# 10 minutes to pandas
+# Pandas
 Chapter ini adalah sebuah pengenalan singkat yang ditujukan untuk pengguna baru pandas.
-
------------------------------
-
-*NOTE:
-Beberapa data di DataFrame yang di-generate dari _np.random_ yang ditampilkan di file README ini berbeda-beda dengan yang ada di file ipynb di folder src. Hal ini dikarenakan saya run cell beberapa kali sehingga angka randomnya selalu berganti. Terima kasih.
-
---------------------------
-
-Pertama kita membutuhkan NumPy. NumPy adalah sebuah package fundamental yang digunakan untuk komputasi ilmiah pada pemrograman Python. NumPy adalah library yang menyediakan objek array multidimensional, berbagai objek turunan (seperti _masked array_ dan matriks), dan berbagai macam rutinitas untuk operasi cepat pada array, termasuk matematika, logika, manipulasi bentuk, _sorting_, _selecting_, I/O, transformasi Fourier diskrit, aljabar linier dasar, operasi statistik dasar , simulasi random, dan lain-lain.
-
-_Install NumPy:_
-
-```python
-(workshop) zargiteddy@shield:~$ conda install -c anaconda numpy
-Collecting package metadata (current_repodata.json): done
-Solving environment: done
-
-
-==> WARNING: A newer version of conda exists. <==
-  current version: 4.12.0
-  latest version: 4.13.0
+NumPy adalah sebuah package fundamental yang digunakan untuk komputasi ilmiah pada pemrograman Python. NumPy adalah library yang menyediakan objek array multidimensional, berbagai objek turunan (seperti _masked array_ dan matriks), dan berbagai macam rutinitas untuk operasi cepat pada array, termasuk matematika, logika, manipulasi bentuk, _sorting_, _selecting_, I/O, transformasi Fourier diskrit, aljabar linier dasar, operasi statistik dasar , simulasi random, dan lain-lain.
 
 Please update conda by running
-
     $ conda update -n base -c defaults conda
-
-
 
 ## Package Plan ##
 
   environment location: /home/zargiteddy/miniconda3/envs/workshop
-
   added / updated specs:
     - numpy
 
@@ -65,7 +41,6 @@ The following NEW packages will be INSTALLED:
 
 Proceed ([y]/n)? y
 
-
 Downloading and Extracting Packages
 mkl_fft-1.3.1        | 697 KB    | ##################################### | 100% 
 numpy-base-1.21.5    | 14.9 MB   | ##################################### | 100% 
@@ -79,8 +54,6 @@ Preparing transaction: done
 Verifying transaction: done
 Executing transaction: done
 ```
----------------------------------------
-Kita juga membutuhkan pandas. pandas merupakan library Python yang digunakan untuk melakukan operasi matematika dengan cara yang fleksibel. Pandas adalah library _open-source_ yang menawarkan tool analisis data _high-performance_ yang bisa digunakan untuk analisis data dan manipulasi data sehingga pengguna library ini bisa mendapatkan informasi dari data yang dianalisis.
 
 _Install pandas:_
 
@@ -89,25 +62,14 @@ _Install pandas:_
 Collecting package metadata (current_repodata.json): done
 Solving environment: done
 
-
-==> WARNING: A newer version of conda exists. <==
-  current version: 4.12.0
-  latest version: 4.13.0
-
 Please update conda by running
 
     $ conda update -n base -c defaults conda
 
-
-
 ## Package Plan ##
-
   environment location: /home/zargiteddy/miniconda3/envs/workshop
-
   added / updated specs:
     - pandas
-
-
 The following packages will be downloaded:
 
     package                    |            build
@@ -120,7 +82,6 @@ The following packages will be downloaded:
                                            Total:        34.5 MB
 
 The following NEW packages will be INSTALLED:
-
   bottleneck         anaconda/linux-64::bottleneck-1.3.4-py310h9102076_0
   numexpr            anaconda/linux-64::numexpr-2.7.3-py310hd732450_1
   pandas             anaconda/linux-64::pandas-1.4.2-py310h295c915_0
@@ -128,7 +89,6 @@ The following NEW packages will be INSTALLED:
 
 
 Proceed ([y]/n)? y
-
 
 Downloading and Extracting Packages
 pandas-1.4.2         | 33.6 MB   | ##################################### | 100% 
@@ -139,8 +99,6 @@ Preparing transaction: done
 Verifying transaction: done
 Executing transaction: done
 ```
---------------------------------------
-Selanjutnya, kita bisa install (opsional) IPython (Interactive Python). IPython adalah sebuah command shell untuk komputasi interaktif yang menawarkan shell interaktif, support untuk visualisasi dara interaktif dan penggunaan toolkit GUI, interpreter yang fleksibel, dan tool untuk komputasi parallel. Selain itu, IPython juga menyediakan interface notebook berbasis web dengan support untuk code, teks, ekspresi matematika, inline plots, dan media-media lain.
 
 _Install IPython_
 
@@ -149,25 +107,14 @@ _Install IPython_
 Collecting package metadata (current_repodata.json): done
 Solving environment: done
 
-
-==> WARNING: A newer version of conda exists. <==
-  current version: 4.12.0
-  latest version: 4.13.0
-
-Please update conda by running
-
     $ conda update -n base -c defaults conda
-
 
 
 ## Package Plan ##
 
   environment location: /home/zargiteddy/miniconda3/envs/workshop
-
   added / updated specs:
     - ipython
-
-
 The following packages will be downloaded:
 
     package                    |            build
@@ -177,7 +124,6 @@ The following packages will be downloaded:
                                            Total:         1.1 MB
 
 The following packages will be UPDATED:
-
   ca-certificates    anaconda::ca-certificates-2022.4.26-h~ --> conda-forge::ca-certificates-2022.5.18.1-ha878542_0
   certifi            anaconda/noarch::certifi-2020.6.20-py~ --> conda-forge/linux-64::certifi-2022.5.18.1-py310hff52083_0
   ipython            anaconda::ipython-8.2.0-py310h06a4308~ --> conda-forge::ipython-8.4.0-py310hff52083_0
@@ -186,15 +132,12 @@ The following packages will be UPDATED:
 
 Proceed ([y]/n)? y
 
-
 Downloading and Extracting Packages
 ipython-8.4.0        | 1.1 MB    | ##################################### | 100% 
 Preparing transaction: done
 Verifying transaction: done
 Executing transaction: done
 ```
-------------------------
-Kita import dulu numpy dan pandas dengan menjalankan kode berikut:
 
 ```python
 In [1]: import numpy as np
@@ -202,8 +145,6 @@ In [2]: import pandas as pd
 ```
 
 ## Object Creation
-Lihat [Intro to data structures section](https://pandas.pydata.org/pandas-docs/stable/user_guide/dsintro.html#dsintro).
-
 Membuat [Series](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.Series.html#pandas.Series) dengan memasukkan list berisi value, memungkinkan pandas untuk membuat index integer default:
 
 ```python
@@ -217,7 +158,6 @@ Out[4]: 0    1.0
         5    8.0
         dtype: float64
 ```
-Membuat [DataFrame](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.html#pandas.DataFrame) dengan memasukkan array NumPy, dengan index datetime dan kolom yang dilabel:
 
 ```python
 In [5]: dates = pd.date_range("20130101", periods=6)
@@ -237,7 +177,6 @@ Out[8]:
 2013-01-05  0.561016 -0.283202 	0.424848 -0.803990
 2013-01-06  0.205565  1.683160 -0.506140 -0.016024
 ```
-Membuat [DataFrame](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.html#pandas.DataFrame) dengan memasukkan dictionary objek yang bisa diconvert menjadi struktur yang mirip series:
 
 ```python
 In [9]: df2 = pd.DataFrame(
@@ -258,7 +197,6 @@ Out[10]:
 2  1.0 2013-01-02  1.0  3   test  foo
 3  1.0 2013-01-02  1.0  3  train  foo
 ```
-Kolom yang menghasilkan DataFrame memiliki [dtypes](https://pandas.pydata.org/pandas-docs/stable/user_guide/basics.html#basics-dtypes) yang berbeda:
 
 ```python
 In [11]: df2.dtypes
@@ -271,7 +209,6 @@ E          category
 F            object
 dtype: object
 ```
-Jika kita menggunakan IPython, tab completion untuk nama kolom (juga atribut public) secara otomatis sudah terpasang. Berikut subset atribut yang akan di-completed:
 
 ```python
 In [12]: df2.<TAB>  # noqa: E225, E999
@@ -288,13 +225,10 @@ df2.apply              df2.describe
 df2.applymap           df2.diff
 df2.B                  df2.duplicated
 ```
-Seperti yang bisa kita lihat, kolom A, B, C, dan D secara otomatis di-tab completed. E dan F juga ada; atribut lainnya telah dipotong untuk lebih singkatnya.
 
-----------------------
 
 ## Viewing Data
 Lihat [Basics Section](https://pandas.pydata.org/pandas-docs/stable/user_guide/basics.html#basics).
-
 Berikut cara melihat (view) bagian atas dan bawah baris frame:
 
 ```python
@@ -313,7 +247,6 @@ Out[14]:
 2013-01-05  0.561016 -0.283202 	0.424848 -0.803990
 2013-01-06  0.205565  1.683160 -0.506140 -0.016024
 ```
-Tampilkan index, kolom:
 
 ```python
 In [15]: df.index
@@ -324,9 +257,6 @@ DatetimeIndex(['2013-01-01', '2013-01-02', '2013-01-03', '2013-01-04',
 In [16]: df.columns
 Out[16]: Index(['A', 'B', 'C', 'D'], dtype='object')
 ```
-[DataFrame.to_numpy()](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.to_numpy.html#pandas.DataFrame.to_numpy) memberikan NumPy representasi dari data yang mendasarinya. Perhatikan bahwa hal ini bisa menjadi operasi yang "mahal" ketika DataFrame kita memiliki kolom dengan tipe data yang berbeda yang menjadi perbedaan mendasar antara pandas dan NumPy: array NumPy memiliki satu tipe dtype untuk seluruh array, sementara DataFrame pandas memiliki satu dtype per kolom. Ketika kita memanggil [DataFrame.to_numpy()](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.to_numpy.html#pandas.DataFrame.to_numpy), pandas akan mencari dtype NumPy yang bisa menampung semua dtype di dalam DataFrame.
-
-Untuk df, yaitu DataFrame berisi nilai berupa floating-point, [DataFrame.to_numpy()](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.to_numpy.html#pandas.DataFrame.to_numpy) cepat dan tidak membutuhkan penyalinan data:
 
 ```python
 In [17]: df.to_numpy()
@@ -338,7 +268,6 @@ array([[-0.45082523, -1.99709731,  0.45491106, -0.59638695],
        [ 0.56101602, -0.28320185,  0.42484848, -0.80398959],
        [ 0.2055645 ,  1.68315996, -0.5061398 , -0.01602386]])
 ```
-Untuk df2, DataFrame dengan beberapa dtype, [DataFrame.to_numpy()](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.to_numpy.html#pandas.DataFrame.to_numpy) cenderung "mahal":
 
 ```python
 In [18]: df2.to_numpy()
@@ -349,7 +278,6 @@ array([[1.0, Timestamp('2013-01-02 00:00:00'), 1.0, 3, 'test', 'foo'],
        [1.0, Timestamp('2013-01-02 00:00:00'), 1.0, 3, 'train', 'foo']],
       dtype=object)
 ```
-[describe()](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.describe.html#pandas.DataFrame.describe) menampilkan summary statistik sederhana data milik kita:
 
 ```python
 In [19]: df.describe()
@@ -364,7 +292,6 @@ min   -0.551129 -1.997097 -0.863102 -0.927765
 75%    0.497154 -0.260810  0.447395 -0.028240
 max    1.078149  1.683160  1.758851  1.675071
 ```
-Memindah data:
 
 ```python
 In [20]: df.T
@@ -375,7 +302,6 @@ B   -1.997097 	-0.253346   -0.520855 	-1.553706   -0.283202 	 1.683160
 C    0.454911 	 0.120193   -0.863102 	 1.758851    0.424848 	-0.506140
 D   -0.596387 	 1.675071   -0.064890 	-0.927765   -0.803990 	-0.016024
 ```
-Mengurutkan berdasarkan axis:
 
 ```python
 In [21]: df.sort_index(axis=1, ascending=False)
@@ -388,7 +314,6 @@ Out[21]:
 2013-01-05 -0.803990  0.424848 -0.283202  0.561016
 2013-01-06 -0.016024 -0.506140 	1.683160  0.205565
 ```
-Mengurutkan berdasarkan nilai:
 
 ```python
 In [22]: df.sort_values(by="B")
@@ -420,7 +345,6 @@ Out[23]:
 2013-01-06    0.205565
 Freq: D, Name: A, dtype: float64
 ```
-Memilih via `[]`, yang memotong baris:
 
 ```python
 In [24]: df[0:3]
@@ -438,8 +362,6 @@ Out[25]:
 2013-01-04  1.078149 -1.553706 	1.758851 -0.927765
 ```
 ### Selection by label
-Lihat di [Selection by Label](https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#indexing-label).
-
 Untuk mendapatkan cross section menggunakan label:
 
 ```python
@@ -451,7 +373,6 @@ C    0.454911
 D   -0.596387
 Name: 2013-01-01 00:00:00, dtype: float64
 ```
-Memilih multi-axis dengan label:
 
 ```python
 In [27]: df.loc[:, ["A", "B"]]
@@ -464,7 +385,6 @@ Out[27]:
 2013-01-05  0.561016 -0.283202
 2013-01-06  0.205565  1.683160
 ```
-Menampilkan _slicing_ label, kedua _endpoint_ juga termasuk:
 
 ```python
 In [28]: df.loc["20130102":"20130104", ["A", "B"]]
@@ -474,7 +394,6 @@ Out[28]:
 2013-01-03 -0.551129 -0.520855
 2013-01-04  1.078149 -1.553706
 ```
-Pengurangan di dalam dimensi objek yang di-return:
 
 ```python
 In [29]: df.loc["20130102", ["A", "B"]]
@@ -483,21 +402,17 @@ A    0.305567
 B   -0.253346
 Name: 2013-01-02 00:00:00, dtype: float64
 ```
-Untuk mendapatkan nilai scalar:
 
 ```python
 In [30]: df.loc[dates[0], "A"]
 Out[30]: -0.45082522637014566
 ```
-Untuk mendapatkan akses cepat ke scalar:
 
 ```python
 In [31]: df.loc[dates[0], "A"]
 Out[31]: -0.45082522637014566
 ```
 ### Selection by position
-Lihat di [Selection by Position](https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#indexing-integer).
-
 Pilih via posisi integer yang dimasukkan:
 
 ```python
@@ -509,7 +424,6 @@ C    1.758851
 D   -0.927765
 Name: 2013-01-04 00:00:00, dtype: float64
 ```
-Dengan slice integer:
 
 ```python
 In [33]: df.iloc[3:5, 0:2]
@@ -518,7 +432,6 @@ Out[33]:
 2013-01-04  1.078149 -1.553706
 2013-01-05  0.561016 -0.283202
 ```
-Dengan list lokasi posisi integer:
 
 ```python
 In [34]: df.iloc[[1, 2, 4], [0, 2]]
@@ -528,7 +441,6 @@ Out[34]:
 2013-01-03 -0.551129 -0.863102
 2013-01-05  0.561016  0.424848
 ```
-Untuk _slicing_ baris secara eksplisit:
 
 ```python
 In [35]: df.iloc[1:3, :]
@@ -537,7 +449,6 @@ Out[35]:
 2013-01-02  0.305567 -0.253346 	0.120193  1.675071
 2013-01-03 -0.551129 -0.520855 -0.863102 -0.064890
 ``` 
-Untuk _slicing_ kolom secara eksplisit:
 
 ```python
 In [36]: df.iloc[:, 1:3]
@@ -550,13 +461,11 @@ Out[36]:
 2013-01-05 -0.283202  0.424848
 2013-01-06  1.683160 -0.506140
 ```
-Untuk mendapatkan nilai secara eksplisit:
 
 ```python
 In [37]: df.iloc[1, 1]
 Out[37]: -0.2533455737811998
 ```
-Untuk mendapatkan akses cepat ke scalar:
 
 ```python
 In [38]: df.iat[1, 1]
@@ -574,7 +483,6 @@ Out[39]:
 2013-01-05  0.561016 -0.283202 	0.424848 -0.803990
 2013-01-06  0.205565 1.683160  -0.506140 -0.016024
 ```
-Memilih value dari DataFrame dimana kondisi boolean terpenuhi:
 
 ```python
 In [40]: df[df > 0]
@@ -587,7 +495,6 @@ Out[40]:
 2013-01-05  0.561016 	   NaN 	0.424848       NaN
 2013-01-06       NaN  0.113648       NaN  0.524988
 ```
-Gunakan method [isin()](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.Series.isin.html#pandas.Series.isin) untuk filtering:
 
 ```python
 In [41]: df2 = df.copy()
@@ -624,22 +531,18 @@ Out[46]:
 Freq: D, dtype: int64
 In [47]: df["F"] = s1
 ```
-Setting nilai berdasarkan label:
 
 ```python
 In [48]: df["F"] = df.at[dates[0], "A"] = 0
 ```
-Setting nilai berdasarkan posisi:
 
 ```python
 In [49]: df.iat[0, 1] = 0
 ```
-Setting dengan assign dengan array NumPy:
 
 ```python
 In [50]: df.loc[:, "D"] = np.array([5] * len(df))
 ```
-Hasil dari operasi setting:
 
 ```python
 In [51]: df
@@ -652,7 +555,6 @@ Out[51]:
 2013-01-05  0.561016 -0.283202 	0.424848  5  4.0
 2013-01-06  0.205565  1.683160 -0.506140  5  5.0
 ```
-Operasi `where` dengan setting:
 
 ```python
 In [52]: df2 = df.copy()
@@ -669,8 +571,7 @@ Out[54]:
 ```
 ----------------------
 ## Missing data
-pandas biasanya menggunakan nilai `np.nan` untuk merepresentasikan data yang hilang. Lihat [Missing Data section](https://pandas.pydata.org/pandas-docs/stable/user_guide/missing_data.html#missing-data).
-
+pandas biasanya menggunakan nilai `np.nan` untuk merepresentasikan data yang hilang. 
 Pengindeksan ulang memungkinkan kita untuk mengubah/menambah/menghapus index pada sumbu (axis) tertentu. Hal ini me-return salinan data:
 
 ```python
@@ -684,7 +585,6 @@ Out[57]:
 2013-01-03 -0.551129 -0.520855 -0.863102  5  2.0  NaN
 2013-01-04  1.078149 -1.553706 	1.758851  5  3.0  NaN
 ```
-Untuk drop setiap baris yang memiliki data hilang:
 
 ```python
 In [58]: df1.dropna(how="any")
@@ -692,7 +592,6 @@ Out[58]:
                    A         B         C  D    F    E
 2013-01-02  0.305567 -0.253346 	0.120193  5  1.0  1.0
 ```
-Mengisi data yang hilang:
 
 ```python
 In [59]: df1.fillna(value=5)
@@ -703,7 +602,6 @@ Out[59]:
 2013-01-03 -0.551129 -0.520855 -0.863102  5  2.0  5.0
 2013-01-04  1.078149 -1.553706 	1.758851  5  3.0  5.0
 ```
-Untuk mendapatkan mask boolean dimana nilai adalah `nan`:
 
 ```python
 In [60]: df1.fillna(value=5)
@@ -720,7 +618,6 @@ Lihat [Basic section on Binary Ops](https://pandas.pydata.org/pandas-docs/stable
 
 ### Stats
 Operasi pada umumnya meniadakan data yang hilang.
-
 Melakukan statistika deskriptif:
 
 ```python
@@ -733,7 +630,6 @@ D    5.000000
 F    3.000000
 dtype: float64
 ```
-Operasi yang sama di sumbu lain:
 
 ```python
 In [62]: df.mean(1)
@@ -746,7 +642,6 @@ Out[62]:
 2013-01-06    2.276517
 Freq: D, dtype: float64
 ```
-Beroperasi dengan objek yang memiliki dimensi berbeda dan membutuhkan penyelarasan. Selain itu, pandas secara otomatis mem-broadcast sepanjang dimensi yang telah ditentukan:
 
 ```python
 In [63]: s = pd.Series([1, 3, 5, np.nan, 6, 8], index=dates).shift(2)
@@ -845,10 +740,6 @@ dtype: object
 ### Concat
 pandas menyediakan berbagai fasilitas untuk menggabungkan objek Series dan DataFrame dengan berbagai jenis kumpulan logika untuk index dan fungsionalitas algebra relasional dalam kasus operasi  join/merge.
 
-Lihat [Merging section](https://pandas.pydata.org/pandas-docs/stable/user_guide/merging.html#merging).
-
-Menggabungkan bersama objek pandas dengan [concat()](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.concat.html#pandas.concat):
-
 ```python
 In [73]: df = pd.DataFrame(np.random.randn(10, 4))
 In [74]: df
@@ -932,8 +823,6 @@ Dengan "group by" kita merujuk ke suatu proses yang melibatkan satu atau lebih l
 - Mengaplikasikan fungsi ke setiap grup secara independen
 - Mengombinasikan hasil ke dalam sebuah struktur data
 
-Lihat [Grouping section](https://pandas.pydata.org/pandas-docs/stable/user_guide/groupby.html#groupby).
-
 ```python
 In [87]: df = pd.DataFrame(
              {
@@ -955,7 +844,6 @@ Out[88]:
 6  foo    one  2.089645 -0.609173
 7  foo  three  1.133125  0.413771
 ```
-Grouping dan mengaplikasikan fungsi [sum()](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.core.groupby.GroupBy.sum.html#pandas.core.groupby.GroupBy.sum) pada grup yang dihasilkan:
 
 ```python
 In [89]: df.groupby("A").sum()
@@ -965,7 +853,6 @@ A
 bar  3.845483  0.752206
 foo  3.395644  1.546608
 ```
-Grouping dengan beberapa kolom akan membentuk index hierarkis, kemudian kita dapat mengaplikasikan fungsi `sum()`:
 
 ```python
 In [90]: df.groupby(["A", "B"]).sum()
@@ -1007,7 +894,6 @@ bar   one    -1.142374 	0.033097
 baz   one     1.439461 -0.783570
       two     0.625465 -1.343182
 ```
-Method [stack()](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.stack.html#pandas.DataFrame.stack) meng-kompres level di kolom DataFrame:
 
 ```python
 In [96]: stacked = df2.stack()
@@ -1024,7 +910,6 @@ baz    one     A    1.439461
                B   -1.343182
 dtype: float64
 ```
-Dengan DataFrame atau Series yang "stacked", operasi invers dari [stack()](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.stack.html#pandas.DataFrame.stack) adalah [unstack()](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.unstack.html#pandas.DataFrame.unstack), yang secara default meng-unstack level terakhir:
 
 ```python
 In [98]: stacked.unstack()
@@ -1081,7 +966,6 @@ Out[102]:
 10    two  B  bar -0.696235 -0.784247
 11  three  C  bar -0.759735 -1.652989
 ```
-Kita bisa membuat tabel pivot dari data berikut dengan sangat mudah:
 
 ```python
 In [103]: pd.pivot_table(df, values="D", index=["A", "B"], columns=["C"])
@@ -1111,7 +995,6 @@ Out[106]:
 2012-01-01    24421
 Freq: 5T, dtype: int64
 ```
-Representasi zona waktu:
 
 ```python
 In [107]: rng = pd.date_range("3/6/2012 00:00", periods=5, freq="D")
@@ -1134,7 +1017,6 @@ Out[111]:
 2012-03-10 00:00:00+00:00    1.500832
 Freq: D, dtype: float64
 ```
-Konversi ke zona waktu lain:
 
 ```python
 In [112]: ts_utc.tz_convert("US/Eastern")
@@ -1146,7 +1028,6 @@ Out[112]:
 2012-03-09 19:00:00-05:00    1.500832
 Freq: D, dtype: float64
 ```
-Mengonversi antara representasi rentang waktu:
 
 ```python
 In [113]: rng = pd.date_range("1/1/2012", periods=5, freq="M")
@@ -1177,7 +1058,6 @@ Out[118]:
 2012-05-01    0.020294
 Freq: MS, dtype: float64
 ```
-Konversi di antara periode dan timestamp memungkinkan beberapa fungsi aritmatika untuk digunakan. Di contoh berikut, kita mengonversi frekuensi triwulanan dengan tahun yang berakhir pada November menjadi 9am pada akhir bulan setelah akhir _quarter_:
 
 ```python
 In [119]: prng = pd.period_range("1990Q1", "2000Q4", freq="Q-NOV")
@@ -1202,7 +1082,6 @@ In [123]: df = pd.DataFrame(
               {"id": [1, 2, 3, 4, 5, 6], "raw_grade": ["a", "b", "b", "a", "a", "e"]}
           )
 ```
-Mengonversi grade raw ke tipe data categorical:
 
 ```python
 In [124]: df["grade"] = df["raw_grade"].astype("category")
@@ -1217,12 +1096,10 @@ Out[125]:
 Name: grade, dtype: category
 Categories (3, object): ['a', 'b', 'e']
 ```
-Rename kategori menjadi nama yang lebih memiliki makna:
 
 ```python
 In [126]: df["grade"].cat.categories = ["very good", "good", "very bad"]
 ```
-Urutkan ulang kategori dan secara bersamaan tambahkan kategori yang hilang:
 
 ```python
 In [127]: df["grade"] = df["grade"].cat.set_categories(
@@ -1239,7 +1116,6 @@ Out[128]:
 Name: grade, dtype: category
 Categories (5, object): ['very bad', 'bad', 'medium', 'good', 'very good']
 ```
-Sorting adalah per order dalam kategori, bukan order secara leksikal:
 
 ```python
 In [129]: df.sort_values(by="grade")
@@ -1252,7 +1128,6 @@ Out[129]:
 3   4         a  very good
 4   5         a  very good
 ```
-Grouping menurut kolom categorical juga menampilkan kategori empty (kosong):
 
 ```python
 In [130]: df.groupby("grade").size()
@@ -1274,19 +1149,16 @@ Kita menggunakan konvensi standar untuk merujuk ke API matplotlib:
 In [131]: import matplotlib.pyplot as plt
 In [132]: plt.close("all")
 ```
-method `close()` digunakan untuk menutup window figur:
 
 ```python
 In [133]: ts = pd.Series(np.random.randn(1000), index=pd.date_range("1/1/2000", periods=1000))
 In [134]: ts = ts.cumsum()
 In [135]: ts.plot();
 ```
-Jika menjalankan dengan Jupyter Notebook, plot akan muncul di `plot()`.
 
 ```python
 In [136]: plt.show();
 ```
-Pada DataFrame, method `plot()` baik digunakan untuk mem-plot semua kolom dengan label:
 
 ```python
 In [137]: df = pd.DataFrame(
@@ -1303,12 +1175,11 @@ In [141]: plt.legend(loc='best');
 
 ### CSV
 Mebuat file csv:
-
 ```python
 In [142]: df.to_csv("foo.csv")
 ```
-Membaca file csv:
 
+Membaca file csv:
 ```python
 In [143]: pd.read_csv("foo.csv")
 Out[143]: 
@@ -1329,12 +1200,11 @@ Out[143]:
 ```
 ### HDF5
 Membuat HDF5 Store:
-
 ```python
 In [144]: df.to_hdf("foo.h5", "df")
 ```
-Membaca HDF5 Store:
 
+Membaca HDF5 Store:
 ```python
 In [145]: pd.read_hdf("foo.h5", "df")
 Out[145]: 
@@ -1394,10 +1264,10 @@ ValueError: The truth value of an array is ambiguous. Use a.empty, a.any() or a.
 ---------------------------
 # 5 Fungsi / Perintah di pandas:
 
-1. `head()` merupakan fungsi pandas yang berguna untuk menampilkan data paling awal atau bisa disebut dengan data paling atas pada suatu DataFrame. Secara default, fungsi ini akan menampilkan 5 baris paling atas jika argumen tidak diisi. Dengan kata lain, kita bisa mengisi argumen dengan angka berapapun untuk menampilkan data teratas sesuai jumlah angka pada argumen yang telah kita ttentukan.
+1. `head()` merupakan fungsi pandas yang berguna untuk menampilkan data paling awal atau bisa disebut dengan data paling atas pada suatu DataFrame. 
 <br>
 
-2. `tail()` bisa dibilang merupakan kebalikan dari fungsi `head()`. Funsi `tail()` ini berguna untuk menampilkan data paling bawah pada suatu DataFrame. Sama dengan `head()`, nilai default dari `tail()` adalah 5.
+2. `tail()` bisa dibilang merupakan kebalikan dari fungsi `head()`.
 <br>
 
 3. `info()` adalah fungsi pandas yang digunakan untuk memberi tahu dan menampilkan berbagai informasi detail tentang DataFrame seperti RangeIndex, total kolom, nama-nama kolom, dtypes, memory usage, dan lain-lain.
