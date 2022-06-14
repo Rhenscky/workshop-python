@@ -16,8 +16,10 @@ Untuk menggunakan pandas, import pandas sebagai pd
 ```
 
 ## Untuk mendwnload data 
+```
 >>> url = "https://raw.githubusercontent.com/lrjoshi/webpage/master/public/post/c159s.csv"
 >>> df = pd.read_csv(url)
+```
 
 ## Menampilkan data 
 masukkan perintah dibawah untuk menampilkan semua data, data berjumlah 72 rows × 6 columns
