@@ -6,7 +6,9 @@ Berisi data percobaan Sel Firus
 ## Menjalankan di CMD
 Buka CMD dan masuk ke python
 ```
-> python
+>python
+Python 3.10.5 (tags/v3.10.5:f377153, Jun  6 2022, 16:14:13) [MSC v.1929 64 bit (AMD64)] on win32
+Type "help", "copyright", "credits" or "license" for more information.
 ```
 Untuk menggunakan pandas, import pandas sebagai pd
 ```
